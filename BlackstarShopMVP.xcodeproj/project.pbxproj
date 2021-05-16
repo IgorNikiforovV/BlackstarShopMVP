@@ -13,6 +13,7 @@
 		AC8E6EAD264E7CA3009A2A20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8E6EAB264E7CA3009A2A20 /* Main.storyboard */; };
 		AC8E6EAF264E7CA5009A2A20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */; };
 		AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8E6EB0264E7CA5009A2A20 /* LaunchScreen.storyboard */; };
+		AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B0226514E1600DE5B2D /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC8E6EB1264E7CA5009A2A20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC8E6EB3264E7CA5009A2A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC930B0226514E1600DE5B2D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,96 @@
 		AC8E6EA4264E7CA3009A2A20 /* BlackstarShopMVP */ = {
 			isa = PBXGroup;
 			children = (
-				AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */,
-				AC8E6EA7264E7CA3009A2A20 /* SceneDelegate.swift */,
+				AC930AF826514AF200DE5B2D /* Application */,
+				AC930AFB26514B7900DE5B2D /* Views */,
+				AC930AFA26514B6F00DE5B2D /* Screens */,
 				AC8E6EA9264E7CA3009A2A20 /* ViewController.swift */,
 				AC8E6EAB264E7CA3009A2A20 /* Main.storyboard */,
-				AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */,
-				AC8E6EB0264E7CA5009A2A20 /* LaunchScreen.storyboard */,
-				AC8E6EB3264E7CA5009A2A20 /* Info.plist */,
+				AC930AF926514B1E00DE5B2D /* Resources */,
 			);
 			path = BlackstarShopMVP;
+			sourceTree = "<group>";
+		};
+		AC930AF826514AF200DE5B2D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				AC8E6EB0264E7CA5009A2A20 /* LaunchScreen.storyboard */,
+				AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */,
+				AC8E6EA7264E7CA3009A2A20 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		AC930AF926514B1E00DE5B2D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */,
+				AC8E6EB3264E7CA5009A2A20 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC930AFA26514B6F00DE5B2D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				AC930AFC26514C7C00DE5B2D /* MainTabBar */,
+				AC930AFD26514CB900DE5B2D /* Categories */,
+				AC930AFE26514CFA00DE5B2D /* Subcategories */,
+				AC930AFF26514D3500DE5B2D /* Products */,
+				AC930B0026514D7C00DE5B2D /* productDetails */,
+				AC930B0126514DA900DE5B2D /* Basket */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		AC930AFB26514B7900DE5B2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC930AFC26514C7C00DE5B2D /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AC930B0226514E1600DE5B2D /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		AC930AFD26514CB900DE5B2D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		AC930AFE26514CFA00DE5B2D /* Subcategories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Subcategories;
+			sourceTree = "<group>";
+		};
+		AC930AFF26514D3500DE5B2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		AC930B0026514D7C00DE5B2D /* productDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = productDetails;
+			sourceTree = "<group>";
+		};
+		AC930B0126514DA900DE5B2D /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Basket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +222,7 @@
 			files = (
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
+				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +372,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MSVFBRY49T;
-				INFOPLIST_FILE = BlackstarShopMVP/Info.plist;
+				INFOPLIST_FILE = BlackstarShopMVP/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MSVFBRY49T;
-				INFOPLIST_FILE = BlackstarShopMVP/Info.plist;
+				INFOPLIST_FILE = BlackstarShopMVP/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
