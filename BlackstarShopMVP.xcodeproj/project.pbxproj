@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CB36D3E2355B71546D845E7 /* Pods_BlackstarShopMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD6F284C709F048ABD7219 /* Pods_BlackstarShopMVP.framework */; };
 		AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */; };
 		AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E6EA7264E7CA3009A2A20 /* SceneDelegate.swift */; };
 		AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E6EA9264E7CA3009A2A20 /* ViewController.swift */; };
@@ -14,9 +15,20 @@
 		AC8E6EAF264E7CA5009A2A20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */; };
 		AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8E6EB0264E7CA5009A2A20 /* LaunchScreen.storyboard */; };
 		AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B0226514E1600DE5B2D /* MainTabBarController.swift */; };
+		AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B0E2652CBF200DE5B2D /* R.generated.swift */; };
+		AC930B2D2653ADFA00DE5B2D /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B262653ADFA00DE5B2D /* CategoryPresenter.swift */; };
+		AC930B2E2653ADFA00DE5B2D /* CategoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B272653ADFA00DE5B2D /* CategoryWorker.swift */; };
+		AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B282653ADFA00DE5B2D /* CategoryRouter.swift */; };
+		AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B292653ADFA00DE5B2D /* CategoryModels.swift */; };
+		AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */; };
+		AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */; };
+		AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0FF07D21F1AC29BBB9DC9499 /* Pods-BlackstarShopMVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.release.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.release.xcconfig"; sourceTree = "<group>"; };
+		4A053BE3BBF04BE091CB9E3F /* Pods-BlackstarShopMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.debug.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.debug.xcconfig"; sourceTree = "<group>"; };
+		83CD6F284C709F048ABD7219 /* Pods_BlackstarShopMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackstarShopMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8E6EA2264E7CA3009A2A20 /* BlackstarShopMVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackstarShopMVP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC8E6EA7264E7CA3009A2A20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +38,14 @@
 		AC8E6EB1264E7CA5009A2A20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC8E6EB3264E7CA5009A2A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC930B0226514E1600DE5B2D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		AC930B0E2652CBF200DE5B2D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		AC930B262653ADFA00DE5B2D /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
+		AC930B272653ADFA00DE5B2D /* CategoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWorker.swift; sourceTree = "<group>"; };
+		AC930B282653ADFA00DE5B2D /* CategoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRouter.swift; sourceTree = "<group>"; };
+		AC930B292653ADFA00DE5B2D /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
+		AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInteractor.swift; sourceTree = "<group>"; };
+		AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CB36D3E2355B71546D845E7 /* Pods_BlackstarShopMVP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2A64972A86DCB72DB702A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83CD6F284C709F048ABD7219 /* Pods_BlackstarShopMVP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		671CAF2EE1296E488C49CFB1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A053BE3BBF04BE091CB9E3F /* Pods-BlackstarShopMVP.debug.xcconfig */,
+				0FF07D21F1AC29BBB9DC9499 /* Pods-BlackstarShopMVP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AC8E6E99264E7CA3009A2A20 = {
 			isa = PBXGroup;
 			children = (
 				AC8E6EA4264E7CA3009A2A20 /* BlackstarShopMVP */,
 				AC8E6EA3264E7CA3009A2A20 /* Products */,
+				671CAF2EE1296E488C49CFB1 /* Pods */,
+				0B2A64972A86DCB72DB702A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +100,7 @@
 			children = (
 				AC930AF826514AF200DE5B2D /* Application */,
 				AC930AFB26514B7900DE5B2D /* Views */,
-				AC930AFA26514B6F00DE5B2D /* Screens */,
+				AC930AFA26514B6F00DE5B2D /* Scenes */,
 				AC8E6EA9264E7CA3009A2A20 /* ViewController.swift */,
 				AC8E6EAB264E7CA3009A2A20 /* Main.storyboard */,
 				AC930AF926514B1E00DE5B2D /* Resources */,
@@ -81,23 +121,24 @@
 		AC930AF926514B1E00DE5B2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AC930B0E2652CBF200DE5B2D /* R.generated.swift */,
 				AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */,
 				AC8E6EB3264E7CA5009A2A20 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AC930AFA26514B6F00DE5B2D /* Screens */ = {
+		AC930AFA26514B6F00DE5B2D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				AC930AFC26514C7C00DE5B2D /* MainTabBar */,
-				AC930AFD26514CB900DE5B2D /* Categories */,
-				AC930AFE26514CFA00DE5B2D /* Subcategories */,
-				AC930AFF26514D3500DE5B2D /* Products */,
-				AC930B0026514D7C00DE5B2D /* productDetails */,
+				AC930AFD26514CB900DE5B2D /* Сategory */,
+				AC930AFE26514CFA00DE5B2D /* Subcategory */,
+				AC930AFF26514D3500DE5B2D /* Product */,
+				AC930B0026514D7C00DE5B2D /* ProductDetails */,
 				AC930B0126514DA900DE5B2D /* Basket */,
 			);
-			path = Screens;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		AC930AFB26514B7900DE5B2D /* Views */ = {
@@ -115,32 +156,39 @@
 			path = MainTabBar;
 			sourceTree = "<group>";
 		};
-		AC930AFD26514CB900DE5B2D /* Categories */ = {
+		AC930AFD26514CB900DE5B2D /* Сategory */ = {
 			isa = PBXGroup;
 			children = (
+				AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */,
+				AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */,
+				AC930B262653ADFA00DE5B2D /* CategoryPresenter.swift */,
+				AC930B272653ADFA00DE5B2D /* CategoryWorker.swift */,
+				AC930B282653ADFA00DE5B2D /* CategoryRouter.swift */,
+				AC930B292653ADFA00DE5B2D /* CategoryModels.swift */,
+				AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */,
 			);
-			path = Categories;
+			path = "Сategory";
 			sourceTree = "<group>";
 		};
-		AC930AFE26514CFA00DE5B2D /* Subcategories */ = {
+		AC930AFE26514CFA00DE5B2D /* Subcategory */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Subcategories;
+			path = Subcategory;
 			sourceTree = "<group>";
 		};
-		AC930AFF26514D3500DE5B2D /* Products */ = {
+		AC930AFF26514D3500DE5B2D /* Product */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Products;
+			path = Product;
 			sourceTree = "<group>";
 		};
-		AC930B0026514D7C00DE5B2D /* productDetails */ = {
+		AC930B0026514D7C00DE5B2D /* ProductDetails */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = productDetails;
+			path = ProductDetails;
 			sourceTree = "<group>";
 		};
 		AC930B0126514DA900DE5B2D /* Basket */ = {
@@ -157,9 +205,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC8E6EB6264E7CA5009A2A20 /* Build configuration list for PBXNativeTarget "BlackstarShopMVP" */;
 			buildPhases = (
+				4309D45239C82696C8A7D088 /* [CP] Check Pods Manifest.lock */,
+				AC930B062652A20900DE5B2D /* Swift Lint */,
+				AC930B072652BD9900DE5B2D /* R.swift */,
 				AC8E6E9E264E7CA3009A2A20 /* Sources */,
 				AC8E6E9F264E7CA3009A2A20 /* Frameworks */,
 				AC8E6EA0264E7CA3009A2A20 /* Resources */,
+				6BC8DE5E07A8807E4A367E3F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */,
 				AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */,
 				AC8E6EAF264E7CA5009A2A20 /* Assets.xcassets in Resources */,
 				AC8E6EAD264E7CA3009A2A20 /* Main.storyboard in Resources */,
@@ -215,14 +268,101 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4309D45239C82696C8A7D088 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlackstarShopMVP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BC8DE5E07A8807E4A367E3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC930B062652A20900DE5B2D /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		AC930B072652BD9900DE5B2D /* R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R.swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/$PROJECT_NAME/Resources/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/Resources/R.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AC8E6E9E264E7CA3009A2A20 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */,
+				AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */,
+				AC930B2E2653ADFA00DE5B2D /* CategoryWorker.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
+				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
 				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
+				AC930B2D2653ADFA00DE5B2D /* CategoryPresenter.swift in Sources */,
+				AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */,
+				AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +507,7 @@
 		};
 		AC8E6EB7264E7CA5009A2A20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A053BE3BBF04BE091CB9E3F /* Pods-BlackstarShopMVP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -386,6 +527,7 @@
 		};
 		AC8E6EB8264E7CA5009A2A20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FF07D21F1AC29BBB9DC9499 /* Pods-BlackstarShopMVP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
