@@ -9,13 +9,19 @@
 import UIKit
 
 protocol CategoryDisplayLogic: AnyObject {
-    func displayData(viewModel: Category.Model.ViewModel.ViewModelData)
+    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData)
 }
 
 class CategoryViewController: UIViewController, CategoryDisplayLogic {
 
     var interactor: CategoryBusinessLogic?
     var router: (NSObjectProtocol & CategoryRoutingLogic)?
+
+    // MARK: IBOutlets
+
+    @IBOutlet private weak var tableView: UITableView!
+
+    private var categories = [CategoryCellVModel]()
 
     // MARK: Object lifecycle
 
@@ -51,10 +57,45 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        interactor?.makeRequest(request: Category.FetchData.Request.RequestType.getNewCategories)
     }
 
-    func displayData(viewModel: Category.Model.ViewModel.ViewModelData) {
+    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData) {
+        switch viewModel {
+        case .displayNewCategories(let viewModel):
+            categories = viewModel
+            tableView.reloadData()
+        case .displayError(let error):
+            categories = []
+            tableView.reloadData()
+            print(error)
+        }
+    }
 
+}
+
+extension CategoryViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        categories.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.identifier, for: indexPath)
+        guard let cell = cell as? CategoryCell else { return cell }
+        cell.configure(categories[indexPath.item])
+        return cell
+    }
+
+}
+
+// MARK: Private methods
+
+extension CategoryViewController {
+
+    func configureTableView() {
+        tableView.dataSource = self
     }
 
 }

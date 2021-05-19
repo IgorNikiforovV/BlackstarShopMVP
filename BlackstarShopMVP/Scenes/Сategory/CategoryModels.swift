@@ -10,22 +10,36 @@ import UIKit
 
 enum Category {
 
-    enum Model {
+    enum FetchData {
         struct Request {
             enum RequestType {
-                case some
+                case getNewCategories
             }
         }
         struct Response {
             enum ResponseType {
-                case some
+                case presentNewCategories(_ model: [CategoryCellModel])
+                case presentError(_ error: String)
             }
         }
         struct ViewModel {
             enum ViewModelData {
-                case some
+                case displayNewCategories(_ viewModel: [CategoryCellVModel])
+                case displayError(_ error: String)
             }
         }
     }
 
+}
+
+struct CategoryCellModel {
+    let pictureUrl: String
+    let titleText: String
+    let iconUrl: String?
+}
+
+struct CategoryCellVModel {
+    let picture: UIImage
+    let title: NSAttributedString
+    let icon: UIImage?
 }

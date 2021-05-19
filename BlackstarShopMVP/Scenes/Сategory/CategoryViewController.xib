@@ -4,11 +4,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryViewController">
             <connections>
+                <outlet property="tableView" destination="VXe-rr-TeW" id="bMI-FJ-6yo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="T2C-zL-GX5"/>
             </connections>
         </placeholder>
@@ -20,29 +22,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRH-4Z-6La" userLabel="Back View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0S-sf-IKf" userLabel="Header View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заголовок" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxU-2E-fKU">
-                                    <rect key="frame" x="120.5" y="32.5" width="79" height="19.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="bxU-2E-fKU" firstAttribute="centerX" secondItem="F0S-sf-IKf" secondAttribute="centerX" id="FeU-h8-Iuw"/>
-                                <constraint firstAttribute="height" constant="60" id="LeU-EW-ZYM"/>
-                                <constraint firstAttribute="bottom" secondItem="bxU-2E-fKU" secondAttribute="bottom" constant="8" id="a4P-Jc-rij"/>
-                            </constraints>
-                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VXe-rr-TeW">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="F0S-sf-IKf" secondAttribute="trailing" id="T95-C2-kf9"/>
-                        <constraint firstItem="F0S-sf-IKf" firstAttribute="top" secondItem="zRH-4Z-6La" secondAttribute="top" id="VHM-NN-eqW"/>
-                        <constraint firstItem="F0S-sf-IKf" firstAttribute="leading" secondItem="zRH-4Z-6La" secondAttribute="leading" id="jAA-Jb-VfW"/>
+                        <constraint firstAttribute="trailing" secondItem="VXe-rr-TeW" secondAttribute="trailing" id="Lil-Xr-g5d"/>
+                        <constraint firstItem="VXe-rr-TeW" firstAttribute="top" secondItem="zRH-4Z-6La" secondAttribute="top" id="c3V-6x-TBg"/>
+                        <constraint firstAttribute="bottom" secondItem="VXe-rr-TeW" secondAttribute="bottom" id="fCv-x3-vgJ"/>
+                        <constraint firstItem="VXe-rr-TeW" firstAttribute="leading" secondItem="zRH-4Z-6La" secondAttribute="leading" id="j8o-H8-DFw"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
@@ -57,12 +47,12 @@
                 <constraint firstAttribute="bottom" secondItem="zRH-4Z-6La" secondAttribute="bottom" id="n1m-uf-VSF"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="462" y="399"/>
+            <point key="canvasLocation" x="461.25" y="398.23943661971833"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

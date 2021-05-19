@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CategoryBusinessLogic {
-    func makeRequest(request: Category.Model.Request.RequestType)
+    func makeRequest(request: Category.FetchData.Request.RequestType)
 }
 
 class CategoryInteractor: CategoryBusinessLogic {
@@ -17,9 +17,10 @@ class CategoryInteractor: CategoryBusinessLogic {
     var presenter: CategoryPresentationLogic?
     var service: CategoryService?
 
-    func makeRequest(request: Category.Model.Request.RequestType) {
+    func makeRequest(request: Category.FetchData.Request.RequestType) {
         if service == nil {
             service = CategoryService()
+            let models = service?.fetchCategories()
         }
     }
 

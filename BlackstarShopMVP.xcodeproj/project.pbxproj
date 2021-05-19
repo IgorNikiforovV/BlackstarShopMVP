@@ -23,6 +23,8 @@
 		AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */; };
 		AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */; };
 		AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */; };
+		AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B372653F55600DE5B2D /* CategoryCell.swift */; };
+		AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC930B382653F55600DE5B2D /* CategoryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInteractor.swift; sourceTree = "<group>"; };
 		AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
+		AC930B372653F55600DE5B2D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		AC930B382653F55600DE5B2D /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 		AC930AFB26514B7900DE5B2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC930B342653F51200DE5B2D /* Сategory */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,12 +165,12 @@
 			isa = PBXGroup;
 			children = (
 				AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */,
+				AC930B292653ADFA00DE5B2D /* CategoryModels.swift */,
 				AC930B2A2653ADFA00DE5B2D /* CategoryViewController.swift */,
+				AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */,
 				AC930B262653ADFA00DE5B2D /* CategoryPresenter.swift */,
 				AC930B272653ADFA00DE5B2D /* CategoryWorker.swift */,
 				AC930B282653ADFA00DE5B2D /* CategoryRouter.swift */,
-				AC930B292653ADFA00DE5B2D /* CategoryModels.swift */,
-				AC930B2B2653ADFA00DE5B2D /* CategoryInteractor.swift */,
 			);
 			path = "Сategory";
 			sourceTree = "<group>";
@@ -196,6 +201,15 @@
 			children = (
 			);
 			path = Basket;
+			sourceTree = "<group>";
+		};
+		AC930B342653F51200DE5B2D /* Сategory */ = {
+			isa = PBXGroup;
+			children = (
+				AC930B372653F55600DE5B2D /* CategoryCell.swift */,
+				AC930B382653F55600DE5B2D /* CategoryCell.xib */,
+			);
+			path = "Сategory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */,
 				AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */,
 				AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */,
 				AC8E6EAF264E7CA5009A2A20 /* Assets.xcassets in Resources */,
@@ -364,6 +379,7 @@
 				AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
+				AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
