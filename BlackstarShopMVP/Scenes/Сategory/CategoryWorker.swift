@@ -9,7 +9,8 @@
 import UIKit
 
 class CategoryService {
-    func fetchCategories() -> [CategoryCellModel] {
+    func fetchCategories() -> Result<[CategoryCellModel], Error> {
+        let categories =
         [CategoryCellModel(pictureUrl: "image/catalog/im2017/3.png",
                            titleText: "Мужская",
                            iconUrl: "https://blackstarshop.ru/image/catalog/style/modile/man_cat_active_s.png"),
@@ -19,5 +20,7 @@ class CategoryService {
          CategoryCellModel(pictureUrl: "image/catalog/im2017/1.png",
                            titleText: "Женская",
                            iconUrl: "image/catalog/style/modile/girl_cat_active_s.png")]
+
+        return Result.success(categories)
     }
 }

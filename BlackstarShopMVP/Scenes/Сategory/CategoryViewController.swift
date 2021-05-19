@@ -8,8 +8,10 @@
 
 import UIKit
 
+typealias CategoryViewModelData = Category.FetchData.ViewModel.ViewModelData
+
 protocol CategoryDisplayLogic: AnyObject {
-    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData)
+    func displayData(viewModel: CategoryViewModelData)
 }
 
 class CategoryViewController: UIViewController, CategoryDisplayLogic {

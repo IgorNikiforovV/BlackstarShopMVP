@@ -39,7 +39,7 @@ struct CategoryCellModel {
 }
 
 struct CategoryCellVModel {
-    let picture: UIImage
+    let picture: URL?
     let title: NSAttributedString
-    let icon: UIImage?
+    let icon: URL?
 }

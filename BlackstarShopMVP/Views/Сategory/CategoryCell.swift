@@ -34,7 +34,9 @@ class CategoryCell: UITableViewCell {
 extension CategoryCell {
 
     func configure(_ viewModel: CategoryCellVModel) {
-
+        titleLabel.attributedText = viewModel.title
+        pictureImageView.load(url: viewModel.picture)
+        iconImageView.load(url: viewModel.icon)
     }
 
 }

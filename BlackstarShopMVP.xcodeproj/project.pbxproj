@@ -25,6 +25,14 @@
 		AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */; };
 		AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B372653F55600DE5B2D /* CategoryCell.swift */; };
 		AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC930B382653F55600DE5B2D /* CategoryCell.xib */; };
+		AC930B432655164100DE5B2D /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B3C2655164000DE5B2D /* SF-Pro-Display-Medium.otf */; };
+		AC930B442655164100DE5B2D /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B3D2655164000DE5B2D /* SF-Pro-Display-Bold.otf */; };
+		AC930B452655164100DE5B2D /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B3E2655164000DE5B2D /* SF-Pro-Display-Semibold.otf */; };
+		AC930B462655164100DE5B2D /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B3F2655164000DE5B2D /* SF-Pro-Display-Regular.otf */; };
+		AC930B472655164100DE5B2D /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B402655164100DE5B2D /* SF-Pro-Text-Light.otf */; };
+		AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */; };
+		AC930B492655164100DE5B2D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */; };
+		AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B4B265521E400DE5B2D /* UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +58,14 @@
 		AC930B2C2653ADFA00DE5B2D /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		AC930B372653F55600DE5B2D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		AC930B382653F55600DE5B2D /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		AC930B3C2655164000DE5B2D /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		AC930B3D2655164000DE5B2D /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		AC930B3E2655164000DE5B2D /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		AC930B3F2655164000DE5B2D /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		AC930B402655164100DE5B2D /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
+		AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		AC930B4B265521E400DE5B2D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				AC930AF826514AF200DE5B2D /* Application */,
+				AC930B4A265521BD00DE5B2D /* Extensions */,
 				AC930AFB26514B7900DE5B2D /* Views */,
 				AC930AFA26514B6F00DE5B2D /* Scenes */,
 				AC8E6EA9264E7CA3009A2A20 /* ViewController.swift */,
@@ -125,6 +142,7 @@
 		AC930AF926514B1E00DE5B2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AC930B3B2655160A00DE5B2D /* Fonts */,
 				AC930B0E2652CBF200DE5B2D /* R.generated.swift */,
 				AC8E6EAE264E7CA5009A2A20 /* Assets.xcassets */,
 				AC8E6EB3264E7CA5009A2A20 /* Info.plist */,
@@ -212,6 +230,28 @@
 			path = "Сategory";
 			sourceTree = "<group>";
 		};
+		AC930B3B2655160A00DE5B2D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AC930B3C2655164000DE5B2D /* SF-Pro-Display-Medium.otf */,
+				AC930B3F2655164000DE5B2D /* SF-Pro-Display-Regular.otf */,
+				AC930B3E2655164000DE5B2D /* SF-Pro-Display-Semibold.otf */,
+				AC930B402655164100DE5B2D /* SF-Pro-Text-Light.otf */,
+				AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */,
+				AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */,
+				AC930B3D2655164000DE5B2D /* SF-Pro-Display-Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AC930B4A265521BD00DE5B2D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC930B4B265521E400DE5B2D /* UIImageView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -273,11 +313,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC930B452655164100DE5B2D /* SF-Pro-Display-Semibold.otf in Resources */,
+				AC930B432655164100DE5B2D /* SF-Pro-Display-Medium.otf in Resources */,
 				AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */,
 				AC930B332653ADFA00DE5B2D /* CategoryViewController.xib in Resources */,
+				AC930B472655164100DE5B2D /* SF-Pro-Text-Light.otf in Resources */,
 				AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */,
+				AC930B492655164100DE5B2D /* SF-Pro-Text-Regular.otf in Resources */,
 				AC8E6EAF264E7CA5009A2A20 /* Assets.xcassets in Resources */,
 				AC8E6EAD264E7CA3009A2A20 /* Main.storyboard in Resources */,
+				AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */,
+				AC930B462655164100DE5B2D /* SF-Pro-Display-Regular.otf in Resources */,
+				AC930B442655164100DE5B2D /* SF-Pro-Display-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +418,7 @@
 				AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */,
 				AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */,
 				AC930B2E2653ADFA00DE5B2D /* CategoryWorker.swift in Sources */,
+				AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
 				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
