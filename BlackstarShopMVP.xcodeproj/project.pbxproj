@@ -33,6 +33,11 @@
 		AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */; };
 		AC930B492655164100DE5B2D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */; };
 		AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B4B265521E400DE5B2D /* UIImageView.swift */; };
+		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
+		ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137726569AE200911885 /* NetworkServiceImpl.swift */; };
+		ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137B2656A2DC00911885 /* NetworkError.swift */; };
+		ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137D2656CB4A00911885 /* EndPoint.swift */; };
+		ACF513812656D94600911885 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF513802656D94600911885 /* CategoryApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +71,11 @@
 		AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		AC930B4B265521E400DE5B2D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		ACF5137726569AE200911885 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
+		ACF5137B2656A2DC00911885 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		ACF5137D2656CB4A00911885 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		ACF513802656D94600911885 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,8 @@
 		AC8E6EA4264E7CA3009A2A20 /* BlackstarShopMVP */ = {
 			isa = PBXGroup;
 			children = (
+				ACF513792656A2A100911885 /* Entities */,
+				ACF51373265698A500911885 /* Services */,
 				AC930AF826514AF200DE5B2D /* Application */,
 				AC930B4A265521BD00DE5B2D /* Extensions */,
 				AC930AFB26514B7900DE5B2D /* Views */,
@@ -250,6 +262,49 @@
 				AC930B4B265521E400DE5B2D /* UIImageView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ACF51373265698A500911885 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ACF51374265698B700911885 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ACF51374265698B700911885 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ACF51375265698D700911885 /* NetworkService.swift */,
+				ACF5137726569AE200911885 /* NetworkServiceImpl.swift */,
+				ACF5137D2656CB4A00911885 /* EndPoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		ACF513792656A2A100911885 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				ACF5137F2656D91500911885 /* API */,
+				ACF5137A2656A2BC00911885 /* Errors */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		ACF5137A2656A2BC00911885 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				ACF5137B2656A2DC00911885 /* NetworkError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		ACF5137F2656D91500911885 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				ACF513802656D94600911885 /* CategoryApi.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,17 +471,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */,
+				ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */,
 				AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */,
 				AC930B2E2653ADFA00DE5B2D /* CategoryWorker.swift in Sources */,
 				AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */,
+				ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
+				ACF513812656D94600911885 /* CategoryApi.swift in Sources */,
+				ACF51376265698D700911885 /* NetworkService.swift in Sources */,
 				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
 				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
 				AC930B2D2653ADFA00DE5B2D /* CategoryPresenter.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
+				ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */,
 				AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

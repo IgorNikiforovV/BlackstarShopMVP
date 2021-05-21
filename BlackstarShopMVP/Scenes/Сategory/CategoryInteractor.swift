@@ -22,7 +22,7 @@ class CategoryInteractor: CategoryBusinessLogic {
     func makeRequest(request: CategoryRequestType) {
         if service == nil {
             service = CategoryService()
-            let result = service!.fetchCategories()
+            let result = service!.fetchCategories(completion: (Result<CategoryApi, NetworkError>) -> Void)
 
             switch result {
             case .success(let categories):

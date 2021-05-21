@@ -60,6 +60,7 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureTableView()
         interactor?.makeRequest(request: Category.FetchData.Request.RequestType.getNewCategories)
     }
 
@@ -84,8 +85,10 @@ extension CategoryViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-        cell.configure(categories[indexPath.item])
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.identifier, for: indexPath)
+        if let cell = cell as? CategoryCell {
+            cell.configure(categories[indexPath.item])
+        }
         return cell
     }
 
@@ -96,6 +99,10 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController {
 
     func configureTableView() {
+        tableView.register(
+            UINib(nibName: CategoryCell.identifier, bundle: nil),
+            forCellReuseIdentifier: CategoryCell.identifier
+        )
         tableView.dataSource = self
     }
 

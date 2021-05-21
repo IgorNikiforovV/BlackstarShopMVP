@@ -9,18 +9,14 @@
 import UIKit
 
 class CategoryService {
-    func fetchCategories() -> Result<[CategoryCellModel], Error> {
-        let categories =
-        [CategoryCellModel(pictureUrl: "image/catalog/im2017/3.png",
-                           titleText: "Мужская",
-                           iconUrl: "https://blackstarshop.ru/image/catalog/style/modile/man_cat_active_s.png"),
-         CategoryCellModel(pictureUrl: "https://blackstarshop.ru/image/catalog/im2017/2.png",
-                           titleText: "Детская",
-                           iconUrl: "https://blackstarshop.ru/image/catalog/style/modile/child_cat_active_s.png"),
-         CategoryCellModel(pictureUrl: "image/catalog/im2017/1.png",
-                           titleText: "Женская",
-                           iconUrl: "image/catalog/style/modile/girl_cat_active_s.png")]
 
-        return Result.success(categories)
+    var networkService: NetworkService
+
+    init(networkService: NetworkService = NetworkServiceImpl()) {
+        self.networkService = networkService
+    }
+
+    func fetchCategories(completion: @escaping (Result<CategoryApi, NetworkError>) -> Void) {
+        networkService.requestData(endPoint: BlackStarShopEndPoint.category, completion: completion)
     }
 }
