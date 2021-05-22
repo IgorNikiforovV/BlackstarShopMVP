@@ -8,10 +8,8 @@
 
 import UIKit
 
-typealias CategoryRequestType = Category.FetchData.Request.RequestType
-
 protocol CategoryBusinessLogic {
-    func makeRequest(request: CategoryRequestType)
+    func makeRequest(request: Category.FetchData.Request.RequestType)
 }
 
 class CategoryInteractor: CategoryBusinessLogic {
@@ -19,16 +17,19 @@ class CategoryInteractor: CategoryBusinessLogic {
     var presenter: CategoryPresentationLogic?
     var service: CategoryService?
 
-    func makeRequest(request: CategoryRequestType) {
+    func makeRequest(request: Category.FetchData.Request.RequestType) {
         if service == nil {
             service = CategoryService()
-            let result = service!.fetchCategories(completion: (Result<CategoryApi, NetworkError>) -> Void)
-
-            switch result {
-            case .success(let categories):
-                presenter?.presentData(response: CategoryResponseType.presentNewCategories(categories))
-            case .failure(let error):
-                presenter?.presentData(response: CategoryResponseType.presentError(error.localizedDescription))
+            service!.fetchCategories { result in
+                DispatchQueue.main.async { [weak self] in
+                    switch result {
+                    case .success(let categoriesResponse):
+                        self?.presenter?.presentData(response: .presentNewCategories(categoriesResponse))
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.presenter?.presentData(response: .presentError(error.localizedDescription))
+                    }
+                }
             }
         }
     }

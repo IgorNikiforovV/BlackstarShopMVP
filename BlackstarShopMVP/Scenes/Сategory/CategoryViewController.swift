@@ -8,10 +8,8 @@
 
 import UIKit
 
-typealias CategoryViewModelData = Category.FetchData.ViewModel.ViewModelData
-
 protocol CategoryDisplayLogic: AnyObject {
-    func displayData(viewModel: CategoryViewModelData)
+    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData)
 }
 
 class CategoryViewController: UIViewController, CategoryDisplayLogic {
@@ -61,7 +59,7 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
         super.viewDidLoad()
 
         configureTableView()
-        interactor?.makeRequest(request: Category.FetchData.Request.RequestType.getNewCategories)
+        interactor?.makeRequest(request: .getNewCategories)
     }
 
     func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData) {

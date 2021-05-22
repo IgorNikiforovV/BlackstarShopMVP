@@ -8,8 +8,6 @@
 
 import UIKit
 
-typealias CategoryResponseType = Category.FetchData.Response.ResponseType
-
 protocol CategoryPresentationLogic {
     func presentData(response: Category.FetchData.Response.ResponseType)
 }
@@ -17,19 +15,20 @@ protocol CategoryPresentationLogic {
 class CategoryPresenter: CategoryPresentationLogic {
     weak var viewController: CategoryDisplayLogic?
 
-    func presentData(response: CategoryResponseType) {
+    func presentData(response: Category.FetchData.Response.ResponseType) {
         switch response {
-        case .presentNewCategories(let models):
-            let viewModels = models.map {
+        case .presentNewCategories(let categoriesResponse):
+            let categories = categoriesResponse.compactMap { $0.value }
+            let viewModels = categories.map {
                 CategoryCellVModel(
-                    picture: Const.url(from: $0.pictureUrl),
-                    title: Const.titleAttrebutedText(text: $0.titleText),
-                    icon: Const.url(from: $0.iconUrl)
+                    picture: Const.url(from: $0.image),
+                    title: Const.titleAttrebutedText(text: $0.name),
+                    icon: Const.url(from: $0.iconImage)
                 )
             }
-            viewController?.displayData(viewModel: CategoryViewModelData.displayNewCategories(viewModels))
+            viewController?.displayData(viewModel: .displayNewCategories(viewModels))
         case .presentError(let error):
-            viewController?.displayData(viewModel: CategoryViewModelData.displayError(error))
+            viewController?.displayData(viewModel: .displayError(error))
         }
     }
 

@@ -33,11 +33,12 @@
 		AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */; };
 		AC930B492655164100DE5B2D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */; };
 		AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B4B265521E400DE5B2D /* UIImageView.swift */; };
+		AC953A33265977040077BBE6 /* SubcategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC953A32265977040077BBE6 /* SubcategoryInfo.swift */; };
 		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
 		ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137726569AE200911885 /* NetworkServiceImpl.swift */; };
 		ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137B2656A2DC00911885 /* NetworkError.swift */; };
 		ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137D2656CB4A00911885 /* EndPoint.swift */; };
-		ACF513812656D94600911885 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF513802656D94600911885 /* CategoryApi.swift */; };
+		ACF513812656D94600911885 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF513802656D94600911885 /* CategoryInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,11 +72,12 @@
 		AC930B412655164100DE5B2D /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		AC930B422655164100DE5B2D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		AC930B4B265521E400DE5B2D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		AC953A32265977040077BBE6 /* SubcategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryInfo.swift; sourceTree = "<group>"; };
 		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		ACF5137726569AE200911885 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
 		ACF5137B2656A2DC00911885 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		ACF5137D2656CB4A00911885 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		ACF513802656D94600911885 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
+		ACF513802656D94600911885 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,7 +304,8 @@
 		ACF5137F2656D91500911885 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				ACF513802656D94600911885 /* CategoryApi.swift */,
+				ACF513802656D94600911885 /* CategoryInfo.swift */,
+				AC953A32265977040077BBE6 /* SubcategoryInfo.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -478,10 +481,11 @@
 				ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
-				ACF513812656D94600911885 /* CategoryApi.swift in Sources */,
+				ACF513812656D94600911885 /* CategoryInfo.swift in Sources */,
 				ACF51376265698D700911885 /* NetworkService.swift in Sources */,
 				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
 				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
+				AC953A33265977040077BBE6 /* SubcategoryInfo.swift in Sources */,
 				AC930B2D2653ADFA00DE5B2D /* CategoryPresenter.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */,

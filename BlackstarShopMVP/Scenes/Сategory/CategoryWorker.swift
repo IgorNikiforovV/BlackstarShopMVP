@@ -16,7 +16,7 @@ class CategoryService {
         self.networkService = networkService
     }
 
-    func fetchCategories(completion: @escaping (Result<CategoryApi, NetworkError>) -> Void) {
+    func fetchCategories(completion: @escaping (Result<[String: CategoryInfo], NetworkError>) -> Void) {
         networkService.requestData(endPoint: BlackStarShopEndPoint.category, completion: completion)
     }
 }

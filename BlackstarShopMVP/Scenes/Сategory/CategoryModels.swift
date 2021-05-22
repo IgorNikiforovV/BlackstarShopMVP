@@ -18,7 +18,7 @@ enum Category {
         }
         struct Response {
             enum ResponseType {
-                case presentNewCategories(_ model: [CategoryCellModel])
+                case presentNewCategories(_ apiResponse: [String: CategoryInfo])
                 case presentError(_ error: String)
             }
         }

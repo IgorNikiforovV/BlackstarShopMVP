@@ -21,7 +21,7 @@ enum BlackStarShopEndPoint: EndPoint {
     case category
     case product(productId: String)
 
-    var baseURL: URL { URL(string: "https://blackstarshop.ru/index.php?route=api/v1/")! }
+    var baseURL: URL { URL(string: "https://blackstarshop.ru\(query)")! }
 
     var method: String {
         switch self {
@@ -46,10 +46,17 @@ enum BlackStarShopEndPoint: EndPoint {
 
     var path: String {
         switch self {
+        case .category, .product:
+            return "index.php"
+        }
+    }
+
+    var query: String {
+        switch self {
         case .category:
-            return "categories"
+            return "?route=api/v1/categories"
         case .product(let productId):
-            return "products&cat_id=\(productId)"
+            return "?route=api/v1/products&cat_id=\(productId)"
         }
     }
 
