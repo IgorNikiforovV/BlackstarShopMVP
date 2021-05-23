@@ -21,7 +21,7 @@ enum BlackStarShopEndPoint: EndPoint {
     case category
     case product(productId: String)
 
-    var baseURL: URL { URL(string: "https://blackstarshop.ru\(query)")! }
+    var baseURL: URL { URL(string: "\(NetworkConst.baseUrl)\(query)")! }
 
     var method: String {
         switch self {

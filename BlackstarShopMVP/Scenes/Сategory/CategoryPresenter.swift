@@ -19,13 +19,15 @@ class CategoryPresenter: CategoryPresentationLogic {
         switch response {
         case .presentNewCategories(let categoriesResponse):
             let categories = categoriesResponse.compactMap { $0.value }
-            let viewModels = categories.map {
-                CategoryCellVModel(
-                    picture: Const.url(from: $0.image),
-                    title: Const.titleAttrebutedText(text: $0.name),
-                    icon: Const.url(from: $0.iconImage)
-                )
-            }
+            let viewModels = categories
+                .sorted(by: { $0.sortOrder > $1.sortOrder })
+                .map {
+                    CategoryCellVModel(
+                        picture: Const.url(from: $0.image),
+                        title: Const.titleAttrebutedText(text: $0.name),
+                        icon: Const.url(from: $0.iconImage)
+                    )
+                }
             viewController?.displayData(viewModel: .displayNewCategories(viewModels))
         case .presentError(let error):
             viewController?.displayData(viewModel: .displayError(error))
@@ -50,7 +52,8 @@ extension CategoryPresenter {
 
         static func url(from text: String?) -> URL? {
             guard let text = text else { return nil }
-            return URL(string: text)
+            let urlText = "\(NetworkConst.baseUrl)\(text)"
+            return URL(string: urlText)
         }
 
     }

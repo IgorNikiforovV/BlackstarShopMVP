@@ -36,6 +36,7 @@ struct CategoryCellModel {
     let pictureUrl: String
     let titleText: String
     let iconUrl: String?
+    let sortOrder: Int
 }
 
 struct CategoryCellVModel {
