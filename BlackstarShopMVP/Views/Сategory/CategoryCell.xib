@@ -28,18 +28,19 @@
                                         <rect key="frame" x="16" y="12" width="56" height="56"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="prI-1W-aBx">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="56" id="O3A-eH-hkd"/>
-                                                    <constraint firstAttribute="height" constant="56" id="Tjh-m7-DyF"/>
+                                                    <constraint firstAttribute="height" constant="90" id="Tjh-m7-DyF"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="prI-1W-aBx" firstAttribute="leading" secondItem="Tl0-Y5-cnT" secondAttribute="leading" id="15A-jX-HUZ"/>
                                             <constraint firstItem="prI-1W-aBx" firstAttribute="top" secondItem="Tl0-Y5-cnT" secondAttribute="top" id="5Sr-E4-vP4"/>
-                                            <constraint firstAttribute="bottom" secondItem="prI-1W-aBx" secondAttribute="bottom" id="NLy-r4-ojf"/>
+                                            <constraint firstAttribute="width" constant="56" id="L1A-GR-Ve2"/>
                                             <constraint firstAttribute="trailing" secondItem="prI-1W-aBx" secondAttribute="trailing" id="ZtR-d5-iLa"/>
+                                            <constraint firstAttribute="height" constant="56" id="zvl-fl-cGd"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5R-yn-XqX">

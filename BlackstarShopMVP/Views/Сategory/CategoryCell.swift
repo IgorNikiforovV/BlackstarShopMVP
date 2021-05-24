@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol CategoryCellInput {
+    var picture: URL? { get }
+    var title: NSAttributedString { get }
+    var icon: URL? { get }
+}
+
+
+
 class CategoryCell: UITableViewCell {
 
     // MARK: Properties
@@ -28,6 +36,13 @@ class CategoryCell: UITableViewCell {
         configureRoundedView()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pictureImageView.image = nil
+        iconImageView.image = nil
+        titleLabel.text = nil
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -38,10 +53,10 @@ class CategoryCell: UITableViewCell {
 
 extension CategoryCell {
 
-    func configure(_ viewModel: CategoryCellVModel) {
+    func configure(_ viewModel: CategoryCellInput) {
         titleLabel.attributedText = viewModel.title
-        pictureImageView.load(url: viewModel.picture)
-        iconImageView.load(url: viewModel.icon)
+        pictureImageView.load(url: viewModel.picture, placeholder: Const.imagePlaceholder)
+        iconImageView.load(url: viewModel.icon, placeholder: nil)
     }
 
 }
@@ -56,8 +71,7 @@ private extension CategoryCell {
 
     func configureRoundedView() {
         roundedView.layer.cornerRadius = max(roundedView.frame.width, roundedView.frame.height) / 2
-        roundedView.backgroundColor = Const.separatorBackgroundColor
-        //roundedView.layer.borderWidth = 1
+        roundedView.backgroundColor = Const.imageBackgroundColor
     }
 
 }
@@ -67,6 +81,8 @@ private extension CategoryCell {
     enum Const {
 
         static let separatorBackgroundColor = R.color.colors.separatorColor()
+        static let imageBackgroundColor = R.color.colors.lightGreyColor()
+        static let imagePlaceholder = R.image.categoryCell.placeholder()
 
     }
 

@@ -20,7 +20,7 @@ class CategoryPresenter: CategoryPresentationLogic {
         case .presentNewCategories(let categoriesResponse):
             let categories = categoriesResponse.compactMap { $0.value }
             let viewModels = categories
-                .sorted(by: { $0.sortOrder > $1.sortOrder })
+                .sorted(by: { $0.sortOrder < $1.sortOrder })
                 .map {
                     CategoryCellVModel(
                         picture: Const.url(from: $0.image),

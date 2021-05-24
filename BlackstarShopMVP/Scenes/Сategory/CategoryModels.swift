@@ -39,7 +39,7 @@ struct CategoryCellModel {
     let sortOrder: Int
 }
 
-struct CategoryCellVModel {
+struct CategoryCellVModel: CategoryCellInput {
     let picture: URL?
     let title: NSAttributedString
     let icon: URL?

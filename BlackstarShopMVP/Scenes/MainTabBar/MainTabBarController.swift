@@ -32,7 +32,7 @@ private extension MainTabBarController {
 
     func configureMainTabBarControllers() {
         viewControllers = [
-            generateNavController(for: CategoryViewController(), title: "Категории", image: Const.searchIcon),
+            generateNavController(for: CategoryViewController(), title: "Магазин", image: Const.searchIcon),
             generateNavController(for: ViewController(), title: "Корзина", image: Const.basketIcon)
         ]
     }
