@@ -17,8 +17,7 @@ class CategoryPresenter: CategoryPresentationLogic {
 
     func presentData(response: Category.FetchData.Response.ResponseType) {
         switch response {
-        case .presentNewCategories(let categoriesResponse):
-            let categories = categoriesResponse.compactMap { $0.value }
+        case .presentCategoryInfo(let categories):
             let viewModels = categories
                 .sorted(by: { $0.sortOrder < $1.sortOrder })
                 .map {
@@ -26,6 +25,17 @@ class CategoryPresenter: CategoryPresentationLogic {
                         picture: Const.url(from: $0.image),
                         title: Const.titleAttrebutedText(text: $0.name),
                         icon: Const.url(from: $0.iconImage)
+                    )
+                }
+            viewController?.displayData(viewModel: .displayNewCategories(viewModels))
+        case .presentSubcategoryInfo(let subcategories):
+            let viewModels = subcategories
+                .sorted(by: { $0.sortOrder < $1.sortOrder })
+                .map {
+                    CategoryCellVModel(
+                        picture: Const.url(from: $0.iconImage),
+                        title: Const.titleAttrebutedText(text: $0.name ?? ""),
+                        icon: nil
                     )
                 }
             viewController?.displayData(viewModel: .displayNewCategories(viewModels))

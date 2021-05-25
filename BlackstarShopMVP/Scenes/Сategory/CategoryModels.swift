@@ -13,18 +13,20 @@ enum Category {
     enum FetchData {
         struct Request {
             enum RequestType {
-                case getNewCategories
+                case setScreenState(ScreenState)
+                case getData
             }
         }
         struct Response {
             enum ResponseType {
-                case presentNewCategories(_ apiResponse: [String: CategoryInfo])
+                case presentCategoryInfo(_ categories: [CategoryInfo])
+                case presentSubcategoryInfo(_ subcategories: [SubcategoryInfo])
                 case presentError(_ error: String)
             }
         }
         struct ViewModel {
             enum ViewModelData {
-                case displayNewCategories(_ viewModel: [CategoryCellVModel])
+                case displayNewCategories(_ viewModel: [CategoryCellInput])
                 case displayError(_ error: String)
             }
         }
@@ -32,11 +34,9 @@ enum Category {
 
 }
 
-struct CategoryCellModel {
-    let pictureUrl: String
-    let titleText: String
-    let iconUrl: String?
-    let sortOrder: Int
+enum ScreenState {
+    case categories
+    case subcategories(viewModels: [SubcategoryInfo])
 }
 
 struct CategoryCellVModel: CategoryCellInput {

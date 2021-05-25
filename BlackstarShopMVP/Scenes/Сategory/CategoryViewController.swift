@@ -21,7 +21,7 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    private var categories = [CategoryCellVModel]()
+    private var categories = [CategoryCellInput]()
 
     // MARK: Object lifecycle
 
@@ -59,7 +59,7 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
         super.viewDidLoad()
 
         configureTableView()
-        interactor?.makeRequest(request: .getNewCategories)
+        interactor?.makeRequest(request: .getData)
     }
 
     func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData) {
@@ -75,6 +75,8 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
     }
 
 }
+
+// MARK: - UITableViewDataSource
 
 extension CategoryViewController: UITableViewDataSource {
 
@@ -92,6 +94,21 @@ extension CategoryViewController: UITableViewDataSource {
 
 }
 
+// MARK: - UITableViewDataSource
+
+extension CategoryViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.modalPresentationStyle = .fullScreen
+        navigationController?.modalTransitionStyle = .partialCurl
+        let vcontroller = CategoryViewController()
+        vcontroller.isNewViewController = true
+        navigationController?.pushViewController(vcontroller, animated: true)
+
+    }
+
+}
+
 // MARK: Private methods
 
 extension CategoryViewController {
@@ -102,6 +119,7 @@ extension CategoryViewController {
             forCellReuseIdentifier: CategoryCell.identifier
         )
         tableView.dataSource = self
+        tableView.delegate = self
     }
 
 }

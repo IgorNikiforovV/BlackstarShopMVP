@@ -17,18 +17,43 @@ class CategoryInteractor: CategoryBusinessLogic {
     var presenter: CategoryPresentationLogic?
     var service: CategoryService?
 
+    private var categories = [CategoryInfo]()
+    private var screenState: ScreenState = .categories
+
     func makeRequest(request: Category.FetchData.Request.RequestType) {
-        if service == nil {
-            service = CategoryService()
-            service!.fetchCategories { result in
-                DispatchQueue.main.async { [weak self] in
-                    switch result {
-                    case .success(let categoriesResponse):
-                        self?.presenter?.presentData(response: .presentNewCategories(categoriesResponse))
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        self?.presenter?.presentData(response: .presentError(error.localizedDescription))
-                    }
+        switch request {
+        case .getData:
+            switch screenState {
+            case .categories:
+                loadCategoryInfo()
+            case .subcategories(let viewModels):
+                presenter?.presentData(response: .presentSubcategoryInfo(viewModels))
+            }
+
+        case .setScreenState(let screenState):
+            self.screenState = screenState
+        }
+    }
+
+}
+
+// MARK: Private methods
+
+private extension CategoryInteractor {
+
+    func loadCategoryInfo() {
+        service = CategoryService()
+
+        service?.fetchCategories { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                switch result {
+                case .success(let categoriesResponse):
+                    self.categories = categoriesResponse.map { $0.value }
+                    self.presenter?.presentData(response: .presentCategoryInfo(self.categories))
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.presenter?.presentData(response: .presentError(error.localizedDescription))
                 }
             }
         }
