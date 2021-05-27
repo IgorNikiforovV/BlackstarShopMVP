@@ -19,7 +19,6 @@ class CategoryPresenter: CategoryPresentationLogic {
         switch response {
         case .presentCategoryInfo(let categories):
             let viewModels = categories
-                .sorted(by: { $0.sortOrder < $1.sortOrder })
                 .map {
                     CategoryCellVModel(
                         picture: Const.url(from: $0.image),
@@ -30,7 +29,6 @@ class CategoryPresenter: CategoryPresentationLogic {
             viewController?.displayData(viewModel: .displayNewCategories(viewModels))
         case .presentSubcategoryInfo(let subcategories):
             let viewModels = subcategories
-                .sorted(by: { $0.sortOrder < $1.sortOrder })
                 .map {
                     CategoryCellVModel(
                         picture: Const.url(from: $0.iconImage),
@@ -41,6 +39,11 @@ class CategoryPresenter: CategoryPresentationLogic {
             viewController?.displayData(viewModel: .displayNewCategories(viewModels))
         case .presentError(let error):
             viewController?.displayData(viewModel: .displayError(error))
+        case .prepareDataToSubcategoriesRouting(let subcategories):
+            let state = ScreenState.subcategories(models: subcategories)
+            viewController?.displayData(viewModel: .routeSubcategories(state))
+        case .prepareDataToProductsRouting(_):
+                print("prepareDataToProductsRouting")
         }
     }
 

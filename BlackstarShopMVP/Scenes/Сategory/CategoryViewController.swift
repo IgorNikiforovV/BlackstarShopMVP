@@ -71,6 +71,8 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
             categories = []
             tableView.reloadData()
             print(error)
+        case .routeSubcategories(let state):
+            routeToSubscategoriesScreen(state)
         }
     }
 
@@ -99,19 +101,24 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.modalPresentationStyle = .fullScreen
-        navigationController?.modalTransitionStyle = .partialCurl
-        let vcontroller = CategoryViewController()
-        vcontroller.isNewViewController = true
-        navigationController?.pushViewController(vcontroller, animated: true)
+        interactor?.makeRequest(request: .handleCellTap(indexPath.item))
+    }
 
+}
+
+// MARK: Public methods
+
+extension CategoryViewController {
+
+    func setScreenState(_ state: ScreenState) {
+        interactor?.makeRequest(request: .setScreenState(state))
     }
 
 }
 
 // MARK: Private methods
 
-extension CategoryViewController {
+private extension CategoryViewController {
 
     func configureTableView() {
         tableView.register(
@@ -120,6 +127,14 @@ extension CategoryViewController {
         )
         tableView.dataSource = self
         tableView.delegate = self
+    }
+
+    func routeToSubscategoriesScreen(_ state: ScreenState) {
+        navigationController?.modalPresentationStyle = .fullScreen
+        navigationController?.modalTransitionStyle = .partialCurl
+        let vcontroller = CategoryViewController()
+        vcontroller.setScreenState(state)
+        navigationController?.pushViewController(vcontroller, animated: true)
     }
 
 }

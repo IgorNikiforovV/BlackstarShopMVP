@@ -11,13 +11,13 @@ extension UIImageView {
 
     // taken from https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
 
-    func load(url: URL?, placeholder: UIImage?) {
+    func load(url: URL?, placeholder: UIImage?, needMakeSquare: Bool = false) {
         guard let url = url else { return }
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) ?? placeholder {
                     DispatchQueue.main.async {
-                        self?.image = image
+                        self?.image = needMakeSquare ? image.cropBySquare() : image
                     }
                 }
             }

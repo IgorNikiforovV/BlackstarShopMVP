@@ -15,6 +15,7 @@ enum Category {
             enum RequestType {
                 case setScreenState(ScreenState)
                 case getData
+                case handleCellTap(Int)
             }
         }
         struct Response {
@@ -22,12 +23,15 @@ enum Category {
                 case presentCategoryInfo(_ categories: [CategoryInfo])
                 case presentSubcategoryInfo(_ subcategories: [SubcategoryInfo])
                 case presentError(_ error: String)
+                case prepareDataToSubcategoriesRouting(_ subcategories: [SubcategoryInfo])
+                case prepareDataToProductsRouting(_ subcategoryId: Int)
             }
         }
         struct ViewModel {
             enum ViewModelData {
                 case displayNewCategories(_ viewModel: [CategoryCellInput])
                 case displayError(_ error: String)
+                case routeSubcategories(_ state: ScreenState)
             }
         }
     }
@@ -36,7 +40,7 @@ enum Category {
 
 enum ScreenState {
     case categories
-    case subcategories(viewModels: [SubcategoryInfo])
+    case subcategories(models: [SubcategoryInfo])
 }
 
 struct CategoryCellVModel: CategoryCellInput {

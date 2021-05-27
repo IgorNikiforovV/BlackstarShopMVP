@@ -13,8 +13,6 @@ protocol CategoryCellInput {
     var icon: URL? { get }
 }
 
-
-
 class CategoryCell: UITableViewCell {
 
     // MARK: Properties
@@ -55,7 +53,11 @@ extension CategoryCell {
 
     func configure(_ viewModel: CategoryCellInput) {
         titleLabel.attributedText = viewModel.title
-        pictureImageView.load(url: viewModel.picture, placeholder: Const.imagePlaceholder)
+        pictureImageView.load(
+            url: viewModel.picture,
+            placeholder: Const.imagePlaceholder,
+            needMakeSquare: true
+        )
         iconImageView.load(url: viewModel.icon, placeholder: nil)
     }
 
