@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CategoryCellInput {
+    var id: Int { get }
     var picture: URL? { get }
     var title: NSAttributedString { get }
     var icon: URL? { get }

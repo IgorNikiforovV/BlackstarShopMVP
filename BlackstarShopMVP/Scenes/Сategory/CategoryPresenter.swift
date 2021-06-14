@@ -9,41 +9,55 @@
 import UIKit
 
 protocol CategoryPresentationLogic {
-    func presentData(response: Category.FetchData.Response.ResponseType)
+    func prepareUISettings(response: Category.ConfigureUI.Response)
+    func prepareContentData(response: Category.FetchData.Response.ResponseData)
+    func prepareNavigationData(response: Category.NavigateToScene.Response.PrepareData)
 }
 
 class CategoryPresenter: CategoryPresentationLogic {
+
     weak var viewController: CategoryDisplayLogic?
 
-    func presentData(response: Category.FetchData.Response.ResponseType) {
+    func prepareUISettings(response: Category.ConfigureUI.Response) {
+        viewController?.configureUI(viewModel: .init(title: response.navBarTitle,
+                                                     navigationBarTintColor: Const.navigationBarTintColor,
+                                                     navigationTintColor: Const.navigationTintColor))
+    }
+
+    func prepareContentData(response: Category.FetchData.Response.ResponseData) {
         switch response {
-        case .presentCategoryInfo(let categories):
-            let viewModels = categories
-                .map {
-                    CategoryCellVModel(
-                        picture: Const.url(from: $0.image),
-                        title: Const.titleAttrebutedText(text: $0.name),
-                        icon: Const.url(from: $0.iconImage)
-                    )
-                }
-            viewController?.displayData(viewModel: .displayNewCategories(viewModels))
-        case .presentSubcategoryInfo(let subcategories):
-            let viewModels = subcategories
-                .map {
-                    CategoryCellVModel(
-                        picture: Const.url(from: $0.iconImage),
-                        title: Const.titleAttrebutedText(text: $0.name ?? ""),
-                        icon: nil
-                    )
-                }
-            viewController?.displayData(viewModel: .displayNewCategories(viewModels))
-        case .presentError(let error):
-            viewController?.displayData(viewModel: .displayError(error))
-        case .prepareDataToSubcategoriesRouting(let subcategories):
-            let state = ScreenState.subcategories(models: subcategories)
-            viewController?.displayData(viewModel: .routeSubcategories(state))
-        case .prepareDataToProductsRouting(_):
-                print("prepareDataToProductsRouting")
+        case .success(let cellModels):
+            let categoryCellsVM = categoryCellsVM(from: cellModels)
+            viewController?.displayData(viewModel: .displayNewCategories(categoryCellsVM))
+        case .failure(let errorText):
+            viewController?.displayData(viewModel: .displayError(errorText))
+        }
+    }
+
+    func prepareNavigationData(response: Category.NavigateToScene.Response.PrepareData) {
+        switch response {
+        case .prepareDataToSubcategoriesScene(let categoryBox):
+            guard categoryBox.stateScreen == .subcategories else { return }
+            viewController?.navigateToOtherScene(viewModel: .routeSubcategories(categoryBox))
+        case .prepareDataToProductsScene(let subcategoryId):
+            viewController?.navigateToOtherScene(viewModel: .routeProducts(subcategoryId))
+        }
+    }
+
+}
+
+// MARK: Private methods
+
+private extension CategoryPresenter {
+
+    func categoryCellsVM(from models: [CategoryCellModel]) -> [CategoryCellVM] {
+        models.map {
+            .init(
+                id: $0.id,
+                picture: Const.url(from: $0.picture),
+                title: Const.titleAttrebutedText(text: $0.title),
+                icon: Const.url(from: $0.icon)
+            )
         }
     }
 
@@ -53,6 +67,18 @@ extension CategoryPresenter {
 
     enum Const {
 
+        // navigation bar
+        static let navigationBarTintColor = R.color.colors.whiteColor()!
+        static let navigationTintColor = R.color.colors.blackColor()!
+        static let navigationBarTitleAttributes = [
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor(),
+            NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 17)!
+        ]
+        static func navigationBarAttrebutedText(text: String) -> NSAttributedString {
+            NSAttributedString(string: text, attributes: titleAttributes)
+        }
+
+        // cell
         static func titleAttrebutedText(text: String) -> NSAttributedString {
             NSAttributedString(string: text, attributes: titleAttributes)
         }

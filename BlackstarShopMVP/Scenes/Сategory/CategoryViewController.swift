@@ -9,10 +9,12 @@
 import UIKit
 
 protocol CategoryDisplayLogic: AnyObject {
+    func configureUI(viewModel: Category.ConfigureUI.ViewModel.DisplayedNavBar)
     func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData)
+    func navigateToOtherScene(viewModel: Category.NavigateToScene.ViewModel.NavigateToAnotherScene)
 }
 
-class CategoryViewController: UIViewController, CategoryDisplayLogic {
+class CategoryViewController: UIViewController {
 
     var interactor: CategoryBusinessLogic?
     var router: (NSObjectProtocol & CategoryRoutingLogic)?
@@ -27,31 +29,13 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
-    }
-
-    // MARK: Setup
-
-    private func setup() {
-        let viewController        = self
-        let interactor            = CategoryInteractor()
-        let presenter             = CategoryPresenter()
-        let router                = CategoryRouter()
-        viewController.interactor = interactor
-        viewController.router     = router
-        interactor.presenter      = presenter
-        presenter.viewController  = viewController
-        router.viewController     = viewController
     }
 
     // MARK: Routing
-
-
 
     // MARK: View lifecycle
 
@@ -59,20 +43,48 @@ class CategoryViewController: UIViewController, CategoryDisplayLogic {
         super.viewDidLoad()
 
         configureTableView()
-        interactor?.makeRequest(request: .getData)
+        interactor?.fetchData(request: .init())
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        interactor?.configureUI(request: .init())
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        navigationItem.backButtonTitle = ""
+    }
+
+}
+
+extension CategoryViewController: CategoryDisplayLogic {
+
+    func configureUI(viewModel: Category.ConfigureUI.ViewModel.DisplayedNavBar) {
+        navigationController?.navigationBar.barTintColor = viewModel.navigationBarTintColor
+        navigationController?.navigationBar.tintColor = viewModel.navigationTintColor
+        navigationItem.title = viewModel.title
     }
 
     func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayNewCategories(let viewModel):
             categories = viewModel
-            tableView.reloadData()
         case .displayError(let error):
-            categories = []
-            tableView.reloadData()
             print(error)
-        case .routeSubcategories(let state):
-            routeToSubscategoriesScreen(state)
+            categories = []
+        }
+        tableView.reloadData()
+    }
+
+    func navigateToOtherScene(viewModel: Category.NavigateToScene.ViewModel.NavigateToAnotherScene) {
+        switch viewModel {
+        case .routeSubcategories(let categoryBox):
+            routeToSubscategoriesScreen(categoryBox)
+         case .routeProducts(let subcategoryId):
+            print("subcategoryId: \(subcategoryId)")
         }
     }
 
@@ -96,22 +108,12 @@ extension CategoryViewController: UITableViewDataSource {
 
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDelegate
 
 extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.makeRequest(request: .handleCellTap(indexPath.item))
-    }
-
-}
-
-// MARK: Public methods
-
-extension CategoryViewController {
-
-    func setScreenState(_ state: ScreenState) {
-        interactor?.makeRequest(request: .setScreenState(state))
+        interactor?.navigateToScene(request: .init(index: indexPath.item))
     }
 
 }
@@ -129,12 +131,11 @@ private extension CategoryViewController {
         tableView.delegate = self
     }
 
-    func routeToSubscategoriesScreen(_ state: ScreenState) {
+    func routeToSubscategoriesScreen(_ categoryBox: CategoryBox) {
         navigationController?.modalPresentationStyle = .fullScreen
         navigationController?.modalTransitionStyle = .partialCurl
-        let vcontroller = CategoryViewController()
-        vcontroller.setScreenState(state)
-        navigationController?.pushViewController(vcontroller, animated: true)
+        let subcategories = ScenesFactoryImpl.makeCategoriesScene(categoryBox).toPresent()
+        navigationController?.pushViewController(subcategories, animated: true)
     }
 
 }

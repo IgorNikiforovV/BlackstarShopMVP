@@ -31,8 +31,9 @@ private extension MainTabBarController {
     }
 
     func configureMainTabBarControllers() {
+        let categoryController = ScenesFactoryImpl.makeCategoriesScene(nil).toPresent()
         viewControllers = [
-            generateNavController(for: CategoryViewController(), title: "Магазин", image: Const.searchIcon),
+            generateNavController(for: categoryController, title: "Магазин", image: Const.searchIcon),
             generateNavController(for: ViewController(), title: "Корзина", image: Const.basketIcon)
         ]
     }

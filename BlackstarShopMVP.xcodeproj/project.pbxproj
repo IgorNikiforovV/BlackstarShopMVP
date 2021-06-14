@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9CB36D3E2355B71546D845E7 /* Pods_BlackstarShopMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD6F284C709F048ABD7219 /* Pods_BlackstarShopMVP.framework */; };
+		AC6D030B26612FD600AFC274 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6D030A26612FD600AFC274 /* Screens.swift */; };
+		AC6D030D2661312B00AFC274 /* ScenesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6D030C2661312B00AFC274 /* ScenesFactory.swift */; };
+		AC6D030F2661326100AFC274 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6D030E2661326100AFC274 /* UIViewController.swift */; };
+		AC6D03112661336400AFC274 /* ScenesFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6D03102661336400AFC274 /* ScenesFactoryImpl.swift */; };
 		AC6E8D1E266014F7007EA6A9 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E8D1D266014F5007EA6A9 /* UIImage.swift */; };
 		AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */; };
 		AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E6EA7264E7CA3009A2A20 /* SceneDelegate.swift */; };
@@ -49,6 +53,10 @@
 		0FF07D21F1AC29BBB9DC9499 /* Pods-BlackstarShopMVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.release.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.release.xcconfig"; sourceTree = "<group>"; };
 		4A053BE3BBF04BE091CB9E3F /* Pods-BlackstarShopMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.debug.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.debug.xcconfig"; sourceTree = "<group>"; };
 		83CD6F284C709F048ABD7219 /* Pods_BlackstarShopMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackstarShopMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC6D030A26612FD600AFC274 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
+		AC6D030C2661312B00AFC274 /* ScenesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesFactory.swift; sourceTree = "<group>"; };
+		AC6D030E2661326100AFC274 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		AC6D03102661336400AFC274 /* ScenesFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesFactoryImpl.swift; sourceTree = "<group>"; };
 		AC6E8D1D266014F5007EA6A9 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		AC8E6EA2264E7CA3009A2A20 /* BlackstarShopMVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackstarShopMVP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8E6EA5264E7CA3009A2A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +125,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AC6D030926612F9000AFC274 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				AC6D030A26612FD600AFC274 /* Screens.swift */,
+				AC6D030C2661312B00AFC274 /* ScenesFactory.swift */,
+				AC6D03102661336400AFC274 /* ScenesFactoryImpl.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		AC8E6E99264E7CA3009A2A20 = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +156,10 @@
 		AC8E6EA4264E7CA3009A2A20 /* BlackstarShopMVP */ = {
 			isa = PBXGroup;
 			children = (
+				AC930AF826514AF200DE5B2D /* Application */,
+				AC6D030926612F9000AFC274 /* Factories */,
 				ACF513792656A2A100911885 /* Entities */,
 				ACF51373265698A500911885 /* Services */,
-				AC930AF826514AF200DE5B2D /* Application */,
 				AC930B4A265521BD00DE5B2D /* Extensions */,
 				AC930AFB26514B7900DE5B2D /* Views */,
 				AC930AFA26514B6F00DE5B2D /* Scenes */,
@@ -271,6 +290,7 @@
 			children = (
 				AC930B4B265521E400DE5B2D /* UIImageView.swift */,
 				AC6E8D1D266014F5007EA6A9 /* UIImage.swift */,
+				AC6D030E2661326100AFC274 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -496,10 +516,13 @@
 				AC930B322653ADFA00DE5B2D /* CategoryInteractor.swift in Sources */,
 				ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */,
 				AC930B312653ADFA00DE5B2D /* CategoryViewController.swift in Sources */,
+				AC6D03112661336400AFC274 /* ScenesFactoryImpl.swift in Sources */,
+				AC6D030B26612FD600AFC274 /* Screens.swift in Sources */,
 				AC930B2E2653ADFA00DE5B2D /* CategoryWorker.swift in Sources */,
 				AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */,
 				AC953A3D265ACDA20077BBE6 /* NetworkImageOperation.swift in Sources */,
 				ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */,
+				AC6D030D2661312B00AFC274 /* ScenesFactory.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC953A3F265AD08E0077BBE6 /* NetworkConst.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
@@ -511,6 +534,7 @@
 				AC930B2D2653ADFA00DE5B2D /* CategoryPresenter.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategoryModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategoryRouter.swift in Sources */,
+				AC6D030F2661326100AFC274 /* UIViewController.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 				AC6E8D1E266014F7007EA6A9 /* UIImage.swift in Sources */,
 				ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */,
