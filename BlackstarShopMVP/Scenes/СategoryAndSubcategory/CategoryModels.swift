@@ -10,54 +10,51 @@ import UIKit
 
 enum Category {
 
-    enum ConfigureUI {
-        struct Request {}
-        struct Response {
-            let navBarTitle: String
-        }
-        struct ViewModel {
-            struct DisplayedNavBar {
-                let title: String
-                let navigationBarTintColor: UIColor
-                let navigationTintColor: UIColor
-            }
+    struct Request {
+        enum ActionHandling {
+            case viewIsReady
+            case cellTapped(_ index: Int)
+            case didPullToRefresh
         }
     }
-
-    enum FetchData {
-        struct Request {}
-        struct Response {
-            enum ResponseData {
-                case success([CategoryCellModel])
-                case failure(String)
-            }
+    struct Response {
+        enum UIConfiguration {
+            case navBar(_ title: String)
+            case refreshControl
         }
-        struct ViewModel {
-            enum ViewModelData {
-                case displayNewCategories(_ viewModel: [CategoryCellInput])
-                case displayError(_ error: String)
-            }
+        enum UIUpdating {
+            case refreshControlHidding(_ isHidden: Bool)
+            case tableViewDataReloading(_ seccess: [CategoryCellModel])
+            case tableViewFailureReloading(_ failure: String)
         }
-    }
-
-    enum NavigateToScene {
-        struct Request {
-            let index: Int
-        }
-        struct Response {
-            enum PrepareData {
-                case prepareDataToSubcategoriesScene(_ model: CategoryBox)
-                case prepareDataToProductsScene(_ subcategoryId: Int)
-            }
-        }
-        struct ViewModel {
-            enum NavigateToAnotherScene {
-                case routeSubcategories(_ model: CategoryBox)
-                case routeProducts(_ subcategoryId: Int)
-            }
+        enum Routing {
+            case subcategoriesScene(_ model: CategoryBox)
+            case productsScene(_ subcategoryId: Int)
         }
     }
+    struct ViewModel {
+        enum UIConfiguration {
+            case navBarConfiguration(_ model: DisplayedNavBar)
+            case refreshControl
+        }
+        enum UIUpdating {
+            case refreshControlHidding(_ isHidden: Bool)
+            case tableViewDataReloading(_ seccess: [CategoryCellInput])
+            case tableViewErrorReloading(_ failure: String)
+        }
+        enum Routing {
+            case subcategoriesScene(_ model: CategoryBox)
+            case productsScene(_ subcategoryId: Int)
+        }
 
+    }
+
+}
+
+struct DisplayedNavBar {
+    let title: String
+    let navigationBarTintColor: UIColor
+    let navigationTintColor: UIColor
 }
 
 enum CategoryScreenMode {
@@ -95,7 +92,6 @@ struct SimpleCategory: CategoryCellModel {
     static func simpleSubcategories(from subcategoriesInfo: [SubcategoryInfo]) -> [SimpleCategory] {
         subcategoriesInfo.map { .init(subcategoryInfo: $0) }
     }
-
 }
 
 struct CategoryBox {

@@ -9,9 +9,9 @@
 import UIKit
 
 protocol CategoryDisplayLogic: AnyObject {
-    func configureUI(viewModel: Category.ConfigureUI.ViewModel.DisplayedNavBar)
-    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData)
-    func navigateToOtherScene(viewModel: Category.NavigateToScene.ViewModel.NavigateToAnotherScene)
+    func configureUI(viewModel: Category.ViewModel.UIConfiguration)
+    func updateUI(viewModel: Category.ViewModel.UIUpdating)
+    func navigateToScene(viewModel: Category.ViewModel.Routing)
 }
 
 class CategoryViewController: UIViewController {
@@ -22,6 +22,7 @@ class CategoryViewController: UIViewController {
     // MARK: IBOutlets
 
     @IBOutlet private weak var tableView: UITableView!
+    private let refreshControl = UIRefreshControl()
 
     private var categories = [CategoryCellInput]()
 
@@ -43,47 +44,46 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
 
         configureTableView()
-        interactor?.fetchData(request: .init())
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        interactor?.configureUI(request: .init())
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        navigationItem.backButtonTitle = ""
+        interactor?.handleAction(request: .viewIsReady)
     }
 
 }
 
 extension CategoryViewController: CategoryDisplayLogic {
 
-    func configureUI(viewModel: Category.ConfigureUI.ViewModel.DisplayedNavBar) {
-        navigationController?.navigationBar.barTintColor = viewModel.navigationBarTintColor
-        navigationController?.navigationBar.tintColor = viewModel.navigationTintColor
-        navigationItem.title = viewModel.title
+    func configureUI(viewModel: Category.ViewModel.UIConfiguration) {
+        switch viewModel {
+        case .navBarConfiguration(let viewModel):
+            navigationController?.navigationBar.barTintColor = viewModel.navigationBarTintColor
+            navigationController?.navigationBar.tintColor = viewModel.navigationTintColor
+            navigationItem.backButtonTitle = ""
+            navigationItem.title = viewModel.title
+        case .refreshControl:
+            tableView.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        }
     }
 
-    func displayData(viewModel: Category.FetchData.ViewModel.ViewModelData) {
+    func updateUI(viewModel: Category.ViewModel.UIUpdating) {
         switch viewModel {
-        case .displayNewCategories(let viewModel):
+        case .tableViewDataReloading(let viewModel):
             categories = viewModel
-        case .displayError(let error):
+            tableView.reloadData()
+        case .tableViewErrorReloading(let error):
             print(error)
             categories = []
+            tableView.reloadData()
+        case .refreshControlHidding(let isHidden):
+            refreshControl.endRefreshing()
+            refreshControl.isHidden = isHidden
         }
-        tableView.reloadData()
     }
 
-    func navigateToOtherScene(viewModel: Category.NavigateToScene.ViewModel.NavigateToAnotherScene) {
+    func navigateToScene(viewModel: Category.ViewModel.Routing) {
         switch viewModel {
-        case .routeSubcategories(let categoryBox):
+        case .subcategoriesScene(let categoryBox):
             routeToSubscategoriesScreen(categoryBox)
-         case .routeProducts(let subcategoryId):
+        case .productsScene(let subcategoryId):
             print("subcategoryId: \(subcategoryId)")
         }
     }
@@ -113,7 +113,7 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.navigateToScene(request: .init(index: indexPath.item))
+        interactor?.handleAction(request: .cellTapped(indexPath.item))
     }
 
 }
@@ -129,6 +129,12 @@ private extension CategoryViewController {
         )
         tableView.dataSource = self
         tableView.delegate = self
+    }
+
+    @objc func didPullToRefresh() {
+        refreshControl.beginRefreshing()
+        refreshControl.isHidden = true
+        interactor?.handleAction(request: .didPullToRefresh)
     }
 
     func routeToSubscategoriesScreen(_ categoryBox: CategoryBox) {

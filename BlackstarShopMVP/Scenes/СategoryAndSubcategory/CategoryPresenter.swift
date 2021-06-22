@@ -9,38 +9,50 @@
 import UIKit
 
 protocol CategoryPresentationLogic {
-    func prepareUISettings(response: Category.ConfigureUI.Response)
-    func prepareContentData(response: Category.FetchData.Response.ResponseData)
-    func prepareNavigationData(response: Category.NavigateToScene.Response.PrepareData)
+    func prepareUIConfigurationData(response: Category.Response.UIConfiguration)
+    func prepareUIUpdatingData(response: Category.Response.UIUpdating)
+    func prepareNavigationData(response: Category.Response.Routing)
 }
 
 class CategoryPresenter: CategoryPresentationLogic {
 
     weak var viewController: CategoryDisplayLogic?
 
-    func prepareUISettings(response: Category.ConfigureUI.Response) {
-        viewController?.configureUI(viewModel: .init(title: response.navBarTitle,
-                                                     navigationBarTintColor: Const.navigationBarTintColor,
-                                                     navigationTintColor: Const.navigationTintColor))
-    }
+    // MARK: - CategoryPresentationLogic -
 
-    func prepareContentData(response: Category.FetchData.Response.ResponseData) {
+    func prepareUIConfigurationData(response: Category.Response.UIConfiguration) {
         switch response {
-        case .success(let cellModels):
-            let categoryCellsVM = categoryCellsVM(from: cellModels)
-            viewController?.displayData(viewModel: .displayNewCategories(categoryCellsVM))
-        case .failure(let errorText):
-            viewController?.displayData(viewModel: .displayError(errorText))
+        case .navBar(let title):
+            let navBarVM = DisplayedNavBar(
+                title: title,
+                navigationBarTintColor: Const.navigationBarTintColor,
+                navigationTintColor: Const.navigationTintColor
+            )
+            viewController?.configureUI(viewModel: .navBarConfiguration(navBarVM))
+        case .refreshControl:
+            viewController?.configureUI(viewModel: .refreshControl)
         }
     }
 
-    func prepareNavigationData(response: Category.NavigateToScene.Response.PrepareData) {
+    func prepareUIUpdatingData(response: Category.Response.UIUpdating) {
         switch response {
-        case .prepareDataToSubcategoriesScene(let categoryBox):
+        case .refreshControlHidding(let isHidden):
+            viewController?.updateUI(viewModel: .refreshControlHidding(isHidden))
+        case .tableViewDataReloading(let cellModels):
+            let categoryCellsVM = categoryCellsVM(from: cellModels)
+            viewController?.updateUI(viewModel: .tableViewDataReloading(categoryCellsVM))
+        case .tableViewFailureReloading(let errorText):
+            viewController?.updateUI(viewModel: .tableViewErrorReloading(errorText))
+        }
+    }
+
+    func prepareNavigationData(response: Category.Response.Routing) {
+        switch response {
+        case .subcategoriesScene(let categoryBox):
             guard categoryBox.stateScreen == .subcategories else { return }
-            viewController?.navigateToOtherScene(viewModel: .routeSubcategories(categoryBox))
-        case .prepareDataToProductsScene(let subcategoryId):
-            viewController?.navigateToOtherScene(viewModel: .routeProducts(subcategoryId))
+            viewController?.navigateToScene(viewModel: .subcategoriesScene(categoryBox))
+        case .productsScene(let subcategoryId):
+            viewController?.navigateToScene(viewModel: .productsScene(subcategoryId))
         }
     }
 

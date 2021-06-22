@@ -9,9 +9,7 @@
 import Foundation
 
 protocol CategoryBusinessLogic {
-    func configureUI(request: Category.ConfigureUI.Request)
-    func fetchData(request: Category.FetchData.Request)
-    func navigateToScene(request: Category.NavigateToScene.Request)
+    func handleAction(request: Category.Request.ActionHandling)
 }
 
 class CategoryInteractor: CategoryBusinessLogic {
@@ -33,30 +31,17 @@ class CategoryInteractor: CategoryBusinessLogic {
         }
     }
 
-    func configureUI(request: Category.ConfigureUI.Request) {
-        presenter?.prepareUISettings(response: .init(navBarTitle: sceneModeName))
-    }
+    // MARK: - CategoryBusinessLogic -
 
-    func fetchData(request: Category.FetchData.Request) {
-        switch sceneMode {
-        case .categories:
-            loadCategoryInfo()
-        case .subcategories:
-            if let subcategories = categories.first?.subcategories {
-                presenter?.prepareContentData(response: .success(subcategories))
-            }
-        }
-    }
-
-    func navigateToScene(request: Category.NavigateToScene.Request) {
-        switch sceneMode {
-        case .categories:
-            let categoryBoxItem = categories[request.index].changeStateScreen(.subcategories)
-            presenter?.prepareNavigationData(response: .prepareDataToSubcategoriesScene(categoryBoxItem))
-        case .subcategories:
-            if let subcategoryId = categories.first?.subcategories[request.index].id {
-                presenter?.prepareNavigationData(response: .prepareDataToProductsScene(subcategoryId))
-            }
+    func handleAction(request: Category.Request.ActionHandling) {
+        switch request {
+        case .viewIsReady:
+            configureUI()
+            fetchData()
+        case .cellTapped(let index):
+            handleCellTap(index)
+        case .didPullToRefresh:
+            fetchData()
         }
     }
 
@@ -76,6 +61,13 @@ extension CategoryInteractor {
 // MARK: Private methods
 
 private extension CategoryInteractor {
+
+    func configureUI() {
+        presenter?.prepareUIConfigurationData(response: .navBar(sceneModeName))
+        if sceneMode == .categories {
+            presenter?.prepareUIConfigurationData(response: .refreshControl)
+        }
+    }
 
     func categoryBox(from categoriesResponse: [String: CategoryInfo]) -> [CategoryBox] {
         categoriesResponse
@@ -98,10 +90,34 @@ private extension CategoryInteractor {
                 switch result {
                 case .success(let categoriesResponse):
                     self.categories = self.categoryBox(from: categoriesResponse)
-                    self.presenter?.prepareContentData(response: .success(self.categories.map({ $0.ctegory })))
+                    self.presenter?.prepareUIUpdatingData(response: .tableViewDataReloading(self.categories.map({ $0.ctegory })))
                 case .failure(let error):
-                    self.presenter?.prepareContentData(response: .failure(error.localizedDescription))
+                    self.presenter?.prepareUIUpdatingData(response: .tableViewFailureReloading(error.localizedDescription))
                 }
+                self.presenter?.prepareUIUpdatingData(response: .refreshControlHidding(false))
+            }
+        }
+    }
+
+    func fetchData() {
+        switch sceneMode {
+        case .categories:
+            loadCategoryInfo()
+        case .subcategories:
+            if let subcategories = categories.first?.subcategories {
+                presenter?.prepareUIUpdatingData(response: .tableViewDataReloading(subcategories))
+            }
+        }
+    }
+
+    func handleCellTap(_ index: Int) {
+        switch sceneMode {
+        case .categories:
+            let categoryBoxItem = categories[index].changeStateScreen(.subcategories)
+            presenter?.prepareNavigationData(response: .subcategoriesScene(categoryBoxItem))
+        case .subcategories:
+            if let subcategoryId = categories.first?.subcategories[index].id {
+                presenter?.prepareNavigationData(response: .productsScene(subcategoryId))
             }
         }
     }
