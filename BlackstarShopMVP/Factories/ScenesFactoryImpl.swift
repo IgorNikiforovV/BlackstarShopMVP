@@ -23,5 +23,20 @@ enum ScenesFactoryImpl: ScenesFactory {
         return viewController
     }
 
+    static func makeProductScene(_ productId: Int) -> Presentable & ProductDisplayLogic {
+        let viewController        = ProductViewController()
+        let interactor            = ProductInteractor()
+        let presenter             = ProductPresenter()
+        let router                = ProductRouter()
+        viewController.interactor = interactor
+        viewController.router     = router
+        interactor.presenter      = presenter
+        presenter.viewController  = viewController
+        router.viewController     = viewController
+        interactor.productId = productId
+
+        return viewController
+    }
+
 
 }

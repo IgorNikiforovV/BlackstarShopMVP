@@ -9,14 +9,25 @@
 import UIKit
 
 protocol ProductPresentationLogic {
-  func presentData(response: Product.Model.Response.ResponseType)
+    func prepareUIConfigurationData(response: Category.Response.UIConfiguration)
+    func prepareUIUpdatingData(response: Category.Response.UIUpdating)
+    func prepareNavigationData(response: Category.Response.Routing)
 }
 
 class ProductPresenter: ProductPresentationLogic {
-  weak var viewController: ProductDisplayLogic?
-  
-  func presentData(response: Product.Model.Response.ResponseType) {
-  
-  }
-  
+
+    weak var viewController: ProductDisplayLogic?
+
+    func prepareUIConfigurationData(response: Category.Response.UIConfiguration) {
+
+    }
+
+    func prepareUIUpdatingData(response: Category.Response.UIUpdating) {
+
+    }
+
+    func prepareNavigationData(response: Category.Response.Routing) {
+
+    }
+
 }

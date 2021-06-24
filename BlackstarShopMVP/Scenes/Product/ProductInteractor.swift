@@ -9,18 +9,33 @@
 import UIKit
 
 protocol ProductBusinessLogic {
-  func makeRequest(request: Product.Model.Request.RequestType)
+    func handleAction(request: Category.Request.ActionHandling)
 }
 
-class ProductInteractor: ProductBusinessLogic {
+protocol ProductInteractorInput {
+    var productId: Int? { get set }
+}
 
-  var presenter: ProductPresentationLogic?
-  var service: ProductService?
-  
-  func makeRequest(request: Product.Model.Request.RequestType) {
-    if service == nil {
-      service = ProductService()
+class ProductInteractor: ProductBusinessLogic, ProductInteractorInput {
+
+    var presenter: ProductPresentationLogic?
+    var service: ProductService?
+
+    // MARK: ProductInteractorInput
+
+    var productId: Int?
+
+    // MARK: ProductBusinessLogic
+
+    func handleAction(request: Category.Request.ActionHandling) {
+        switch request {
+        case .viewIsReady:
+            print("viewIsReady")
+        case .cellTapped(_):
+            print("cellTapped")
+        case .didPullToRefresh:
+            print("didPullToRefresh")
+        }
     }
-  }
-  
+
 }

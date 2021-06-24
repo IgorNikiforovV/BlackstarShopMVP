@@ -12,7 +12,11 @@ protocol CategoryBusinessLogic {
     func handleAction(request: Category.Request.ActionHandling)
 }
 
-class CategoryInteractor: CategoryBusinessLogic {
+protocol CategoryInteractorInput {
+    func setSubcategories(model categoryBox: CategoryBox)
+}
+
+class CategoryInteractor: CategoryBusinessLogic, CategoryInteractorInput {
 
     var presenter: CategoryPresentationLogic?
     var service: CategoryService? = CategoryService()
@@ -31,7 +35,15 @@ class CategoryInteractor: CategoryBusinessLogic {
         }
     }
 
-    // MARK: - CategoryBusinessLogic -
+    // MARK: CategoryInteractorInput
+
+    func setSubcategories(model categoryBox: CategoryBox) {
+        guard categoryBox.stateScreen == .subcategories else { return }
+        self.categories = [categoryBox]
+    }
+
+
+    // MARK: CategoryBusinessLogic
 
     func handleAction(request: Category.Request.ActionHandling) {
         switch request {
@@ -43,17 +55,6 @@ class CategoryInteractor: CategoryBusinessLogic {
         case .didPullToRefresh:
             fetchData()
         }
-    }
-
-}
-
-// MARK: Public methods
-
-extension CategoryInteractor {
-
-    func setSubcategories(model categoryBox: CategoryBox) {
-        guard categoryBox.stateScreen == .subcategories else { return }
-        self.categories = [categoryBox]
     }
 
 }

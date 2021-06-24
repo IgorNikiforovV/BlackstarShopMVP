@@ -27,11 +27,9 @@ final class NetworkImageOperation: AsyncOperation {
     }
 
     override func main() {
-        URLSession.shared.dataTask(with: url) { [weak self]
-            data, response, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
 
             guard let self = self else { return }
-
             defer { self.state = .finished }
 
             if let completionHandler = self.completionHandler {
@@ -40,9 +38,9 @@ final class NetworkImageOperation: AsyncOperation {
             }
 
             guard error == nil, let data = data else { return }
-
             self.image = UIImage(data: data)
-        }.resume()
+        }
+        .resume()
     }
 
 }

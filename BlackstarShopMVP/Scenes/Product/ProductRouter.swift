@@ -14,8 +14,8 @@ protocol ProductRoutingLogic {
 
 class ProductRouter: NSObject, ProductRoutingLogic {
 
-  weak var viewController: ProductViewController?
-  
-  // MARK: Routing
-  
+    weak var viewController: ProductViewController?
+
+    // MARK: Routing
+
 }

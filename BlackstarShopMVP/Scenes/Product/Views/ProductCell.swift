@@ -11,11 +11,15 @@ protocol ProductCellInput {
     var id: Int { get }
     var title: String { get }
     var description: String { get }
-    var picture: URL? { get }
+    var picture: String? { get }
     var price: String { get }
 }
 
 class ProductCell: UICollectionViewCell {
+
+    // MARK: Properties
+
+    static let identifier = "ProductCell"
 
     // MARK: @IBOutlet
 
@@ -30,7 +34,13 @@ class ProductCell: UICollectionViewCell {
         initialize()
     }
 
-    func configure(viewModel: ProductCellInput) {
+}
+
+// MARK: - Public methods
+
+extension ProductCell {
+
+    func configure(_ viewModel: ProductCellInput) {
         titleLabel.attributedText = NSAttributedString(
             string: viewModel.title,
             attributes: Const.titleAttributes
@@ -40,11 +50,11 @@ class ProductCell: UICollectionViewCell {
             attributes: Const.descriptionAttributes
         )
 
-        imageView.load(
-            url: viewModel.picture,
-            placeholder: Const.imagePlaceholder,
-            needMakeSquare: true
-        )
+        if let imageURLText = viewModel.picture,
+        let url = URL(string: imageURLText) {
+            imageView.load(url: url, placeholder: Const.imagePlaceholder, needMakeSquare: true)
+        }
+
         priceLabel.attributedText = NSAttributedString(
             string: viewModel.price,
             attributes: Const.priceAttributes

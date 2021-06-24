@@ -9,23 +9,49 @@
 import UIKit
 
 enum Product {
-   
-  enum Model {
+
     struct Request {
-      enum RequestType {
-        case some
-      }
+        enum ActionHandling {
+            case viewIsReady
+            case cellTapped(_ index: Int)
+            case didPullToRefresh
+        }
     }
     struct Response {
-      enum ResponseType {
-        case some
-      }
+        enum UIConfiguration {
+            case navBar(_ title: String)
+            case refreshControl
+        }
+        enum UIUpdating {
+            case refreshControlHidding(_ isHidden: Bool)
+            case tableViewDataReloading(_ seccess: [CategoryCellModel])
+            case tableViewFailureReloading(_ failure: String)
+        }
+        enum Routing {
+            case productsDetailScene(_ subcategoryId: Int)
+        }
     }
     struct ViewModel {
-      enum ViewModelData {
-        case some
-      }
+        enum UIConfiguration {
+            case navBarConfiguration(_ model: DisplayedNavBar)
+            case refreshControl
+        }
+        enum UIUpdating {
+            case refreshControlHidding(_ isHidden: Bool)
+            case tableViewDataReloading(_ seccess: [CategoryCellInput])
+            case tableViewErrorReloading(_ failure: String)
+        }
+        enum Routing {
+            case productsDetailScene(_ subcategoryId: Int)
+        }
     }
-  }
-  
+
+}
+
+struct ProductCellModel: ProductCellInput {
+    var id: Int
+    var title: String
+    var description: String
+    var picture: String?
+    var price: String
 }

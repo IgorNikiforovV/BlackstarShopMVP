@@ -49,6 +49,8 @@ class CategoryViewController: UIViewController {
 
 }
 
+// MARK: - CategoryDisplayLogic
+
 extension CategoryViewController: CategoryDisplayLogic {
 
     func configureUI(viewModel: Category.ViewModel.UIConfiguration) {

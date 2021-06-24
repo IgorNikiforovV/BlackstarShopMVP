@@ -46,7 +46,6 @@ enum Category {
             case subcategoriesScene(_ model: CategoryBox)
             case productsScene(_ subcategoryId: Int)
         }
-
     }
 
 }

@@ -151,11 +151,11 @@
 				AC5E691F268122A400408DB4 /* Views */,
 				AC5E691726811DD100408DB4 /* ProductViewController.xib */,
 				AC5E691426811DD100408DB4 /* ProductModels.swift */,
+				AC5E691526811DD100408DB4 /* ProductViewController.swift */,
+				AC5E691626811DD100408DB4 /* ProductInteractor.swift */,
 				AC5E691126811DD100408DB4 /* ProductPresenter.swift */,
 				AC5E691226811DD100408DB4 /* ProductWorker.swift */,
 				AC5E691326811DD100408DB4 /* ProductRouter.swift */,
-				AC5E691526811DD100408DB4 /* ProductViewController.swift */,
-				AC5E691626811DD100408DB4 /* ProductInteractor.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
