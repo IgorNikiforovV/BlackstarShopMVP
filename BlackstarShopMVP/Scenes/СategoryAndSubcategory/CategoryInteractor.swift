@@ -22,6 +22,7 @@ class CategoryInteractor: CategoryBusinessLogic, CategoryInteractorInput {
     var service: CategoryService? = CategoryService()
 
     private var categories = [CategoryBox]()
+
     private var sceneMode: CategoryScreenMode {
         guard !categories.isEmpty else { return .categories }
         return categories.filter { $0.stateScreen == .categories }.isEmpty ? .subcategories : .categories

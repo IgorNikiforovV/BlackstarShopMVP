@@ -19,4 +19,5 @@ class CategoryService {
     func fetchCategories(completion: @escaping (Result<[String: CategoryInfo], NetworkError>) -> Void) {
         networkService.requestData(endPoint: BlackStarShopEndPoint.category, completion: completion)
     }
+
 }

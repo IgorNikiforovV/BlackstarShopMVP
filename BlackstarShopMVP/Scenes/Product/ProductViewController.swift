@@ -9,15 +9,22 @@
 import UIKit
 
 protocol ProductDisplayLogic: AnyObject {
-    func configureUI(viewModel: Category.ViewModel.UIConfiguration)
-    func updateUI(viewModel: Category.ViewModel.UIUpdating)
-    func navigateToScene(viewModel: Category.ViewModel.Routing)
+    func configureUI(viewModel: Product.ViewModel.UIConfiguration)
+    func updateUI(viewModel: Product.ViewModel.UIUpdating)
+    func navigateToScene(viewModel: Product.ViewModel.Routing)
 }
 
 class ProductViewController: UIViewController, ProductDisplayLogic {
 
     var interactor: ProductBusinessLogic?
     var router: (NSObjectProtocol & ProductRoutingLogic)?
+
+    // MARK: @IBOutlets
+
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var noDataLabel: UILabel!
+
+    private var products = [ProductCellInput]()
 
     // MARK: Object lifecycle
 
@@ -31,48 +38,72 @@ class ProductViewController: UIViewController, ProductDisplayLogic {
 
     // MARK: Routing
 
-    // MARK: @IBOutlets
-
-    @IBOutlet private weak var collectionView: UICollectionView!
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         interactor?.handleAction(request: .viewIsReady)
-        configureCollectionView() 
+
+        configureCollectionView()
+        configureNoDataLabel()
     }
 
-    func configureUI(viewModel: Category.ViewModel.UIConfiguration) {
+    func configureUI(viewModel: Product.ViewModel.UIConfiguration) {
 
     }
 
-    func updateUI(viewModel: Category.ViewModel.UIUpdating) {
-
+    func updateUI(viewModel: Product.ViewModel.UIUpdating) {
+        switch viewModel {
+        case .refreshControlHidding(_):
+            print("refreshControlHidding")
+        case .collectionViewDataReloading(let productCellItems):
+            noDataLabel.isHidden = !productCellItems.isEmpty
+            products = productCellItems
+            collectionView.reloadData()
+        case .collectionViewErrorReloading(_):
+            products = []
+            collectionView.reloadData()
+        }
     }
 
-    func navigateToScene(viewModel: Category.ViewModel.Routing) {
+    func navigateToScene(viewModel: Product.ViewModel.Routing) {
 
     }
 
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension ProductViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ProductViewController.models.count
+        products.count
     }
-
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath)
         if let cell = cell as? ProductCell {
-            cell.configure(ProductViewController.models[indexPath.item])
+            cell.configure(products[indexPath.item])
         }
         return cell
     }
 
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension ProductViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let frame = collectionView.frame
+        let cellWidth = (frame.width - Const.allCellSpasing) / Const.oneRowCellCount
+        return CGSize(width: cellWidth, height: Const.cellHeight)
+    }
 
 }
 
@@ -87,41 +118,38 @@ private extension ProductViewController {
         )
     }
 
+    func configureNoDataLabel() {
+        noDataLabel.isHidden = true
+        noDataLabel.attributedText = Const.noDataAttributedText()
+    }
+
 }
 
-// MARK: Mock data
+private extension ProductViewController {
 
-extension ProductViewController {
-    static let models: [ProductCellInput] = [
-        ProductCellModel(id: 1,
-                         title: "Куртка 1452",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/8003/9t0a1842-h_1_630x840.jpg",
-                         price: "2500 Р"),
-        ProductCellModel(id: 1,
-                         title: "Жакет 5622",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/7988/9t0a3615-h_1_630x840.jpg",
-                         price: "4500 Р"),
-        ProductCellModel(id: 1,
-                         title: "Ветровка 885",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/8003/9t0a1842-h_1_630x840.jpg",
-                         price: "3670 Р"),
-        ProductCellModel(id: 1,
-                         title: "Штаны 2536",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/8020/9t0a8675-h_1_630x840.jpg",
-                         price: "1243 Р"),
-        ProductCellModel(id: 1,
-                         title: "Носки 1111",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/7992/9t0a1636-h_1_630x840.jpg",
-                         price: "1000 Р"),
-        ProductCellModel(id: 1,
-                         title: "Перчатки 34343 ",
-                         description: "Специальная коллекция",
-                         picture: "https://blackstarshop.ru/image/cache/catalog/p/8003/9t0a1842-h_1_630x840.jpg",
-                         price: "3400 Р")
-    ]
+    enum Const {
+
+        // cell
+        static let cellHeight: CGFloat = 260
+        static var allCellSpasing: CGFloat {
+            leftCellSpasing + betweenCellsSpacing + rightCellSpasing
+        }
+        static let rightCellSpasing: CGFloat = 16
+        static let leftCellSpasing: CGFloat = 16
+        static let betweenCellsSpacing: CGFloat = 8
+        static let oneRowCellCount: CGFloat = 2
+
+        // no data label
+        static func noDataAttributedText() -> NSAttributedString {
+            NSAttributedString(string: noDataTitle, attributes: titleAttributes)
+        }
+        static let noDataTitle = R.string.localizable.productNoDataTitle()
+        static let titleAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!,
+            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 13)!,
+            NSAttributedString.Key.kern: 0.19
+        ]
+
+    }
+
 }

@@ -24,8 +24,8 @@ enum Product {
         }
         enum UIUpdating {
             case refreshControlHidding(_ isHidden: Bool)
-            case tableViewDataReloading(_ seccess: [CategoryCellModel])
-            case tableViewFailureReloading(_ failure: String)
+            case collectionViewDataReloading(_ seccess: [ProductCellInput])
+            case collectionViewFailureReloading(_ failure: String)
         }
         enum Routing {
             case productsDetailScene(_ subcategoryId: Int)
@@ -38,8 +38,8 @@ enum Product {
         }
         enum UIUpdating {
             case refreshControlHidding(_ isHidden: Bool)
-            case tableViewDataReloading(_ seccess: [CategoryCellInput])
-            case tableViewErrorReloading(_ failure: String)
+            case collectionViewDataReloading(_ seccess: [ProductCellInput])
+            case collectionViewErrorReloading(_ failure: String)
         }
         enum Routing {
             case productsDetailScene(_ subcategoryId: Int)
@@ -48,10 +48,16 @@ enum Product {
 
 }
 
-struct ProductCellModel: ProductCellInput {
-    var id: Int
+struct ProductCellItem: ProductCellInput {
     var title: String
-    var description: String
+    var description: String?
     var picture: String?
     var price: String
+
+    init(productInfo: ProductInfo) {
+        title = productInfo.name
+        description = productInfo.description
+        picture = productInfo.mainImage
+        price = String(productInfo.price.split(separator: ".").first ?? "")
+    }
 }

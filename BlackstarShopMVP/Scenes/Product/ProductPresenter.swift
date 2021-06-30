@@ -9,24 +9,31 @@
 import UIKit
 
 protocol ProductPresentationLogic {
-    func prepareUIConfigurationData(response: Category.Response.UIConfiguration)
-    func prepareUIUpdatingData(response: Category.Response.UIUpdating)
-    func prepareNavigationData(response: Category.Response.Routing)
+    func prepareUIConfigurationData(response: Product.Response.UIConfiguration)
+    func prepareUIUpdatingData(response: Product.Response.UIUpdating)
+    func prepareNavigationData(response: Product.Response.Routing)
 }
 
 class ProductPresenter: ProductPresentationLogic {
 
     weak var viewController: ProductDisplayLogic?
 
-    func prepareUIConfigurationData(response: Category.Response.UIConfiguration) {
+    func prepareUIConfigurationData(response: Product.Response.UIConfiguration) {
 
     }
 
-    func prepareUIUpdatingData(response: Category.Response.UIUpdating) {
-
+    func prepareUIUpdatingData(response: Product.Response.UIUpdating) {
+        switch response {
+        case .refreshControlHidding(_):
+            print("refreshControlHidding")
+        case .collectionViewDataReloading(let productCellItems):
+            viewController?.updateUI(viewModel: .collectionViewDataReloading(productCellItems))
+        case .collectionViewFailureReloading(let error):
+            viewController?.updateUI(viewModel: .collectionViewErrorReloading(error))
+        }
     }
 
-    func prepareNavigationData(response: Category.Response.Routing) {
+    func prepareNavigationData(response: Product.Response.Routing) {
 
     }
 

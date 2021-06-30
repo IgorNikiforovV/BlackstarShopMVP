@@ -8,9 +8,8 @@
 import UIKit
 
 protocol ProductCellInput {
-    var id: Int { get }
     var title: String { get }
-    var description: String { get }
+    var description: String? { get }
     var picture: String? { get }
     var price: String { get }
 }
@@ -45,20 +44,21 @@ extension ProductCell {
             string: viewModel.title,
             attributes: Const.titleAttributes
         )
-        descriptionLabel.attributedText = NSAttributedString(
-            string: viewModel.description,
-            attributes: Const.descriptionAttributes
-        )
+        if let description = viewModel.description {
+            descriptionLabel.attributedText = NSAttributedString(
+                string: description,
+                attributes: Const.descriptionAttributes
+            )
+        } else {
+            descriptionLabel.isHidden = true
+        }
 
         if let imageURLText = viewModel.picture,
-        let url = URL(string: imageURLText) {
+        let url = Const.url(from: imageURLText) {
             imageView.load(url: url, placeholder: Const.imagePlaceholder, needMakeSquare: true)
         }
 
-        priceLabel.attributedText = NSAttributedString(
-            string: viewModel.price,
-            attributes: Const.priceAttributes
-        )
+        priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
     }
 
 }
@@ -66,7 +66,14 @@ extension ProductCell {
 private extension ProductCell {
 
     func initialize() {
+        configureContentView()
         configureBuyButton()
+    }
+
+    func configureContentView() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderWidth = 0.6
+        contentView.layer.borderColor = Const.borderColor.cgColor
     }
 
     func configureBuyButton() {
@@ -82,6 +89,9 @@ private extension ProductCell {
 private extension ProductCell {
 
     enum Const {
+
+        // content view
+        static let borderColor = R.color.colors.separatorColor()!
 
         // buyButton
         static let buyTitle = R.string.localizable.productCellBayButtonTitle()
@@ -109,11 +119,22 @@ private extension ProductCell {
         ]
 
         // price
+        static func priceAttributedText(_ text: String) -> NSAttributedString {
+            let price = R.string.localizable.productCellPriceTitle(text)
+            return NSAttributedString(string: price, attributes: priceAttributes)
+        }
+
         static let priceAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!,
             NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 16)!,
             NSAttributedString.Key.kern: 0.19
         ]
+
+        static func url(from text: String?) -> URL? {
+            guard let text = text else { return nil }
+            let urlText = "\(NetworkConst.baseUrl)\(text)"
+            return URL(string: urlText)
+        }
 
     }
 

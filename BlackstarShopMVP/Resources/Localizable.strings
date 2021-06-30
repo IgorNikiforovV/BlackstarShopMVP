@@ -6,4 +6,7 @@
   
 */
 
+"Product.no.data.title" = "Продукты по выбранной подкатегории отсутствуют";
+
 "Product.cell.bayButton.title" = "Купить";
+"Product.cell.price.title" = "%@ ₽";

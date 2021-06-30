@@ -9,32 +9,56 @@
 import UIKit
 
 protocol ProductBusinessLogic {
-    func handleAction(request: Category.Request.ActionHandling)
+    func handleAction(request: Product.Request.ActionHandling)
 }
 
 protocol ProductInteractorInput {
-    var productId: Int? { get set }
+    var productId: String? { get set }
 }
 
 class ProductInteractor: ProductBusinessLogic, ProductInteractorInput {
 
     var presenter: ProductPresentationLogic?
-    var service: ProductService?
+    var service: ProductService? = ProductService()
 
     // MARK: ProductInteractorInput
 
-    var productId: Int?
+    var productId: String?
 
     // MARK: ProductBusinessLogic
 
-    func handleAction(request: Category.Request.ActionHandling) {
+    func handleAction(request: Product.Request.ActionHandling) {
         switch request {
         case .viewIsReady:
-            print("viewIsReady")
+            fetchData()
         case .cellTapped(_):
             print("cellTapped")
         case .didPullToRefresh:
             print("didPullToRefresh")
+        }
+    }
+
+}
+
+// MARK: Private methods
+
+private extension ProductInteractor {
+
+    func fetchData() {
+        guard let productId = productId else { return }
+        service?.fetchProducts(productId: productId) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let productsInfo):
+                    let products = productsInfo
+                        .map { $0.value }
+                        .sorted { $0.sortOrder > $1.sortOrder }
+                    let cellItems = products.map { ProductCellItem.init(productInfo: $0) }
+                    self.presenter?.prepareUIUpdatingData(response: .collectionViewDataReloading(cellItems))
+                case .failure(let error):
+                    self.presenter?.prepareUIUpdatingData(response: .collectionViewFailureReloading(error.localizedDescription))
+                }
+            }
         }
     }
 

@@ -10,4 +10,14 @@ import UIKit
 
 class ProductService {
 
+    var networkService: NetworkService
+
+    init(networkService: NetworkService = NetworkServiceImpl()) {
+        self.networkService = networkService
+    }
+
+    func fetchProducts(productId: String, completion: @escaping (Result<[String: ProductInfo], NetworkError>) -> Void) {
+        networkService.requestData(endPoint: BlackStarShopEndPoint.product(productId: productId), completion: completion)
+    }
+
 }
