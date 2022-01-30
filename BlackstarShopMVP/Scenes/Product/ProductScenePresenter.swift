@@ -6,7 +6,7 @@
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol ProductScenePresentationLogic {
     func prepareUIConfigurationData(response: ProductSceneModels.Response.UIConfiguration)

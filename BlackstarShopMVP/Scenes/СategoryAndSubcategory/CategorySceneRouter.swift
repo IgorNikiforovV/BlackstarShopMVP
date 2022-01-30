@@ -9,16 +9,26 @@
 import UIKit
 
 protocol CategorySceneRoutingLogic {
-    func showSkeleton(for id: String?)
+    func showSubcategoryScene(categoryBox: CategoryBox)
+    func showProductScene(productId: String)
 }
 
 class CategorySceneRouter: NSObject, CategorySceneRoutingLogic {
-    func showSkeleton(for id: String?) {
-
-    }
 
     weak var viewController: CategorySceneViewController?
 
     // MARK: Routing
+
+    func showSubcategoryScene(categoryBox: CategoryBox) {
+        viewController?.navigationController?.modalPresentationStyle = .fullScreen
+        viewController?.navigationController?.modalTransitionStyle = .partialCurl
+        let subcategories = ScenesFactoryImpl.makeCategoriesScene(categoryBox).toPresent()
+        viewController?.navigationController?.pushViewController(subcategories, animated: true)
+    }
+
+    func showProductScene(productId: String) {
+        let productSceneViewController = ScenesFactoryImpl.makeProductScene(productId).toPresent()
+        viewController?.navigationController?.pushViewController(productSceneViewController, animated: true)
+    }
 
 }
