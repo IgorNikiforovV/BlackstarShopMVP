@@ -1,5 +1,5 @@
 //
-//  ProductSceneInteractor.swift
+//  ProductListSceneInteractor.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
@@ -8,26 +8,26 @@
 
 import UIKit
 
-protocol ProductSceneBusinessLogic {
-    func handleAction(request: ProductSceneModels.Request.ActionHandling)
+protocol ProductListSceneBusinessLogic {
+    func handleAction(request: ProductListSceneModels.Request.ActionHandling)
 }
 
-protocol ProductSceneInteractorInput {
-    var productId: String? { get set }
+protocol ProductListSceneInteractorInput {
+    var subcategoryId: String? { get set }
 }
 
-class ProductSceneInteractor: ProductSceneBusinessLogic, ProductSceneInteractorInput {
+class ProductListSceneInteractor: ProductListSceneBusinessLogic, ProductListSceneInteractorInput {
 
-    var presenter: ProductScenePresentationLogic?
-    var productWorker: ProductSceneWorker? = ProductSceneWorker()
+    var presenter: ProductListScenePresentationLogic?
+    var productListWorker: ProductListSceneWorker? = ProductListSceneWorker()
 
-    // MARK: ProductSceneInteractorInput
+    // MARK: СollectionSceneInteractorInput
 
-    var productId: String?
+    var subcategoryId: String?
 
-    // MARK: ProductBusinessLogic
+    // MARK: СollectionBusinessLogic
 
-    func handleAction(request: ProductSceneModels.Request.ActionHandling) {
+    func handleAction(request: ProductListSceneModels.Request.ActionHandling) {
         switch request {
         case .viewIsReady:
             fetchData()
@@ -42,11 +42,11 @@ class ProductSceneInteractor: ProductSceneBusinessLogic, ProductSceneInteractorI
 
 // MARK: Private methods
 
-private extension ProductSceneInteractor {
+private extension ProductListSceneInteractor {
 
     func fetchData() {
-        guard let productId = productId else { return }
-        productWorker?.fetchProducts(productId: productId) { result in
+        guard let subcategoryId = subcategoryId else { return }
+        productListWorker?.fetchProducts(subcategoryId: subcategoryId) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let productsInfo):

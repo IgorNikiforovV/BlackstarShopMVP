@@ -23,17 +23,17 @@ enum ScenesFactoryImpl: ScenesFactory {
         return viewController
     }
 
-    static func makeProductScene(_ productId: String) -> Presentable & ProductSceneDisplayLogic {
-        let viewController        = ProductSceneViewController()
-        let interactor            = ProductSceneInteractor()
-        let presenter             = ProductScenePresenter()
-        let router                = ProductSceneRouter()
+    static func makeProductListScene(_ subcategoryId: String) -> Presentable & ProductListSceneDisplayLogic {
+        let viewController        = ProductListSceneViewController()
+        let interactor            = ProductListSceneInteractor()
+        let presenter             = ProductListScenePresenter()
+        let router                = ProductListSceneRouter()
         viewController.interactor = interactor
         viewController.router     = router
         interactor.presenter      = presenter
         presenter.viewController  = viewController
         router.viewController     = viewController
-        interactor.productId = productId
+        interactor.subcategoryId = subcategoryId
 
         return viewController
     }

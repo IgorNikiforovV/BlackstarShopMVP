@@ -10,7 +10,7 @@ import UIKit
 
 protocol CategorySceneRoutingLogic {
     func showSubcategoryScene(categoryBox: CategoryBox)
-    func showProductScene(productId: String)
+    func showProductListScene(subcategoryId: String)
 }
 
 class CategorySceneRouter: NSObject, CategorySceneRoutingLogic {
@@ -26,9 +26,9 @@ class CategorySceneRouter: NSObject, CategorySceneRoutingLogic {
         viewController?.navigationController?.pushViewController(subcategories, animated: true)
     }
 
-    func showProductScene(productId: String) {
-        let productSceneViewController = ScenesFactoryImpl.makeProductScene(productId).toPresent()
-        viewController?.navigationController?.pushViewController(productSceneViewController, animated: true)
+    func showProductListScene(subcategoryId: String) {
+        let productListSceneViewController = ScenesFactoryImpl.makeProductListScene(subcategoryId).toPresent()
+        viewController?.navigationController?.pushViewController(productListSceneViewController, animated: true)
     }
 
 }

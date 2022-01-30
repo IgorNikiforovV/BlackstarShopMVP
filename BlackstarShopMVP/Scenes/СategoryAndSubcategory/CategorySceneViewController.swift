@@ -85,8 +85,8 @@ extension CategorySceneViewController: CategorySceneDisplayLogic {
         switch viewModel {
         case .subcategoriesScene(let categoryBox):
             router?.showSubcategoryScene(categoryBox: categoryBox)
-        case .productsScene(let subcategoryId):
-            router?.showProductScene(productId: "\(subcategoryId)")
+        case .productListScene(let subcategoryId):
+            router?.showProductListScene(subcategoryId: "\(subcategoryId)")
         }
     }
 

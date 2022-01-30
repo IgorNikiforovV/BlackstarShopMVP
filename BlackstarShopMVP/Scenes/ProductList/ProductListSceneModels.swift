@@ -1,14 +1,14 @@
 //
-//  ProductSceneModels.swift
+//  ProductListSceneModels.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-enum ProductSceneModels {
+enum ProductListSceneModels {
 
     struct Request {
         enum ActionHandling {
@@ -28,7 +28,7 @@ enum ProductSceneModels {
             case collectionViewFailureReloading(_ failure: String)
         }
         enum Routing {
-            case productsDetailScene(_ subcategoryId: Int)
+            case productListScene(_ subcategoryId: Int)
         }
     }
     struct ViewModel {
@@ -42,7 +42,7 @@ enum ProductSceneModels {
             case collectionViewErrorReloading(_ failure: String)
         }
         enum Routing {
-            case productsDetailScene(_ subcategoryId: Int)
+            case productListScene(_ subcategoryId: Int)
         }
     }
 
