@@ -1,5 +1,5 @@
 //
-//  ProductInteractor.swift
+//  ProductSceneInteractor.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
@@ -8,26 +8,26 @@
 
 import UIKit
 
-protocol ProductBusinessLogic {
-    func handleAction(request: Product.Request.ActionHandling)
+protocol ProductSceneBusinessLogic {
+    func handleAction(request: ProductSceneModels.Request.ActionHandling)
 }
 
-protocol ProductInteractorInput {
+protocol ProductSceneInteractorInput {
     var productId: String? { get set }
 }
 
-class ProductInteractor: ProductBusinessLogic, ProductInteractorInput {
+class ProductSceneInteractor: ProductSceneBusinessLogic, ProductSceneInteractorInput {
 
-    var presenter: ProductPresentationLogic?
-    var service: ProductService? = ProductService()
+    var presenter: ProductScenePresentationLogic?
+    var productWorker: ProductSceneWorker? = ProductSceneWorker()
 
-    // MARK: ProductInteractorInput
+    // MARK: ProductSceneInteractorInput
 
     var productId: String?
 
     // MARK: ProductBusinessLogic
 
-    func handleAction(request: Product.Request.ActionHandling) {
+    func handleAction(request: ProductSceneModels.Request.ActionHandling) {
         switch request {
         case .viewIsReady:
             fetchData()
@@ -42,11 +42,11 @@ class ProductInteractor: ProductBusinessLogic, ProductInteractorInput {
 
 // MARK: Private methods
 
-private extension ProductInteractor {
+private extension ProductSceneInteractor {
 
     func fetchData() {
         guard let productId = productId else { return }
-        service?.fetchProducts(productId: productId) { result in
+        productWorker?.fetchProducts(productId: productId) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let productsInfo):

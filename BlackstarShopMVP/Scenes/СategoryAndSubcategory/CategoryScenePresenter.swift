@@ -1,5 +1,5 @@
 //
-//  CategoryPresenter.swift
+//  CategoryScenePresenter.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 18.05.2021.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol CategoryPresentationLogic {
-    func prepareUIConfigurationData(response: Category.Response.UIConfiguration)
-    func prepareUIUpdatingData(response: Category.Response.UIUpdating)
-    func prepareNavigationData(response: Category.Response.Routing)
+protocol CategoryScenePresentationLogic {
+    func prepareUIConfigurationData(response: CategorySceneModels.Response.UIConfiguration)
+    func prepareUIUpdatingData(response: CategorySceneModels.Response.UIUpdating)
+    func prepareNavigationData(response: CategorySceneModels.Response.Routing)
 }
 
-class CategoryPresenter: CategoryPresentationLogic {
+class CategoryScenePresenter: CategoryScenePresentationLogic {
 
-    weak var viewController: CategoryDisplayLogic?
+    weak var viewController: CategorySceneDisplayLogic?
 
-    // MARK: - CategoryPresentationLogic -
+    // MARK: - CategoryScenePresentationLogic -
 
-    func prepareUIConfigurationData(response: Category.Response.UIConfiguration) {
+    func prepareUIConfigurationData(response: CategorySceneModels.Response.UIConfiguration) {
         switch response {
         case .navBar(let title):
             let navBarVM = DisplayedNavBar(
@@ -34,7 +34,7 @@ class CategoryPresenter: CategoryPresentationLogic {
         }
     }
 
-    func prepareUIUpdatingData(response: Category.Response.UIUpdating) {
+    func prepareUIUpdatingData(response: CategorySceneModels.Response.UIUpdating) {
         switch response {
         case .refreshControlHidding(let isHidden):
             viewController?.updateUI(viewModel: .refreshControlHidding(isHidden))
@@ -46,7 +46,7 @@ class CategoryPresenter: CategoryPresentationLogic {
         }
     }
 
-    func prepareNavigationData(response: Category.Response.Routing) {
+    func prepareNavigationData(response: CategorySceneModels.Response.Routing) {
         switch response {
         case .subcategoriesScene(let categoryBox):
             guard categoryBox.stateScreen == .subcategories else { return }
@@ -60,7 +60,7 @@ class CategoryPresenter: CategoryPresentationLogic {
 
 // MARK: Private methods
 
-private extension CategoryPresenter {
+private extension CategoryScenePresenter {
 
     func categoryCellsVM(from models: [CategoryCellModel]) -> [CategoryCellVM] {
         models.map {
@@ -75,7 +75,7 @@ private extension CategoryPresenter {
 
 }
 
-extension CategoryPresenter {
+extension CategoryScenePresenter {
 
     enum Const {
 

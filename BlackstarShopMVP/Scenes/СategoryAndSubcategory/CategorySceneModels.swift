@@ -1,5 +1,5 @@
 //
-//  CategoryModels.swift
+//  CategorySceneModels.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 18.05.2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Category {
+enum CategorySceneModels {
 
     struct Request {
         enum ActionHandling {

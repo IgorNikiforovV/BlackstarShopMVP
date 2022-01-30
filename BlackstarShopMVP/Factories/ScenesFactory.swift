@@ -6,5 +6,5 @@
 //
 
 protocol ScenesFactory {
-    static func makeCategoriesScene(_ subcategories: CategoryBox?) -> Presentable & CategoryDisplayLogic
+    static func makeCategoriesScene(_ subcategories: CategoryBox?) -> Presentable & CategorySceneDisplayLogic
 }

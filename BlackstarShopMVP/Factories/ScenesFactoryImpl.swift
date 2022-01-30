@@ -7,11 +7,11 @@
 
 enum ScenesFactoryImpl: ScenesFactory {
 
-    static func makeCategoriesScene(_ subcategories: CategoryBox?) -> Presentable & CategoryDisplayLogic {
-        let viewController        = CategoryViewController()
-        let interactor            = CategoryInteractor()
-        let presenter             = CategoryPresenter()
-        let router                = CategoryRouter()
+    static func makeCategoriesScene(_ subcategories: CategoryBox?) -> Presentable & CategorySceneDisplayLogic {
+        let viewController        = CategorySceneViewController()
+        let interactor            = CategorySceneInteractor()
+        let presenter             = CategoryScenePresenter()
+        let router                = CategorySceneRouter()
         viewController.interactor = interactor
         viewController.router     = router
         interactor.presenter      = presenter
@@ -23,11 +23,11 @@ enum ScenesFactoryImpl: ScenesFactory {
         return viewController
     }
 
-    static func makeProductScene(_ productId: String) -> Presentable & ProductDisplayLogic {
-        let viewController        = ProductViewController()
-        let interactor            = ProductInteractor()
-        let presenter             = ProductPresenter()
-        let router                = ProductRouter()
+    static func makeProductScene(_ productId: String) -> Presentable & ProductSceneDisplayLogic {
+        let viewController        = ProductSceneViewController()
+        let interactor            = ProductSceneInteractor()
+        let presenter             = ProductScenePresenter()
+        let router                = ProductSceneRouter()
         viewController.interactor = interactor
         viewController.router     = router
         interactor.presenter      = presenter

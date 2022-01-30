@@ -1,5 +1,5 @@
 //
-//  CategoryViewController.swift
+//  CategorySceneViewController.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 18.05.2021.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol CategoryDisplayLogic: AnyObject {
-    func configureUI(viewModel: Category.ViewModel.UIConfiguration)
-    func updateUI(viewModel: Category.ViewModel.UIUpdating)
-    func navigateToScene(viewModel: Category.ViewModel.Routing)
+protocol CategorySceneDisplayLogic: AnyObject {
+    func configureUI(viewModel: CategorySceneModels.ViewModel.UIConfiguration)
+    func updateUI(viewModel: CategorySceneModels.ViewModel.UIUpdating)
+    func navigateToScene(viewModel: CategorySceneModels.ViewModel.Routing)
 }
 
-class CategoryViewController: UIViewController {
+class CategorySceneViewController: UIViewController {
 
-    var interactor: CategoryBusinessLogic?
-    var router: (NSObjectProtocol & CategoryRoutingLogic)?
+    var interactor: CategorySceneBusinessLogic?
+    var router: (NSObjectProtocol & CategorySceneRoutingLogic)?
 
     // MARK: IBOutlets
 
@@ -51,9 +51,9 @@ class CategoryViewController: UIViewController {
 
 // MARK: - CategoryDisplayLogic
 
-extension CategoryViewController: CategoryDisplayLogic {
+extension CategorySceneViewController: CategorySceneDisplayLogic {
 
-    func configureUI(viewModel: Category.ViewModel.UIConfiguration) {
+    func configureUI(viewModel: CategorySceneModels.ViewModel.UIConfiguration) {
         switch viewModel {
         case .navBarConfiguration(let viewModel):
             navigationController?.navigationBar.barTintColor = viewModel.navigationBarTintColor
@@ -66,7 +66,7 @@ extension CategoryViewController: CategoryDisplayLogic {
         }
     }
 
-    func updateUI(viewModel: Category.ViewModel.UIUpdating) {
+    func updateUI(viewModel: CategorySceneModels.ViewModel.UIUpdating) {
         switch viewModel {
         case .tableViewDataReloading(let viewModel):
             categories = viewModel
@@ -81,7 +81,7 @@ extension CategoryViewController: CategoryDisplayLogic {
         }
     }
 
-    func navigateToScene(viewModel: Category.ViewModel.Routing) {
+    func navigateToScene(viewModel: CategorySceneModels.ViewModel.Routing) {
         switch viewModel {
         case .subcategoriesScene(let categoryBox):
             routeToSubscategoriesScreen(categoryBox)
@@ -94,7 +94,7 @@ extension CategoryViewController: CategoryDisplayLogic {
 
 // MARK: - UITableViewDataSource
 
-extension CategoryViewController: UITableViewDataSource {
+extension CategorySceneViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
@@ -112,7 +112,7 @@ extension CategoryViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension CategoryViewController: UITableViewDelegate {
+extension CategorySceneViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         interactor?.handleAction(request: .cellTapped(indexPath.item))
@@ -122,7 +122,7 @@ extension CategoryViewController: UITableViewDelegate {
 
 // MARK: Private methods
 
-private extension CategoryViewController {
+private extension CategorySceneViewController {
 
     func configureTableView() {
         tableView.register(

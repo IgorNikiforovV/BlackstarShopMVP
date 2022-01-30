@@ -1,5 +1,5 @@
 //
-//  CategoryWorker.swift
+//  CategorySceneWorker.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 18.05.2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryService {
+class CategorySceneWorker {
 
     var networkService: NetworkService
 

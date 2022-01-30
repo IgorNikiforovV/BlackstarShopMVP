@@ -1,5 +1,5 @@
 //
-//  ProductViewController.swift
+//  ProductSceneViewController.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol ProductDisplayLogic: AnyObject {
-    func configureUI(viewModel: Product.ViewModel.UIConfiguration)
-    func updateUI(viewModel: Product.ViewModel.UIUpdating)
-    func navigateToScene(viewModel: Product.ViewModel.Routing)
+protocol ProductSceneDisplayLogic: AnyObject {
+    func configureUI(viewModel: ProductSceneModels.ViewModel.UIConfiguration)
+    func updateUI(viewModel: ProductSceneModels.ViewModel.UIUpdating)
+    func navigateToScene(viewModel: ProductSceneModels.ViewModel.Routing)
 }
 
-class ProductViewController: UIViewController, ProductDisplayLogic {
+class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
 
-    var interactor: ProductBusinessLogic?
-    var router: (NSObjectProtocol & ProductRoutingLogic)?
+    var interactor: ProductSceneBusinessLogic?
+    var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
     // MARK: @IBOutlets
 
@@ -49,11 +49,11 @@ class ProductViewController: UIViewController, ProductDisplayLogic {
         configureNoDataLabel()
     }
 
-    func configureUI(viewModel: Product.ViewModel.UIConfiguration) {
+    func configureUI(viewModel: ProductSceneModels.ViewModel.UIConfiguration) {
 
     }
 
-    func updateUI(viewModel: Product.ViewModel.UIUpdating) {
+    func updateUI(viewModel: ProductSceneModels.ViewModel.UIUpdating) {
         switch viewModel {
         case .refreshControlHidding(_):
             print("refreshControlHidding")
@@ -67,7 +67,7 @@ class ProductViewController: UIViewController, ProductDisplayLogic {
         }
     }
 
-    func navigateToScene(viewModel: Product.ViewModel.Routing) {
+    func navigateToScene(viewModel: ProductSceneModels.ViewModel.Routing) {
 
     }
 
@@ -75,7 +75,7 @@ class ProductViewController: UIViewController, ProductDisplayLogic {
 
 // MARK: - UICollectionViewDataSource
 
-extension ProductViewController: UICollectionViewDataSource {
+extension ProductSceneViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         products.count
@@ -93,7 +93,7 @@ extension ProductViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension ProductViewController: UICollectionViewDelegateFlowLayout {
+extension ProductSceneViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -109,7 +109,7 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: Private methods
 
-private extension ProductViewController {
+private extension ProductSceneViewController {
 
     func configureCollectionView() {
         collectionView.register(
@@ -125,7 +125,7 @@ private extension ProductViewController {
 
 }
 
-private extension ProductViewController {
+private extension ProductSceneViewController {
 
     enum Const {
 

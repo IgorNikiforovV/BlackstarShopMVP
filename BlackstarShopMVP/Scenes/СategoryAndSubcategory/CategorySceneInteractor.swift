@@ -1,5 +1,5 @@
 //
-//  CategoryInteractor.swift
+//  CategorySceneInteractor.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 18.05.2021.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-protocol CategoryBusinessLogic {
-    func handleAction(request: Category.Request.ActionHandling)
+protocol CategorySceneBusinessLogic {
+    func handleAction(request: CategorySceneModels.Request.ActionHandling)
 }
 
-protocol CategoryInteractorInput {
+protocol CategorySceneInteractorInput {
     func setSubcategories(model categoryBox: CategoryBox)
 }
 
-class CategoryInteractor: CategoryBusinessLogic, CategoryInteractorInput {
+class CategorySceneInteractor: CategorySceneBusinessLogic, CategorySceneInteractorInput {
 
-    var presenter: CategoryPresentationLogic?
-    var service: CategoryService? = CategoryService()
+    var presenter: CategoryScenePresentationLogic?
+    var categoryWorker: CategorySceneWorker? = CategorySceneWorker()
 
     private var categories = [CategoryBox]()
 
@@ -46,7 +46,7 @@ class CategoryInteractor: CategoryBusinessLogic, CategoryInteractorInput {
 
     // MARK: CategoryBusinessLogic
 
-    func handleAction(request: Category.Request.ActionHandling) {
+    func handleAction(request: CategorySceneModels.Request.ActionHandling) {
         switch request {
         case .viewIsReady:
             configureUI()
@@ -62,7 +62,7 @@ class CategoryInteractor: CategoryBusinessLogic, CategoryInteractorInput {
 
 // MARK: Private methods
 
-private extension CategoryInteractor {
+private extension CategorySceneInteractor {
 
     func configureUI() {
         presenter?.prepareUIConfigurationData(response: .navBar(sceneModeName))
@@ -86,7 +86,7 @@ private extension CategoryInteractor {
     }
 
     func loadCategoryInfo() {
-        service?.fetchCategories { [weak self] result in
+        categoryWorker?.fetchCategories { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {

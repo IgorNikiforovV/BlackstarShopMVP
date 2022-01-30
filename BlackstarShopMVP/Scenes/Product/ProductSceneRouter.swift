@@ -1,5 +1,5 @@
 //
-//  ProductRouter.swift
+//  ProductSceneRouter.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol ProductRoutingLogic {
+protocol ProductSceneRoutingLogic {
 
 }
 
-class ProductRouter: NSObject, ProductRoutingLogic {
+class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
 
-    weak var viewController: ProductViewController?
+    weak var viewController: ProductSceneViewController?
 
     // MARK: Routing
 

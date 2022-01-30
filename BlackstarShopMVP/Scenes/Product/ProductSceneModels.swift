@@ -1,5 +1,5 @@
 //
-//  ProductModels.swift
+//  ProductSceneModels.swift
 //  BlackstarShopMVP
 //
 //  Created by Игорь Никифоров on 22.06.2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Product {
+enum ProductSceneModels {
 
     struct Request {
         enum ActionHandling {
