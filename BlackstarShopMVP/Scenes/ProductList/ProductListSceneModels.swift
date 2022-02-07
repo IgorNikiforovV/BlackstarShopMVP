@@ -28,7 +28,7 @@ enum ProductListSceneModels {
             case collectionViewFailureReloading(_ failure: String)
         }
         enum Routing {
-            case productListScene(_ subcategoryId: Int)
+            case productScene(_ productId: String)
         }
     }
     struct ViewModel {
@@ -42,7 +42,7 @@ enum ProductListSceneModels {
             case collectionViewErrorReloading(_ failure: String)
         }
         enum Routing {
-            case productListScene(_ subcategoryId: Int)
+            case productScene(_ productId: String)
         }
     }
 

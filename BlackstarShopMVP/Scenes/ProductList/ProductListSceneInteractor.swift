@@ -32,7 +32,7 @@ class ProductListSceneInteractor: ProductListSceneBusinessLogic, ProductListScen
         case .viewIsReady:
             fetchData()
         case .cellTapped(_):
-            print("cellTapped")
+            presenter?.prepareNavigationData(response: .productScene("16"))
         case .didPullToRefresh:
             print("didPullToRefresh")
         }

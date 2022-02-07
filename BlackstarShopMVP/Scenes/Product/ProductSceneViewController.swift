@@ -14,6 +14,8 @@ protocol ProductSceneDisplayLogic: AnyObject {
 
 class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
 
+    @IBOutlet private weak var sliderView: ImageHorizontalCollectionView!
+
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
@@ -21,26 +23,10 @@ class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
-    }
-
-    // MARK: Setup
-
-    private func setup() {
-        let viewController        = self
-        let interactor            = ProductSceneInteractor()
-        let presenter             = ProductScenePresenter()
-        let router                = ProductSceneRouter()
-        viewController.interactor = interactor
-        viewController.router     = router
-        interactor.presenter      = presenter
-        presenter.viewController  = viewController
-        router.viewController     = viewController
     }
 
     // MARK: Routing
@@ -51,10 +37,56 @@ class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let imageUrlStrings = [
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466881-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466910-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466925-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466931-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466978-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467028-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467032-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467042-jpeg.jpg",
+            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467052-jpeg.jpg"
+        ]
+
+        let imageUrls = imageUrlStrings.map { URL(string: $0)! }
+
+        sliderView.configure(imageUrls)
+
+        self.automaticallyAdjustsScrollViewInsets = false
+
+        //setNavigationBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Make the navigation bar background clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Restore the navigation bar to default
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
     }
 
     func displayData(viewModel: ProductScene.Model.ViewModel.ViewModelData) {
 
     }
 
+}
+
+extension ProductSceneViewController {
+    func setNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+    }
 }

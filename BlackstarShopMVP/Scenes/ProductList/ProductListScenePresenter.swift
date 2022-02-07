@@ -34,7 +34,10 @@ class ProductListScenePresenter: ProductListScenePresentationLogic {
     }
 
     func prepareNavigationData(response: ProductListSceneModels.Response.Routing) {
-
+        switch response {
+        case .productScene(let productId):
+            viewController?.navigateToScene(viewModel: .productScene(productId))
+        }
     }
 
 }

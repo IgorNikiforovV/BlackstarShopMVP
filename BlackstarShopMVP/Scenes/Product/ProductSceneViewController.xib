@@ -1,68 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductSceneViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductSceneViewController" customModule="BlackstarShopMVP" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="iN0-l3-epB" id="T2C-zL-GX5"/>
+                <outlet property="sliderView" destination="Jlb-5w-4Ro" id="M2d-HH-6BS"/>
+                <outlet property="view" destination="rBT-Wa-UHv" id="nCb-Na-cVc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="rBT-Wa-UHv" userLabel="Back View">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRH-4Z-6La" userLabel="Back View">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcB-uh-xJs">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0S-sf-IKf" userLabel="Header View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNI-3z-lY8" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="905"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заголовок" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxU-2E-fKU">
-                                    <rect key="frame" x="120.5" y="32.5" width="79" height="19.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-T2-0jS" userLabel="ImageContainerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlb-5w-4Ro" userLabel="ZView" customClass="ImageHorizontalCollectionView" customModule="BlackstarShopMVP" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Jlb-5w-4Ro" secondAttribute="trailing" id="ICH-K4-JJ3"/>
+                                        <constraint firstItem="Jlb-5w-4Ro" firstAttribute="leading" secondItem="CYD-T2-0jS" secondAttribute="leading" id="WBB-JL-vQQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jlb-5w-4Ro" secondAttribute="bottom" id="oLr-GW-E03"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q9L-Fu-Uwm">
+                                    <rect key="frame" x="16" y="428" width="382" height="461"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aspen Gold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkK-lH-RZW">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-xt-gqj">
+                                            <rect key="frame" x="0.0" y="40" width="382" height="1"/>
+                                            <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="xzj-rw-JWa"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vWB-oS-fwr">
+                                            <rect key="frame" x="0.0" y="51" width="382" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стоимость" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDy-8E-TGL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 500 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlg-CA-UI0">
+                                                    <rect key="frame" x="191" y="0.0" width="191" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onC-at-ZCz">
+                                            <rect key="frame" x="0.0" y="81.5" width="382" height="31"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Добавить в корзину"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-6H-HJt">
+                                            <rect key="frame" x="0.0" y="122.5" width="382" height="338.5"/>
+                                            <string key="text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
+Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="bxU-2E-fKU" firstAttribute="centerX" secondItem="F0S-sf-IKf" secondAttribute="centerX" id="FeU-h8-Iuw"/>
-                                <constraint firstAttribute="height" constant="60" id="LeU-EW-ZYM"/>
-                                <constraint firstAttribute="bottom" secondItem="bxU-2E-fKU" secondAttribute="bottom" constant="8" id="a4P-Jc-rij"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Q9L-Fu-Uwm" secondAttribute="bottom" constant="16" id="IVJ-rV-nHG"/>
+                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="leading" secondItem="cNI-3z-lY8" secondAttribute="leading" constant="16" id="O9V-o2-OFm"/>
+                                <constraint firstAttribute="trailing" secondItem="Q9L-Fu-Uwm" secondAttribute="trailing" constant="16" id="VCo-Sr-W9y"/>
+                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="top" secondItem="CYD-T2-0jS" secondAttribute="bottom" constant="16" id="Wym-lE-a2k"/>
+                                <constraint firstItem="CYD-T2-0jS" firstAttribute="leading" secondItem="cNI-3z-lY8" secondAttribute="leading" id="XWh-Ja-TW9"/>
+                                <constraint firstItem="CYD-T2-0jS" firstAttribute="top" secondItem="cNI-3z-lY8" secondAttribute="top" id="d4G-qo-Qhi"/>
+                                <constraint firstAttribute="trailing" secondItem="CYD-T2-0jS" secondAttribute="trailing" id="lcp-8R-8Oc"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.81137628419999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="F0S-sf-IKf" secondAttribute="trailing" id="T95-C2-kf9"/>
-                        <constraint firstItem="F0S-sf-IKf" firstAttribute="top" secondItem="zRH-4Z-6La" secondAttribute="top" id="VHM-NN-eqW"/>
-                        <constraint firstItem="F0S-sf-IKf" firstAttribute="leading" secondItem="zRH-4Z-6La" secondAttribute="leading" id="jAA-Jb-VfW"/>
+                        <constraint firstItem="cNI-3z-lY8" firstAttribute="leading" secondItem="lcB-uh-xJs" secondAttribute="leading" id="3u5-ts-j8P"/>
+                        <constraint firstItem="cNI-3z-lY8" firstAttribute="top" secondItem="lcB-uh-xJs" secondAttribute="top" id="6ZK-XU-OWm"/>
+                        <constraint firstItem="cNI-3z-lY8" firstAttribute="height" secondItem="lcB-uh-xJs" secondAttribute="height" priority="250" id="8s8-WD-HO1"/>
+                        <constraint firstAttribute="bottom" secondItem="cNI-3z-lY8" secondAttribute="bottom" id="BfD-VM-0pi"/>
+                        <constraint firstAttribute="trailing" secondItem="cNI-3z-lY8" secondAttribute="trailing" id="QkX-a1-oZi"/>
+                        <constraint firstItem="cNI-3z-lY8" firstAttribute="width" secondItem="lcB-uh-xJs" secondAttribute="width" id="ufU-Nk-qo3"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                </scrollView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <viewLayoutGuide key="safeArea" id="nr3-s8-BRA"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="zRH-4Z-6La" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yda-UA-P9L"/>
-                <constraint firstAttribute="trailing" secondItem="zRH-4Z-6La" secondAttribute="trailing" id="f4L-ae-8xg"/>
-                <constraint firstItem="zRH-4Z-6La" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l4U-CU-wv2"/>
-                <constraint firstAttribute="bottom" secondItem="zRH-4Z-6La" secondAttribute="bottom" id="n1m-uf-VSF"/>
+                <constraint firstItem="lcB-uh-xJs" firstAttribute="top" secondItem="rBT-Wa-UHv" secondAttribute="top" id="5gK-67-vDT"/>
+                <constraint firstAttribute="bottom" secondItem="lcB-uh-xJs" secondAttribute="bottom" id="DXV-xk-8Sl"/>
+                <constraint firstItem="Jlb-5w-4Ro" firstAttribute="top" secondItem="rBT-Wa-UHv" secondAttribute="top" priority="900" id="hGh-8f-Dyz"/>
+                <constraint firstItem="Jlb-5w-4Ro" firstAttribute="height" secondItem="rBT-Wa-UHv" secondAttribute="height" multiplier="0.46" id="kWY-If-mx3"/>
+                <constraint firstAttribute="trailing" secondItem="lcB-uh-xJs" secondAttribute="trailing" id="tdN-DA-LlQ"/>
+                <constraint firstItem="lcB-uh-xJs" firstAttribute="leading" secondItem="rBT-Wa-UHv" secondAttribute="leading" id="xvY-Lh-Goc"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="462" y="399"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="240.57971014492756" y="-581.25"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

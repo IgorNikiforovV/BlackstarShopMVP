@@ -68,7 +68,10 @@ class ProductListSceneViewController: UIViewController, ProductListSceneDisplayL
     }
 
     func navigateToScene(viewModel: ProductListSceneModels.ViewModel.Routing) {
-
+        switch viewModel {
+        case .productScene(let productId):
+            router?.showProductScene(productId: productId)
+        }
     }
 
 }
@@ -87,6 +90,16 @@ extension ProductListSceneViewController: UICollectionViewDataSource {
             cell.configure(products[indexPath.item])
         }
         return cell
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+
+extension ProductListSceneViewController: UITableViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        interactor?.handleAction(request: .cellTapped(indexPath.item))
     }
 
 }
