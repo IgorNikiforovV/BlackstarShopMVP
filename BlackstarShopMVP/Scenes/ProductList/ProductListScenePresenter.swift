@@ -26,8 +26,9 @@ class ProductListScenePresenter: ProductListScenePresentationLogic {
         switch response {
         case .refreshControlHidding(_):
             print("refreshControlHidding")
-        case .collectionViewDataReloading(let productCellItems):
-            viewController?.updateUI(viewModel: .collectionViewDataReloading(productCellItems))
+        case .collectionViewDataReloading(let products):
+            let cellItems = products.map { ProductCellItem.init(productItem: $0) }
+            viewController?.updateUI(viewModel: .collectionViewDataReloading(cellItems))
         case .collectionViewFailureReloading(let error):
             viewController?.updateUI(viewModel: .collectionViewErrorReloading(error))
         }
@@ -35,8 +36,8 @@ class ProductListScenePresenter: ProductListScenePresentationLogic {
 
     func prepareNavigationData(response: ProductListSceneModels.Response.Routing) {
         switch response {
-        case .productScene(let productId):
-            viewController?.navigateToScene(viewModel: .productScene(productId))
+        case .productScene(let product):
+            viewController?.navigateToScene(viewModel: .productScene(product))
         }
     }
 

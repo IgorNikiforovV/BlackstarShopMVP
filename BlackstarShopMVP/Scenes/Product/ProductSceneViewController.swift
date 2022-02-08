@@ -38,6 +38,8 @@ class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        interactor?.makeRequest(request: .some)
+
         let imageUrlStrings = [
             "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466881-jpeg.jpg",
             "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466910-jpeg.jpg",

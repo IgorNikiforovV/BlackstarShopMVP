@@ -21,6 +21,8 @@ class ProductListSceneInteractor: ProductListSceneBusinessLogic, ProductListScen
     var presenter: ProductListScenePresentationLogic?
     var productListWorker: ProductListSceneWorker? = ProductListSceneWorker()
 
+    private var products = [ProductItem]()
+
     // MARK: СollectionSceneInteractorInput
 
     var subcategoryId: String?
@@ -31,8 +33,9 @@ class ProductListSceneInteractor: ProductListSceneBusinessLogic, ProductListScen
         switch request {
         case .viewIsReady:
             fetchData()
-        case .cellTapped(_):
-            presenter?.prepareNavigationData(response: .productScene("16"))
+        case .cellTapped(let index):
+            guard let product = products[safeIndex: index] else { return }
+            presenter?.prepareNavigationData(response: .productScene(product))
         case .didPullToRefresh:
             print("didPullToRefresh")
         }
@@ -46,19 +49,22 @@ private extension ProductListSceneInteractor {
 
     func fetchData() {
         guard let subcategoryId = subcategoryId else { return }
-        productListWorker?.fetchProducts(subcategoryId: subcategoryId) { result in
+        productListWorker?.fetchProducts(subcategoryId: subcategoryId) { [weak self] result in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let productsInfo):
-                    let products = productsInfo
-                        .map { $0.value }
-                        .sorted { $0.sortOrder > $1.sortOrder }
-                    let cellItems = products.map { ProductCellItem.init(productInfo: $0) }
-                    self.presenter?.prepareUIUpdatingData(response: .collectionViewDataReloading(cellItems))
-                case .failure(let error):
-                    self.presenter?.prepareUIUpdatingData(response: .collectionViewFailureReloading(error.localizedDescription))
-                }
+                self?.handleFetchDataResult(result: result)
             }
+        }
+    }
+
+    func handleFetchDataResult(result: Result<[String: ProductInfo], NetworkError>) {
+        switch result {
+        case .success(let productsInfo):
+            products = productsInfo
+            .map { ProductItem.productItem(id: $0.key, from: $0.value) }
+            .sorted { $0.sortOrder > $1.sortOrder }
+            presenter?.prepareUIUpdatingData(response: .collectionViewDataReloading(products))
+        case .failure(let error):
+            presenter?.prepareUIUpdatingData(response: .collectionViewFailureReloading(error.localizedDescription))
         }
     }
 

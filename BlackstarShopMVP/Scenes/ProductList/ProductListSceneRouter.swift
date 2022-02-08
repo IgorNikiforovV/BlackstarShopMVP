@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProductListSceneRoutingLogic {
-    func showProductScene(productId: String)
+    func showProductScene(product: ProductItem)
 }
 
 class ProductListSceneRouter: NSObject, ProductListSceneRoutingLogic {
@@ -18,8 +18,8 @@ class ProductListSceneRouter: NSObject, ProductListSceneRoutingLogic {
 
     // MARK: Routing
 
-    func showProductScene(productId: String) {
-        let productListSceneViewController = ScenesFactoryImpl.makeProductScene(productId).toPresent()
+    func showProductScene(product: ProductItem) {
+        let productListSceneViewController = ScenesFactoryImpl.makeProductScene(product).toPresent()
         viewController?.navigationController?.pushViewController(productListSceneViewController, animated: true)
     }
 

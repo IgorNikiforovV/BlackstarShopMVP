@@ -24,11 +24,11 @@ enum ProductListSceneModels {
         }
         enum UIUpdating {
             case refreshControlHidding(_ isHidden: Bool)
-            case collectionViewDataReloading(_ seccess: [ProductCellInput])
+            case collectionViewDataReloading(_ seccess: [ProductItem])
             case collectionViewFailureReloading(_ failure: String)
         }
         enum Routing {
-            case productScene(_ productId: String)
+            case productScene(_ product: ProductItem)
         }
     }
     struct ViewModel {
@@ -42,7 +42,7 @@ enum ProductListSceneModels {
             case collectionViewErrorReloading(_ failure: String)
         }
         enum Routing {
-            case productScene(_ productId: String)
+            case productScene(_ product: ProductItem)
         }
     }
 
@@ -54,10 +54,10 @@ struct ProductCellItem: ProductCellInput {
     var picture: String?
     var price: String
 
-    init(productInfo: ProductInfo) {
-        title = productInfo.name
-        description = productInfo.description
-        picture = productInfo.mainImage
-        price = String(productInfo.price.split(separator: ".").first ?? "")
+    init(productItem: ProductItem) {
+        title = productItem.name
+        description = productItem.description
+        picture = productItem.mainImage
+        price = String(productItem.price.split(separator: ".").first ?? "")
     }
 }

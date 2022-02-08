@@ -64,6 +64,8 @@
 		ACB4ED7E27B01AB300AAC997 /* DownloadImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED7D27B01AB300AAC997 /* DownloadImagesService.swift */; };
 		ACB4ED8027B043A800AAC997 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED7F27B043A800AAC997 /* Collection.swift */; };
 		ACD82D5F26825A71007E451D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACD82D5E26825A71007E451D /* Localizable.strings */; };
+		ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54D927B18AAF00EDA565 /* ProductItem.swift */; };
+		ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54DB27B2E60F00EDA565 /* Array.swift */; };
 		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
 		ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137726569AE200911885 /* NetworkServiceImpl.swift */; };
 		ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137B2656A2DC00911885 /* NetworkError.swift */; };
@@ -133,6 +135,8 @@
 		ACB4ED7D27B01AB300AAC997 /* DownloadImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImagesService.swift; sourceTree = "<group>"; };
 		ACB4ED7F27B043A800AAC997 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		ACD82D5E26825A71007E451D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ACEA54D927B18AAF00EDA565 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
+		ACEA54DB27B2E60F00EDA565 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		ACF5137726569AE200911885 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
 		ACF5137B2656A2DC00911885 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				AC6E8D1D266014F5007EA6A9 /* UIImage.swift */,
 				AC6D030E2661326100AFC274 /* UIViewController.swift */,
 				ACB4ED7F27B043A800AAC997 /* Collection.swift */,
+				ACEA54DB27B2E60F00EDA565 /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +390,14 @@
 			path = DownloadImagesService;
 			sourceTree = "<group>";
 		};
+		ACEA54D827B18A9000EDA565 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACEA54D927B18AAF00EDA565 /* ProductItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		ACF51373265698A500911885 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +421,7 @@
 		ACF513792656A2A100911885 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				ACEA54D827B18A9000EDA565 /* Models */,
 				ACF5137F2656D91500911885 /* API */,
 				ACF5137A2656A2BC00911885 /* Errors */,
 			);
@@ -633,9 +647,11 @@
 				AC930B2D2653ADFA00DE5B2D /* CategoryScenePresenter.swift in Sources */,
 				ACB4ED7E27B01AB300AAC997 /* DownloadImagesService.swift in Sources */,
 				AC5E691C26811DD100408DB4 /* ProductListSceneViewController.swift in Sources */,
+				ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategorySceneModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategorySceneRouter.swift in Sources */,
 				AC6D030F2661326100AFC274 /* UIViewController.swift in Sources */,
+				ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 				AC6E8D1E266014F7007EA6A9 /* UIImage.swift in Sources */,
 				ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */,

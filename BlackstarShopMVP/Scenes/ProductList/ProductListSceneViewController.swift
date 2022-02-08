@@ -69,8 +69,8 @@ class ProductListSceneViewController: UIViewController, ProductListSceneDisplayL
 
     func navigateToScene(viewModel: ProductListSceneModels.ViewModel.Routing) {
         switch viewModel {
-        case .productScene(let productId):
-            router?.showProductScene(productId: productId)
+        case .productScene(let product):
+            router?.showProductScene(product: product)
         }
     }
 

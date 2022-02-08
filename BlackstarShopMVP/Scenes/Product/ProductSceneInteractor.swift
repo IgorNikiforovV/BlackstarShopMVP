@@ -14,6 +14,8 @@ protocol ProductSceneBusinessLogic {
 
 class ProductSceneInteractor: ProductSceneBusinessLogic {
 
+    var productItem: ProductItem?
+
     var presenter: ProductScenePresentationLogic?
     var service: ProductSceneService?
 
@@ -21,6 +23,7 @@ class ProductSceneInteractor: ProductSceneBusinessLogic {
         if service == nil {
             service = ProductSceneService()
         }
+
     }
 
 }
