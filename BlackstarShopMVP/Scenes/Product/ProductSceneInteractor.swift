@@ -9,21 +9,17 @@
 import Foundation
 
 protocol ProductSceneBusinessLogic {
-    func makeRequest(request: ProductScene.Model.Request.RequestType)
+    func viewIsReady(request: ProductScene.StartupData.Request)
 }
 
 class ProductSceneInteractor: ProductSceneBusinessLogic {
-
     var productItem: ProductItem?
 
     var presenter: ProductScenePresentationLogic?
     var service: ProductSceneService?
 
-    func makeRequest(request: ProductScene.Model.Request.RequestType) {
-        if service == nil {
-            service = ProductSceneService()
-        }
-
+    func viewIsReady(request: ProductScene.StartupData.Request) {
+        presenter?.presentData(response: ProductScene.StartupData.Response(product: productItem))
     }
 
 }

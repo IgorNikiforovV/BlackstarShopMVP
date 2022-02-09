@@ -10,21 +10,16 @@ import UIKit
 
 enum ProductScene {
 
-    enum Model {
-        struct Request {
-            enum RequestType {
-                case some
-            }
-        }
+    enum StartupData {
+        struct Request {}
         struct Response {
-            enum ResponseType {
-                case some
-            }
+            let product: ProductItem?
         }
         struct ViewModel {
-            enum ViewModelData {
-                case some
-            }
+            let imageStringUrls: [URL]
+            let productName: String
+            let price: String
+            let description: String?
         }
     }
 
