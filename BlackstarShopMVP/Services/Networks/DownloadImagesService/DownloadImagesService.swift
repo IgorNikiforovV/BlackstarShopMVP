@@ -26,11 +26,12 @@ class DownloadImagesServiceImpl: DownloadImagesService {
 
         for url in imageUrls {
             imageDownloadGroup.enter()
-            URLSession.shared.dataTask(with: url) { [weak self] date, response, error in
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                NetworkLogger.log(response: response as? HTTPURLResponse, data: data, error: error)
                 guard let self = self else { return }
                 defer { self.imageDownloadGroup.leave() }
 
-                let handledResult = self.handleResponse(data: date, response: response, error: error)
+                let handledResult = self.handleResponse(data: data, response: response, error: error)
 
                 switch handledResult {
                 case .success(let imageResult):

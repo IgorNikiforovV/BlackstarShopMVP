@@ -64,6 +64,7 @@
 		ACB4ED7E27B01AB300AAC997 /* DownloadImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED7D27B01AB300AAC997 /* DownloadImagesService.swift */; };
 		ACB4ED8027B043A800AAC997 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED7F27B043A800AAC997 /* Collection.swift */; };
 		ACD82D5F26825A71007E451D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACD82D5E26825A71007E451D /* Localizable.strings */; };
+		ACE4518C27B6D13200CDAFD6 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4518B27B6D13200CDAFD6 /* NetworkLogger.swift */; };
 		ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54D927B18AAF00EDA565 /* ProductItem.swift */; };
 		ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54DB27B2E60F00EDA565 /* Array.swift */; };
 		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
@@ -135,6 +136,7 @@
 		ACB4ED7D27B01AB300AAC997 /* DownloadImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImagesService.swift; sourceTree = "<group>"; };
 		ACB4ED7F27B043A800AAC997 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		ACD82D5E26825A71007E451D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ACE4518B27B6D13200CDAFD6 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		ACEA54D927B18AAF00EDA565 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		ACEA54DB27B2E60F00EDA565 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -390,6 +392,14 @@
 			path = DownloadImagesService;
 			sourceTree = "<group>";
 		};
+		ACE4518A27B6D10E00CDAFD6 /* NetworkLogger */ = {
+			isa = PBXGroup;
+			children = (
+				ACE4518B27B6D13200CDAFD6 /* NetworkLogger.swift */,
+			);
+			path = NetworkLogger;
+			sourceTree = "<group>";
+		};
 		ACEA54D827B18A9000EDA565 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +411,7 @@
 		ACF51373265698A500911885 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ACE4518A27B6D10E00CDAFD6 /* NetworkLogger */,
 				ACF51374265698B700911885 /* Networks */,
 			);
 			path = Services;
@@ -635,6 +646,7 @@
 				AC953A3F265AD08E0077BBE6 /* NetworkConst.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
 				ACF513812656D94600911885 /* CategoryInfo.swift in Sources */,
+				ACE4518C27B6D13200CDAFD6 /* NetworkLogger.swift in Sources */,
 				ACB4ED6A27A6E70100AAC997 /* ProductSceneViewController.swift in Sources */,
 				ACB4ED8027B043A800AAC997 /* Collection.swift in Sources */,
 				ACF51376265698D700911885 /* NetworkService.swift in Sources */,
