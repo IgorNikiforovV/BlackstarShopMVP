@@ -18,11 +18,10 @@ class ProductScenePresenter: ProductScenePresentationLogic {
     func presentData(response: ProductScene.StartupData.Response) {
         guard let product = response.product else { return }
 
+        // TODO не забыть переделать сортировку в числовой формат
         let imageUrls = product.productImages
-            .sorted(by: { image1, image2 in image1.sortOrder > image2.sortOrder }) // не забыть веревести в числовой формат
+            .sorted(by: { image1, image2 in image1.sortOrder > image2.sortOrder })
             .compactMap { URL(string: "\(NetworkConst.baseUrl)\($0.imageURL)") }
-
-        imageUrls.forEach { print($0.absoluteString) }
 
         let response = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
                                                           productName: product.name,

@@ -42,26 +42,6 @@ class ProductSceneViewController: UIViewController {
         super.viewDidLoad()
 
         interactor?.viewIsReady(request: ProductScene.StartupData.Request())
-
-//        let imageUrlStrings = [
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466881-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466910-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466925-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466931-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-466978-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467028-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467032-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467042-jpeg.jpg",
-//            "https://wolverine.raywenderlich.com/books/con/image-from-rawpixel-id-467052-jpeg.jpg"
-//        ]
-//
-//        let imageUrls = imageUrlStrings.map { URL(string: $0)! }
-
-
-
-        self.automaticallyAdjustsScrollViewInsets = false
-
-        //setNavigationBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,7 +65,7 @@ class ProductSceneViewController: UIViewController {
 
 extension ProductSceneViewController {
     func setNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) // UIImage.init(named: "transparent.png")
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear

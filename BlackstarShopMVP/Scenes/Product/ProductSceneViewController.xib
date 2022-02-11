@@ -20,29 +20,27 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcB-uh-xJs">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="lcB-uh-xJs">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNI-3z-lY8" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="905"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-T2-0jS" userLabel="ImageContainerView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-T2-0jS" userLabel="ImageContainerView">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlb-5w-4Ro" userLabel="ZView" customClass="ImageHorizontalCollectionView" customModule="BlackstarShopMVP" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Jlb-5w-4Ro" secondAttribute="trailing" id="ICH-K4-JJ3"/>
-                                        <constraint firstItem="Jlb-5w-4Ro" firstAttribute="leading" secondItem="CYD-T2-0jS" secondAttribute="leading" id="WBB-JL-vQQ"/>
-                                        <constraint firstAttribute="bottom" secondItem="Jlb-5w-4Ro" secondAttribute="bottom" id="oLr-GW-E03"/>
-                                    </constraints>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlb-5w-4Ro" userLabel="ImageHorizontalCollectionView" customClass="ImageHorizontalCollectionView" customModule="BlackstarShopMVP" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q9L-Fu-Uwm">
-                                    <rect key="frame" x="16" y="428" width="382" height="461"/>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Jlb-5w-4Ro" secondAttribute="trailing" id="ICH-K4-JJ3"/>
+                                <constraint firstItem="Jlb-5w-4Ro" firstAttribute="leading" secondItem="CYD-T2-0jS" secondAttribute="leading" id="WBB-JL-vQQ"/>
+                                <constraint firstAttribute="bottom" secondItem="Jlb-5w-4Ro" secondAttribute="bottom" id="oLr-GW-E03"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3n-7C-Zuy">
+                            <rect key="frame" x="0.0" y="430" width="414" height="1137"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q9L-Fu-Uwm" userLabel="ContentStackView">
+                                    <rect key="frame" x="16" y="0.0" width="382" height="1137"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aspen Gold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkK-lH-RZW">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
@@ -80,8 +78,14 @@
                                             <buttonConfiguration key="configuration" style="filled" title="Добавить в корзину"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-6H-HJt">
-                                            <rect key="frame" x="0.0" y="122.5" width="382" height="338.5"/>
+                                            <rect key="frame" x="0.0" y="122.5" width="382" height="1014.5"/>
                                             <string key="text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
+Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
+Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
+По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
 По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
 Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
 По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.</string>
@@ -94,36 +98,37 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Q9L-Fu-Uwm" secondAttribute="bottom" constant="16" id="IVJ-rV-nHG"/>
-                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="leading" secondItem="cNI-3z-lY8" secondAttribute="leading" constant="16" id="O9V-o2-OFm"/>
-                                <constraint firstAttribute="trailing" secondItem="Q9L-Fu-Uwm" secondAttribute="trailing" constant="16" id="VCo-Sr-W9y"/>
-                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="top" secondItem="CYD-T2-0jS" secondAttribute="bottom" constant="16" id="Wym-lE-a2k"/>
-                                <constraint firstItem="CYD-T2-0jS" firstAttribute="leading" secondItem="cNI-3z-lY8" secondAttribute="leading" id="XWh-Ja-TW9"/>
-                                <constraint firstItem="CYD-T2-0jS" firstAttribute="top" secondItem="cNI-3z-lY8" secondAttribute="top" id="d4G-qo-Qhi"/>
-                                <constraint firstAttribute="trailing" secondItem="CYD-T2-0jS" secondAttribute="trailing" id="lcp-8R-8Oc"/>
+                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="leading" secondItem="U3n-7C-Zuy" secondAttribute="leading" constant="16" id="LFH-wQ-yl6"/>
+                                <constraint firstAttribute="trailing" secondItem="Q9L-Fu-Uwm" secondAttribute="trailing" constant="16" id="lMn-vF-Qx2"/>
+                                <constraint firstItem="Q9L-Fu-Uwm" firstAttribute="top" secondItem="U3n-7C-Zuy" secondAttribute="top" id="pEr-Qt-NqG"/>
+                                <constraint firstAttribute="bottom" secondItem="Q9L-Fu-Uwm" secondAttribute="bottom" id="raV-Pa-MjV"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.81137628419999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="cNI-3z-lY8" firstAttribute="leading" secondItem="lcB-uh-xJs" secondAttribute="leading" id="3u5-ts-j8P"/>
-                        <constraint firstItem="cNI-3z-lY8" firstAttribute="top" secondItem="lcB-uh-xJs" secondAttribute="top" id="6ZK-XU-OWm"/>
-                        <constraint firstItem="cNI-3z-lY8" firstAttribute="height" secondItem="lcB-uh-xJs" secondAttribute="height" priority="250" id="8s8-WD-HO1"/>
-                        <constraint firstAttribute="bottom" secondItem="cNI-3z-lY8" secondAttribute="bottom" id="BfD-VM-0pi"/>
-                        <constraint firstAttribute="trailing" secondItem="cNI-3z-lY8" secondAttribute="trailing" id="QkX-a1-oZi"/>
-                        <constraint firstItem="cNI-3z-lY8" firstAttribute="width" secondItem="lcB-uh-xJs" secondAttribute="width" id="ufU-Nk-qo3"/>
+                        <constraint firstItem="CYD-T2-0jS" firstAttribute="leading" secondItem="lcB-uh-xJs" secondAttribute="leading" id="3ox-Nr-nzl"/>
+                        <constraint firstItem="U3n-7C-Zuy" firstAttribute="top" secondItem="CYD-T2-0jS" secondAttribute="bottom" id="Lmb-Ql-VMx"/>
+                        <constraint firstItem="U3n-7C-Zuy" firstAttribute="top" secondItem="lcB-uh-xJs" secondAttribute="top" constant="430" id="RXy-fz-YQE"/>
+                        <constraint firstAttribute="bottom" secondItem="U3n-7C-Zuy" secondAttribute="bottom" id="TWx-v6-pgs"/>
+                        <constraint firstAttribute="trailing" secondItem="CYD-T2-0jS" secondAttribute="trailing" id="dMV-nM-eLt"/>
+                        <constraint firstAttribute="trailing" secondItem="U3n-7C-Zuy" secondAttribute="trailing" id="eCY-i5-qac"/>
+                        <constraint firstItem="U3n-7C-Zuy" firstAttribute="leading" secondItem="lcB-uh-xJs" secondAttribute="leading" id="ocs-uZ-akR"/>
+                        <constraint firstItem="CYD-T2-0jS" firstAttribute="top" secondItem="lcB-uh-xJs" secondAttribute="top" priority="999" id="p8V-Vi-WX0"/>
+                        <constraint firstItem="U3n-7C-Zuy" firstAttribute="width" secondItem="lcB-uh-xJs" secondAttribute="width" id="r7p-gx-48V"/>
                     </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="O8w-en-I6H"/>
+                    </connections>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="nr3-s8-BRA"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="lcB-uh-xJs" firstAttribute="top" secondItem="rBT-Wa-UHv" secondAttribute="top" id="5gK-67-vDT"/>
-                <constraint firstAttribute="bottom" secondItem="lcB-uh-xJs" secondAttribute="bottom" id="DXV-xk-8Sl"/>
-                <constraint firstItem="Jlb-5w-4Ro" firstAttribute="top" secondItem="rBT-Wa-UHv" secondAttribute="top" priority="900" id="hGh-8f-Dyz"/>
-                <constraint firstItem="Jlb-5w-4Ro" firstAttribute="height" secondItem="rBT-Wa-UHv" secondAttribute="height" multiplier="0.46" id="kWY-If-mx3"/>
-                <constraint firstAttribute="trailing" secondItem="lcB-uh-xJs" secondAttribute="trailing" id="tdN-DA-LlQ"/>
-                <constraint firstItem="lcB-uh-xJs" firstAttribute="leading" secondItem="rBT-Wa-UHv" secondAttribute="leading" id="xvY-Lh-Goc"/>
+                <constraint firstItem="lcB-uh-xJs" firstAttribute="top" secondItem="rBT-Wa-UHv" secondAttribute="top" priority="999" id="5gK-67-vDT"/>
+                <constraint firstItem="nr3-s8-BRA" firstAttribute="bottom" secondItem="lcB-uh-xJs" secondAttribute="bottom" id="DXV-xk-8Sl"/>
+                <constraint firstAttribute="top" secondItem="Jlb-5w-4Ro" secondAttribute="top" priority="900" id="cUM-IU-8Vi"/>
+                <constraint firstItem="nr3-s8-BRA" firstAttribute="trailing" secondItem="lcB-uh-xJs" secondAttribute="trailing" id="tdN-DA-LlQ"/>
+                <constraint firstItem="lcB-uh-xJs" firstAttribute="leading" secondItem="nr3-s8-BRA" secondAttribute="leading" id="xvY-Lh-Goc"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>

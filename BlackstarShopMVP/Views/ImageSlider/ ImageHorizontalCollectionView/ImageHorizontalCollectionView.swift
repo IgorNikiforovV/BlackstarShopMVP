@@ -29,6 +29,12 @@ class ImageHorizontalCollectionView: UIView {
         initialize()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+
 }
 
 // MARK: - Public methods
@@ -62,6 +68,10 @@ private extension ImageHorizontalCollectionView {
             contentView.topAnchor.constraint(equalTo: topAnchor)
         ])
         collectionView.register(R.nib.imageHorizontalCollectionCell)
+
+        // во время растягивания collection view не должен меняться Adjustment - это приводит к появлению warning
+        collectionView.contentInsetAdjustmentBehavior = .never
+
     }
 
     func handleRowImageDataResult(_ result: Result<[Data], NetworkError>) {
