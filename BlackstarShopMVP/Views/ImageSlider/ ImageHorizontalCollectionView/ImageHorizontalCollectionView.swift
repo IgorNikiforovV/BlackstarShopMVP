@@ -44,7 +44,7 @@ class ImageHorizontalCollectionView: UIView {
 extension ImageHorizontalCollectionView {
 
     func configure(_ imageUrls: [URL]) {
-        guard !imageUrls.isEmpty else { return }
+        guard !imageUrls.isEmpty else { addPlaceholderForEmptyCollection(); return }
         imagesService.downloadImages(by: imageUrls) { [weak self] result in
             DispatchQueue.main.async {
                 self?.handleRowImageDataResult(result)
@@ -95,11 +95,22 @@ private extension ImageHorizontalCollectionView {
         switch result {
         case .success(let imageDataList):
             images = imageDataList.compactMap { UIImage(data: $0) }
-            pageControl.numberOfPages = images.count
+            setPageControl(with: images.count)
             collectionView.reloadData()
         case .failure(let error):
             print("Error image downloading \(error.description())")
         }
+    }
+
+    func addPlaceholderForEmptyCollection() {
+        images.append(R.image.common.placeholder()!)
+        pageControl.isHidden = true
+        collectionView.reloadData()
+    }
+
+    func setPageControl(with imagesCount: Int) {
+        pageControl.isHidden = imagesCount == 1 ? true : false
+        pageControl.numberOfPages = imagesCount
     }
 
 }

@@ -18,6 +18,8 @@ protocol ProductSceneDisplayLogic: AnyObject {
 class ProductSceneViewController: UIViewController {
 
     @IBOutlet private weak var sliderView: ImageHorizontalCollectionView!
+    @IBOutlet private weak var contentContainerStackView: UIStackView!
+    @IBOutlet private weak var imagesContainerView: UIView!
 
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
@@ -88,4 +90,14 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
     func updateProductPrice(response: ProductScene.StartupData.ViewModel) {
 
     }
+}
+
+// MARK: Constants
+
+private extension ProductSceneViewController {
+
+    enum Const {
+
+    }
+
 }
