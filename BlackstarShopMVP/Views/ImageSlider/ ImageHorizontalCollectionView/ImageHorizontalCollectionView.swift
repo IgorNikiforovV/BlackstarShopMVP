@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ImageHorizontalCollectionView: UIView {
 
@@ -16,6 +17,8 @@ class ImageHorizontalCollectionView: UIView {
     @IBOutlet private weak var pageControl: UIPageControl!
 
     // MARK: Properties
+
+    private let skeletonView = UIView()
 
     private var images = [UIImage]()
     private let imagesService: DownloadImagesService = DownloadImagesServiceImpl()
@@ -73,7 +76,10 @@ private extension ImageHorizontalCollectionView {
 
         pageControl.currentPageIndicatorTintColor = .green
 
-        // во время растягивания collection view не должен меняться Adjustment - это приводит к появлению warning
+        configureSceletonView()
+        showSkeletonLoading()
+
+        // во время растягивания collection view не должен меняться adjustment - это приводит к появлению warning
         collectionView.contentInsetAdjustmentBehavior = .never
     }
 
@@ -96,6 +102,7 @@ private extension ImageHorizontalCollectionView {
         case .success(let imageDataList):
             images = imageDataList.compactMap { UIImage(data: $0) }
             setPageControl(with: images.count)
+            hideSkeletonLoading()
             collectionView.reloadData()
         case .failure(let error):
             print("Error image downloading \(error.description())")
@@ -111,6 +118,33 @@ private extension ImageHorizontalCollectionView {
     func setPageControl(with imagesCount: Int) {
         pageControl.isHidden = imagesCount == 1 ? true : false
         pageControl.numberOfPages = imagesCount
+    }
+
+    func configureSceletonView() {
+        skeletonView.isSkeletonable = true
+        contentView.insertSubview(skeletonView, at: 0)
+
+        skeletonView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            skeletonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            skeletonView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            skeletonView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            skeletonView.topAnchor.constraint(equalTo: contentView.topAnchor)
+        ])
+    }
+
+    func showSkeletonLoading() {
+        collectionView.isHidden = true
+
+        let gradient = SkeletonGradient(baseColor: UIColor.concrete)
+        self.skeletonView.showAnimatedGradientSkeleton(usingGradient: gradient)
+    }
+
+    func hideSkeletonLoading() {
+        collectionView.isHidden = false
+
+        skeletonView.hideSkeleton()
     }
 
 }
