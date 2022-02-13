@@ -112,6 +112,7 @@ private extension ImageHorizontalCollectionView {
     func addPlaceholderForEmptyCollection() {
         images.append(R.image.common.placeholder()!)
         pageControl.isHidden = true
+        hideSkeletonLoading()
         collectionView.reloadData()
     }
 
