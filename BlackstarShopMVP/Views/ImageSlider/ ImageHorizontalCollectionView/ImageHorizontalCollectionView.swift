@@ -13,6 +13,7 @@ class ImageHorizontalCollectionView: UIView {
 
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var pageControl: UIPageControl!
 
     // MARK: Properties
 
@@ -32,6 +33,7 @@ class ImageHorizontalCollectionView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        // при изменеии размера view в процессе растягивания пересчитываем размер коллекции и ячеек
         collectionView?.collectionViewLayout.invalidateLayout()
     }
 
@@ -69,15 +71,31 @@ private extension ImageHorizontalCollectionView {
         ])
         collectionView.register(R.nib.imageHorizontalCollectionCell)
 
+        pageControl.currentPageIndicatorTintColor = .green
+
         // во время растягивания collection view не должен меняться Adjustment - это приводит к появлению warning
         collectionView.contentInsetAdjustmentBehavior = .never
+    }
 
+    @IBAction func pageControlTapped(_ sender: UIPageControl) {
+        guard images.indices.contains(sender.currentPage) else { return }
+
+        let scrollPosition: UICollectionView.ScrollPosition = (focusedCellIndex ?? 0) < sender.currentPage ? .right : .left
+
+        let indexPath = IndexPath(item: sender.currentPage, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: scrollPosition, animated: true)
+    }
+
+    var focusedCellIndex: Int? {
+        guard let cell = collectionView.visibleCells.first else { return nil }
+        return collectionView.indexPath(for: cell)?.item
     }
 
     func handleRowImageDataResult(_ result: Result<[Data], NetworkError>) {
         switch result {
         case .success(let imageDataList):
             images = imageDataList.compactMap { UIImage(data: $0) }
+            pageControl.numberOfPages = images.count
             collectionView.reloadData()
         case .failure(let error):
             print("Error image downloading \(error.description())")
@@ -95,15 +113,13 @@ extension ImageHorizontalCollectionView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: R.reuseIdentifier.imageHorizontalCollectionCell ,
-            for: indexPath
-        )!
-        let image = images[indexPath.item]
-        cell.configure(image)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.imageHorizontalCollectionCell,
+                                                      for: indexPath)!
+        if let image = images[safeIndex: indexPath.item] {
+            cell.configure(image)
+        }
         return cell
     }
-
 }
 
 // MARK: - UICollectionViewFlowLayout
@@ -124,6 +140,19 @@ extension ImageHorizontalCollectionView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
+    }
+
+}
+
+extension ImageHorizontalCollectionView: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let centerPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.minY)
+        let collectionViewCenterPoint = self.convert(centerPoint, to: collectionView)
+
+        if let indexPath = collectionView.indexPathForItem(at: collectionViewCenterPoint) {
+            pageControl.currentPage = indexPath.item
+        }
     }
 
 }
