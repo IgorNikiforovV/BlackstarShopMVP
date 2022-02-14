@@ -21,6 +21,13 @@ class ProductSceneViewController: UIViewController {
     @IBOutlet private weak var contentContainerStackView: UIStackView!
     @IBOutlet private weak var imagesContainerView: UIView!
 
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var separatorView: UIView!
+    @IBOutlet private weak var priceTitleLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var addBasketButton: UIButton!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
@@ -80,7 +87,7 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
     }
 
     func updateProductName(response: ProductScene.StartupData.ViewModel) {
-
+        nameLabel.attributedText = Const.nameAttributedText(response.productName)
     }
 
     func updateProductDescription(response: ProductScene.StartupData.ViewModel) {
@@ -97,6 +104,24 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
 private extension ProductSceneViewController {
 
     enum Const {
+
+        static func nameAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: nameAttributes)
+        }
+
+        static let nameAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayBold(size: 36)!,
+            .paragraphStyle: nameParagraphStyle
+        ]
+
+        static var nameParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 0.93
+            paragraphStyle.alignment = .center
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
 
     }
 

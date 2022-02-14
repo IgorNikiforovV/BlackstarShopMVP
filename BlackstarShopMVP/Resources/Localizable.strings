@@ -10,3 +10,5 @@
 
 "Product.cell.bayButton.title" = "Купить";
 "Product.cell.price.title" = "%@ ₽";
+"Product.addBasket.button.title" = "Добавить в корзину";
+"Product.price.title" = "Стоимость:";

@@ -11,8 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductSceneViewController" customModule="BlackstarShopMVP" customModuleProvider="target">
             <connections>
+                <outlet property="addBasketButton" destination="VmQ-EB-fhi" id="UZb-LN-Xzb"/>
                 <outlet property="contentContainerStackView" destination="Py9-D8-BmS" id="QXq-nW-hzG"/>
+                <outlet property="descriptionLabel" destination="3Dx-6H-HJt" id="wiC-b7-3g3"/>
                 <outlet property="imagesContainerView" destination="CYD-T2-0jS" id="cfI-T6-1PZ"/>
+                <outlet property="nameLabel" destination="XkK-lH-RZW" id="ruJ-4t-slJ"/>
+                <outlet property="priceLabel" destination="Zlg-CA-UI0" id="i60-LH-AJR"/>
+                <outlet property="priceTitleLabel" destination="pDy-8E-TGL" id="Yrp-9f-Lbk"/>
+                <outlet property="separatorView" destination="2Z7-xt-gqj" id="2Sp-Tl-ggq"/>
                 <outlet property="sliderView" destination="Jlb-5w-4Ro" id="M2d-HH-6BS"/>
                 <outlet property="view" destination="rBT-Wa-UHv" id="nCb-Na-cVc"/>
             </connections>
@@ -25,8 +31,8 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="lcB-uh-xJs">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Py9-D8-BmS">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1567"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Py9-D8-BmS">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1576"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-T2-0jS" userLabel="ImageContainerView">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
@@ -43,26 +49,26 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3n-7C-Zuy">
-                                    <rect key="frame" x="0.0" y="430" width="414" height="1137"/>
+                                    <rect key="frame" x="0.0" y="439" width="414" height="1137"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q9L-Fu-Uwm" userLabel="ContentStackView">
                                             <rect key="frame" x="16" y="0.0" width="382" height="1137"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aspen Gold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkK-lH-RZW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="755" text="Aspen Gold" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkK-lH-RZW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="1044.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-xt-gqj">
-                                                    <rect key="frame" x="0.0" y="40" width="382" height="1"/>
+                                                    <rect key="frame" x="0.0" y="1054.5" width="382" height="1"/>
                                                     <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="xzj-rw-JWa"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vWB-oS-fwr">
-                                                    <rect key="frame" x="0.0" y="51" width="382" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="1065.5" width="382" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стоимость" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDy-8E-TGL">
                                                             <rect key="frame" x="0.0" y="0.0" width="191" height="20.5"/>
@@ -78,14 +84,13 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onC-at-ZCz">
-                                                    <rect key="frame" x="0.0" y="81.5" width="382" height="31"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmQ-EB-fhi">
+                                                    <rect key="frame" x="0.0" y="1096" width="382" height="31"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="Добавить в корзину"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-6H-HJt">
-                                                    <rect key="frame" x="0.0" y="122.5" width="382" height="1014.5"/>
-                                                    <string key="text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору </string>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-6H-HJt">
+                                                    <rect key="frame" x="0.0" y="1137" width="382" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
