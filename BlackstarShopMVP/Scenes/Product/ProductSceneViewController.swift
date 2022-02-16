@@ -50,6 +50,8 @@ class ProductSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        makeInitialSettings()
+
         interactor?.viewIsReady(request: ProductScene.StartupData.Request())
     }
 
@@ -90,12 +92,39 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
         nameLabel.attributedText = Const.nameAttributedText(response.productName)
     }
 
-    func updateProductDescription(response: ProductScene.StartupData.ViewModel) {
-
+    func updateProductPrice(response: ProductScene.StartupData.ViewModel) {
+        priceLabel.alpha = 0.5
+        priceLabel.attributedText = Const.priceAttributedText(response.price)
     }
 
-    func updateProductPrice(response: ProductScene.StartupData.ViewModel) {
+    func updateProductDescription(response: ProductScene.StartupData.ViewModel) {
+        guard let description = response.description else { descriptionLabel.isHidden = true; return }
+        descriptionLabel.attributedText = Const.descriptionAttributedText(description)
+    }
 
+}
+
+// MARK: private methods
+
+private extension ProductSceneViewController {
+    func makeInitialSettings() {
+        configureSeparator()
+        configurePriceTitle()
+        configureAddBasket()
+    }
+
+    func configureSeparator() {
+        separatorView.backgroundColor = Const.separatorViewCoor
+    }
+
+    func configurePriceTitle() {
+        priceTitleLabel.attributedText = Const.priceTitleAttributedText
+    }
+
+    func configureAddBasket() {
+        addBasketButton.layer.cornerRadius = Const.addBasketCornerRadius
+        addBasketButton.backgroundColor = Const.addBasketBackground
+        addBasketButton.setAttributedTitle(Const.addBasketTitleAttributedText, for: .normal)
     }
 }
 
@@ -105,6 +134,7 @@ private extension ProductSceneViewController {
 
     enum Const {
 
+        // name label
         static func nameAttributedText(_ text: String) -> NSAttributedString {
             .init(string: text, attributes: nameAttributes)
         }
@@ -115,10 +145,82 @@ private extension ProductSceneViewController {
             .paragraphStyle: nameParagraphStyle
         ]
 
-        static var nameParagraphStyle: NSMutableParagraphStyle = {
+        static let nameParagraphStyle: NSMutableParagraphStyle = {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineHeightMultiple = 0.93
             paragraphStyle.alignment = .center
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // separator view
+        static let separatorViewCoor = R.color.colors.separatorLineColor()!
+
+        // price title label
+        static var priceTitleAttributedText: NSAttributedString {
+            let priceTitle = R.string.localizable.productPriceTitle()
+            return .init(string: priceTitle, attributes: priceTitleAttributes)
+        }
+
+        static let priceTitleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProTextRegular(size: 18)!,
+            .paragraphStyle: priceTitleParagraphStyle
+        ]
+
+        static let priceTitleParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1
+            paragraphStyle.alignment = .left
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // price label
+        static func priceAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: priceAttributes)
+        }
+
+        static let priceAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayBold(size: 20)!,
+            .paragraphStyle: priceParagraphStyle
+        ]
+
+        static let priceParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 0.95
+            paragraphStyle.alignment = .right
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // addBasket button
+        static let addBasketBackground = R.color.colors.blueColor()!
+        static let addBasketCornerRadius: CGFloat = 10
+        static let addBasketTtile = R.string.localizable.productAddBasketTitle()
+        static let addBasketTitleAttributedText = NSAttributedString(string: addBasketTtile, attributes: addBasketAttributes)
+        static let addBasketAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.whiteColor()!,
+            .font: R.font.sfProDisplayMedium(size: 16)!
+        ]
+
+        // description label
+        static func descriptionAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: descriptionAttributes)
+        }
+
+        static let descriptionAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProTextRegular(size: 16)!,
+            .paragraphStyle: descriptionParagraphStyle,
+            .kern: -0.27
+        ]
+
+        static let descriptionParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1.07
+            paragraphStyle.alignment = .left
             paragraphStyle.lineBreakMode = .byTruncatingTail
             return paragraphStyle
         }()

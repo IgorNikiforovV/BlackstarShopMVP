@@ -5,6 +5,8 @@
 //  Created by Игорь Никифоров on 07.02.2022.
 //
 
+import Foundation
+
 struct ProductItem {
     let id: String
     let name: String
@@ -14,6 +16,10 @@ struct ProductItem {
     let productImages: [ProductImageItem]
     let price: String
     let sortOrder: String
+    var preparedPrice: String {
+        guard let intPrice = Float(price.trimmingCharacters(in: .whitespaces)) else { return "-" }
+        return intPrice.currencyRUB
+    }
 
     static func productItem(id: String, from: ProductInfo) -> ProductItem {
         .init(id: id,

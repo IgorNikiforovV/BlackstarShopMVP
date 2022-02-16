@@ -94,7 +94,7 @@ private extension ProductCell {
         static let borderColor = R.color.colors.separatorColor()!
 
         // buyButton
-        static let buyTitle = R.string.localizable.productCellBayButtonTitle()
+        static let buyTitle = R.string.localizable.productCellPayTitle()
         static let buyBackgroundColor = R.color.colors.pinkColor()!
         static let buyTitleAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.colors.whiteColor()!,

@@ -25,12 +25,13 @@ class ProductScenePresenter: ProductScenePresentationLogic {
 
         let response = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
                                                           productName: product.name,
-                                                          price: product.price,
+                                                          price: product.preparedPrice,
                                                           description: product.description)
 
         viewController?.updateImageSlider(response: response)
         viewController?.updateProductName(response: response)
         viewController?.updateProductPrice(response: response)
+        viewController?.updateProductDescription(response: response)
     }
 
 }
