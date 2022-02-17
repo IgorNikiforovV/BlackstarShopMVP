@@ -17,9 +17,12 @@ protocol ProductSceneDisplayLogic: AnyObject {
 
 class ProductSceneViewController: UIViewController {
 
+    // MARK: IBOutlets
+
     @IBOutlet private weak var sliderView: ImageHorizontalCollectionView!
     @IBOutlet private weak var contentContainerStackView: UIStackView!
     @IBOutlet private weak var imagesContainerView: UIView!
+    @IBOutlet private weak var priceContainerStackView: UIStackView!
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var separatorView: UIView!
@@ -99,7 +102,8 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
 
     func updateProductDescription(response: ProductScene.StartupData.ViewModel) {
         guard let description = response.description else { descriptionLabel.isHidden = true; return }
-        descriptionLabel.attributedText = Const.descriptionAttributedText(description)
+        descriptionLabel.attributedText = description.fromHTML(attributes: [:],
+                                                               commonAttribute: Const.descriptionAttributes)
     }
 
 }
@@ -111,6 +115,7 @@ private extension ProductSceneViewController {
         configureSeparator()
         configurePriceTitle()
         configureAddBasket()
+        configureContentContainerStackViewSpacing()
     }
 
     func configureSeparator() {
@@ -119,6 +124,12 @@ private extension ProductSceneViewController {
 
     func configurePriceTitle() {
         priceTitleLabel.attributedText = Const.priceTitleAttributedText
+    }
+
+    func configureContentContainerStackViewSpacing() {
+        contentContainerStackView.setCustomSpacing(0, after: nameLabel)
+        contentContainerStackView.setCustomSpacing(20, after: priceContainerStackView)
+        contentContainerStackView.setCustomSpacing(28, after: addBasketButton)
     }
 
     func configureAddBasket() {

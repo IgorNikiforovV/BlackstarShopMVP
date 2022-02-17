@@ -67,6 +67,7 @@
 		ACE4518C27B6D13200CDAFD6 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4518B27B6D13200CDAFD6 /* NetworkLogger.swift */; };
 		ACE8C2E927BC2CB900AC8319 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C2E827BC2CB900AC8319 /* Formatter.swift */; };
 		ACE8C2EB27BC2D0500AC8319 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C2EA27BC2D0500AC8319 /* Numeric.swift */; };
+		ACE8C2ED27BEC48B00AC8319 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C2EC27BEC48B00AC8319 /* String.swift */; };
 		ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54D927B18AAF00EDA565 /* ProductItem.swift */; };
 		ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54DB27B2E60F00EDA565 /* Array.swift */; };
 		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
@@ -141,6 +142,7 @@
 		ACE4518B27B6D13200CDAFD6 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		ACE8C2E827BC2CB900AC8319 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		ACE8C2EA27BC2D0500AC8319 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		ACE8C2EC27BEC48B00AC8319 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		ACEA54D927B18AAF00EDA565 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		ACEA54DB27B2E60F00EDA565 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				ACEA54DB27B2E60F00EDA565 /* Array.swift */,
 				ACE8C2E827BC2CB900AC8319 /* Formatter.swift */,
 				ACE8C2EA27BC2D0500AC8319 /* Numeric.swift */,
+				ACE8C2EC27BEC48B00AC8319 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				AC5E691B26811DD100408DB4 /* ProductListSceneModels.swift in Sources */,
 				AC69FAEE2688AD79007A931C /* ProductInfo.swift in Sources */,
 				AC953A3F265AD08E0077BBE6 /* NetworkConst.swift in Sources */,
+				ACE8C2ED27BEC48B00AC8319 /* String.swift in Sources */,
 				AC8E6EA6264E7CA3009A2A20 /* AppDelegate.swift in Sources */,
 				ACE8C2E927BC2CB900AC8319 /* Formatter.swift in Sources */,
 				ACF513812656D94600911885 /* CategoryInfo.swift in Sources */,

@@ -12,10 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductSceneViewController" customModule="BlackstarShopMVP" customModuleProvider="target">
             <connections>
                 <outlet property="addBasketButton" destination="VmQ-EB-fhi" id="UZb-LN-Xzb"/>
-                <outlet property="contentContainerStackView" destination="Py9-D8-BmS" id="QXq-nW-hzG"/>
+                <outlet property="contentContainerStackView" destination="Q9L-Fu-Uwm" id="9zT-qw-FNI"/>
                 <outlet property="descriptionLabel" destination="3Dx-6H-HJt" id="wiC-b7-3g3"/>
                 <outlet property="imagesContainerView" destination="CYD-T2-0jS" id="cfI-T6-1PZ"/>
                 <outlet property="nameLabel" destination="XkK-lH-RZW" id="ruJ-4t-slJ"/>
+                <outlet property="priceContainerStackView" destination="vWB-oS-fwr" id="2G0-ca-9S6"/>
                 <outlet property="priceLabel" destination="Zlg-CA-UI0" id="i60-LH-AJR"/>
                 <outlet property="priceTitleLabel" destination="pDy-8E-TGL" id="Yrp-9f-Lbk"/>
                 <outlet property="separatorView" destination="2Z7-xt-gqj" id="2Sp-Tl-ggq"/>
