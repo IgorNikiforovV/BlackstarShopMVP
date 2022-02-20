@@ -34,9 +34,8 @@ extension ProductSceneInteractor: ProductSceneBusinessLogic {
         guard let product = productItem else { return }
 
         if !product.offers.isEmpty {
-            let sortedSizeList = product.offers.sorted { size1, size2 in size1.quantity < size2.quantity }
             let sizesAndActions: [(size: ProductOfferItem, action: () -> Void)] =
-            sortedSizeList.enumerated().map { size in
+            product.offers.enumerated().map { size in
                 let action: () -> Void = { [weak self] in self?.chooseSize(index: size.offset) }
                 return (size.element, action)
             }
@@ -55,6 +54,9 @@ private extension ProductSceneInteractor {
 
     func chooseSize(index: Int) {
         print(index)
+        guard let productItem = productItem?.with(newSelectedSizeIndex: index) else { return }
+        self.productItem = productItem
+        print(productItem.selectedSizeIndex)
     }
 
 }
