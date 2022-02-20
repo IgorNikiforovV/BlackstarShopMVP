@@ -6,7 +6,7 @@
 //  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum ProductScene {
 
@@ -20,6 +20,18 @@ enum ProductScene {
             let productName: String
             let price: String
             let description: String?
+        }
+    }
+
+    enum AddBasketTrapping {
+        struct Request {
+            let sheetRowAttributtes: [NSAttributedString.Key: Any]
+        }
+        struct Response {
+            let sheetActions: [ShadowSheetAction]
+        }
+        struct ViewModel {
+            let sheetActions: [ShadowSheetAction]
         }
     }
 

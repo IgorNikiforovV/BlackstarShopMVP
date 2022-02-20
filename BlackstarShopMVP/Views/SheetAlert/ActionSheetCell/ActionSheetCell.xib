@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionSheetCell" id="tcn-bv-lFQ" customClass="ActionSheetCell" customModule="BlackstarShopMVP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tcn-bv-lFQ" id="J1L-Q9-ZR3">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="46u-SQ-Pza">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="250" id="8Bh-fS-t5p"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="o6V-VJ-xWT"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97p-s7-8Xq">
+                        <rect key="frame" x="16" y="0.0" width="41.5" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDs-oQ-eud">
+                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VDs-oQ-eud" firstAttribute="leading" secondItem="97p-s7-8Xq" secondAttribute="leading" id="QUu-s5-tNz"/>
+                            <constraint firstAttribute="trailing" secondItem="VDs-oQ-eud" secondAttribute="trailing" id="R38-z3-hh1"/>
+                            <constraint firstAttribute="bottom" secondItem="VDs-oQ-eud" secondAttribute="bottom" id="ZwW-Cz-ovg"/>
+                            <constraint firstItem="VDs-oQ-eud" firstAttribute="top" secondItem="97p-s7-8Xq" secondAttribute="top" id="bAc-Oj-SN2"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXh-6d-IuV">
+                        <rect key="frame" x="73.5" y="0.0" width="0.0" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="M5M-i9-wdU"/>
+                            <constraint firstAttribute="width" priority="250" id="wUP-y9-Ofo"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="eyN-l4-pLV">
+                        <rect key="frame" x="364" y="0.0" width="50" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="9g1-5Q-IDh"/>
+                            <constraint firstAttribute="width" priority="250" constant="50" id="EuZ-g6-6op"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="eyN-l4-pLV" firstAttribute="top" secondItem="J1L-Q9-ZR3" secondAttribute="top" id="3e3-8Q-tOc"/>
+                    <constraint firstAttribute="bottom" secondItem="tXh-6d-IuV" secondAttribute="bottom" id="48g-Ye-Sjt"/>
+                    <constraint firstItem="tXh-6d-IuV" firstAttribute="leading" secondItem="97p-s7-8Xq" secondAttribute="trailing" constant="16" id="4vm-aw-uIL"/>
+                    <constraint firstAttribute="bottom" secondItem="97p-s7-8Xq" secondAttribute="bottom" id="Cae-Pg-92T"/>
+                    <constraint firstItem="tXh-6d-IuV" firstAttribute="top" secondItem="J1L-Q9-ZR3" secondAttribute="top" id="DZJ-jt-9wB"/>
+                    <constraint firstItem="eyN-l4-pLV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tXh-6d-IuV" secondAttribute="trailing" priority="750" id="ROw-Z3-FBP"/>
+                    <constraint firstItem="97p-s7-8Xq" firstAttribute="top" secondItem="J1L-Q9-ZR3" secondAttribute="top" id="WE7-k5-M3r"/>
+                    <constraint firstItem="97p-s7-8Xq" firstAttribute="leading" secondItem="46u-SQ-Pza" secondAttribute="trailing" constant="16" id="beK-bY-l57"/>
+                    <constraint firstItem="46u-SQ-Pza" firstAttribute="top" secondItem="J1L-Q9-ZR3" secondAttribute="top" id="cEr-nH-eYu"/>
+                    <constraint firstAttribute="bottom" secondItem="46u-SQ-Pza" secondAttribute="bottom" id="qCQ-C3-D8m"/>
+                    <constraint firstAttribute="bottom" secondItem="eyN-l4-pLV" secondAttribute="bottom" id="rlg-qN-j3I"/>
+                    <constraint firstAttribute="trailing" secondItem="eyN-l4-pLV" secondAttribute="trailing" id="wJl-Ga-fon"/>
+                    <constraint firstItem="tXh-6d-IuV" firstAttribute="top" secondItem="J1L-Q9-ZR3" secondAttribute="top" id="yI0-uF-wsc"/>
+                    <constraint firstItem="46u-SQ-Pza" firstAttribute="leading" secondItem="J1L-Q9-ZR3" secondAttribute="leading" id="yUl-gH-IxX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="centerLabel" destination="VDs-oQ-eud" id="RnA-T6-Hzc"/>
+                <outlet property="centerStackView" destination="tXh-6d-IuV" id="Lr9-CX-vTV"/>
+                <outlet property="fromLeftStackToLeadingConstraint" destination="yUl-gH-IxX" id="EWd-MB-Yx9"/>
+                <outlet property="leftStackView" destination="46u-SQ-Pza" id="f1V-Jf-dWg"/>
+                <outlet property="rightStackView" destination="eyN-l4-pLV" id="oYV-Gx-H9J"/>
+            </connections>
+            <point key="canvasLocation" x="72.463768115942031" y="-9.375"/>
+        </tableViewCell>
+    </objects>
+</document>

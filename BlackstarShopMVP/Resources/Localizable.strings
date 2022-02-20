@@ -12,3 +12,4 @@
 "Product.cell.price.title" = "%@ ₽";
 "Product.addBasket.title" = "ДОБАВИТЬ В КОРЗИНУ";
 "Product.price.title" = "Стоимость:";
+"Product.alert.size.title" = "Выберите подходящий размер";

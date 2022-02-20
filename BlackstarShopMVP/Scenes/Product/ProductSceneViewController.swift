@@ -9,10 +9,11 @@
 import UIKit
 
 protocol ProductSceneDisplayLogic: AnyObject {
-    func updateImageSlider(response: ProductScene.StartupData.ViewModel)
-    func updateProductName(response: ProductScene.StartupData.ViewModel)
-    func updateProductDescription(response: ProductScene.StartupData.ViewModel)
-    func updateProductPrice(response: ProductScene.StartupData.ViewModel)
+    func updateImageSlider(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductName(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductDescription(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductPrice(with viewModel: ProductScene.StartupData.ViewModel)
+    func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel)
 }
 
 class ProductSceneViewController: UIViewController {
@@ -61,51 +62,37 @@ class ProductSceneViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Make the navigation bar background clear
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
+        configureNavigationBar()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // Restore the navigation bar to default
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-    }
-
-}
-
-extension ProductSceneViewController {
-    func setNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
-    }
 }
 
 extension ProductSceneViewController: ProductSceneDisplayLogic {
-    func updateImageSlider(response: ProductScene.StartupData.ViewModel) {
+    func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
         sliderView.configure(response.imageStringUrls)
     }
 
-    func updateProductName(response: ProductScene.StartupData.ViewModel) {
+    func updateProductName(with response: ProductScene.StartupData.ViewModel) {
         nameLabel.attributedText = Const.nameAttributedText(response.productName)
     }
 
-    func updateProductPrice(response: ProductScene.StartupData.ViewModel) {
+    func updateProductPrice(with response: ProductScene.StartupData.ViewModel) {
         priceLabel.alpha = 0.5
         priceLabel.attributedText = Const.priceAttributedText(response.price)
     }
 
-    func updateProductDescription(response: ProductScene.StartupData.ViewModel) {
+    func updateProductDescription(with response: ProductScene.StartupData.ViewModel) {
         guard let description = response.description else { descriptionLabel.isHidden = true; return }
         descriptionLabel.attributedText = description.fromHTML(attributes: [:],
                                                                commonAttribute: Const.descriptionAttributes)
     }
 
+    func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel) {
+        let sheetInfo = ShadowSheetInfo(headerText: Const.sizeSheetTitleAttributed,
+                                        checkImage: Const.checkMark,
+                                        actions: viewModel.sheetActions)
+        router?.showSheetController(sheetInfo: sheetInfo)
+    }
 }
 
 // MARK: private methods
@@ -116,6 +103,13 @@ private extension ProductSceneViewController {
         configurePriceTitle()
         configureAddBasket()
         configureContentContainerStackViewSpacing()
+    }
+
+    func configureNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
     }
 
     func configureSeparator() {
@@ -136,6 +130,14 @@ private extension ProductSceneViewController {
         addBasketButton.layer.cornerRadius = Const.addBasketCornerRadius
         addBasketButton.backgroundColor = Const.addBasketBackground
         addBasketButton.setAttributedTitle(Const.addBasketTitleAttributedText, for: .normal)
+    }
+
+    @IBAction func addBascketButtonTapped(_ sender: UIButton) {
+        interactor?.addBasketTapped(request: ProductScene.AddBasketTrapping.Request(sheetRowAttributtes: Const.sheetItemAttributes))
+    }
+
+    func showAlert() {
+
     }
 }
 
@@ -235,6 +237,21 @@ private extension ProductSceneViewController {
             paragraphStyle.lineBreakMode = .byTruncatingTail
             return paragraphStyle
         }()
+
+        static let checkMark = R.image.common.checkMark()
+        static let sizeSheetTitleAttributed = NSAttributedString(string: Const.sizeSheetTitle,
+                                                                 attributes: Const.sheetHeaderAttributes)
+        static let sizeSheetTitle = R.string.localizable.productAlertSizeTitle()
+
+        static let sheetHeaderAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 14)!,
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
+        ]
+
+        static let sheetItemAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 13)!,
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
+        ]
 
     }
 

@@ -9,13 +9,14 @@
 import Foundation
 
 protocol ProductScenePresentationLogic {
-    func presentData(response: ProductScene.StartupData.Response)
+    func presentData(with response: ProductScene.StartupData.Response)
+    func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response)
 }
 
 class ProductScenePresenter: ProductScenePresentationLogic {
     weak var viewController: ProductSceneDisplayLogic?
 
-    func presentData(response: ProductScene.StartupData.Response) {
+    func presentData(with response: ProductScene.StartupData.Response) {
         guard let product = response.product else { return }
 
         // TODO не забыть переделать сортировку в числовой формат
@@ -28,10 +29,14 @@ class ProductScenePresenter: ProductScenePresentationLogic {
                                                           price: product.preparedPrice,
                                                           description: product.description)
 
-        viewController?.updateImageSlider(response: response)
-        viewController?.updateProductName(response: response)
-        viewController?.updateProductPrice(response: response)
-        viewController?.updateProductDescription(response: response)
+        viewController?.updateImageSlider(with: response)
+        viewController?.updateProductName(with: response)
+        viewController?.updateProductPrice(with: response)
+        viewController?.updateProductDescription(with: response)
+    }
+
+    func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response) {
+        viewController?.showSizesSheet(with: ProductScene.AddBasketTrapping.ViewModel(sheetActions: response.sheetActions))
     }
 
 }

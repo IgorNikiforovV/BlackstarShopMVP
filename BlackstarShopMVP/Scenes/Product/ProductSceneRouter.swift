@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProductSceneRoutingLogic {
-
+    func showSheetController(sheetInfo: ShadowSheetInfo)
 }
 
 class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
@@ -17,5 +17,15 @@ class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
     weak var viewController: ProductSceneViewController?
 
     // MARK: Routing
+
+    func showSheetController(sheetInfo: ShadowSheetInfo) {
+        let sheetController = ShadowActionSheetController(title: sheetInfo.headerText,
+                                                          message: nil,
+                                                          checkMark: sheetInfo.checkImage)
+        for action in sheetInfo.actions {
+            sheetController.addAction(action)
+        }
+        viewController?.present(sheetController, animated: true, completion: nil)
+    }
 
 }

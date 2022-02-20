@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShadowActionSheetController" customModule="BlackstarShopMVP" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="SNy-2R-lrc" id="hVl-P4-KgA"/>
+                <outlet property="headerView" destination="MLF-cd-Gdz" id="PCk-yF-Em3"/>
+                <outlet property="tableHeightConstrained" destination="UbD-17-M21" id="JjE-j0-xYA"/>
+                <outlet property="tableView" destination="ySJ-Ix-2aB" id="JvO-IH-zLe"/>
+                <outlet property="view" destination="DPX-Bg-Dlg" id="yT3-l8-VrK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="DPX-Bg-Dlg">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNy-2R-lrc">
+                    <rect key="frame" x="0.0" y="771" width="414" height="125"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLF-cd-Gdz" customClass="ActionSheetHeaderView" customModule="BlackstarShopMVP" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="250" constant="58" id="Csv-wV-sCI"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="58" id="DgN-wR-hLp"/>
+                            </constraints>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ySJ-Ix-2aB">
+                            <rect key="frame" x="0.0" y="58" width="414" height="67"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="qAh-T8-U6b"/>
+                                <outlet property="delegate" destination="-1" id="e63-ag-TbG"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ySJ-Ix-2aB" secondAttribute="bottom" id="Bio-o9-TYn"/>
+                        <constraint firstItem="MLF-cd-Gdz" firstAttribute="top" secondItem="SNy-2R-lrc" secondAttribute="top" id="JGd-qd-OAk"/>
+                        <constraint firstItem="ySJ-Ix-2aB" firstAttribute="leading" secondItem="SNy-2R-lrc" secondAttribute="leading" id="Stj-fB-BLh"/>
+                        <constraint firstAttribute="height" constant="125" id="UbD-17-M21"/>
+                        <constraint firstItem="MLF-cd-Gdz" firstAttribute="leading" secondItem="SNy-2R-lrc" secondAttribute="leading" id="bT8-Cd-Bke"/>
+                        <constraint firstItem="ySJ-Ix-2aB" firstAttribute="top" secondItem="MLF-cd-Gdz" secondAttribute="bottom" id="mSM-tn-Xru"/>
+                        <constraint firstAttribute="trailing" secondItem="ySJ-Ix-2aB" secondAttribute="trailing" id="q9x-DS-ynS"/>
+                        <constraint firstAttribute="trailing" secondItem="MLF-cd-Gdz" secondAttribute="trailing" id="yQU-0z-rXR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="LtS-qd-dhe"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="SNy-2R-lrc" firstAttribute="leading" secondItem="DPX-Bg-Dlg" secondAttribute="leading" id="KYR-nQ-EF7"/>
+                <constraint firstAttribute="trailing" secondItem="SNy-2R-lrc" secondAttribute="trailing" id="LNn-QY-UUE"/>
+                <constraint firstAttribute="bottom" secondItem="SNy-2R-lrc" secondAttribute="bottom" id="zm8-Cd-hsj"/>
+            </constraints>
+            <point key="canvasLocation" x="-773.91304347826087" y="15.401785714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
