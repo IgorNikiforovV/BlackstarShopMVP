@@ -10,6 +10,7 @@ import Foundation
 
 protocol ProductSceneRoutingLogic {
     func showSheetController(sheetInfo: ShadowSheetInfo)
+    func returnToPreviousViewController()
 }
 
 class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
@@ -26,6 +27,10 @@ class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
             sheetController.addAction(action)
         }
         viewController?.present(sheetController, animated: true, completion: nil)
+    }
+
+    func returnToPreviousViewController() {
+        viewController?.navigationController?.popViewController(animated: true)
     }
 
 }

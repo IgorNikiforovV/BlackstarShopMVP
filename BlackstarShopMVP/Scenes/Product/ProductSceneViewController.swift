@@ -110,6 +110,14 @@ private extension ProductSceneViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
+
+        configureBackButtonView()
+    }
+
+    func configureBackButtonView() {
+        let backButtonView = BackButtonView()
+        backButtonView.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButtonView)
     }
 
     func configureSeparator() {
@@ -136,9 +144,14 @@ private extension ProductSceneViewController {
         interactor?.addBasketTapped(request: ProductScene.AddBasketTrapping.Request(sheetRowAttributtes: Const.sheetItemAttributes))
     }
 
-    func showAlert() {
+}
 
+extension ProductSceneViewController: BackButtonViewDelegate {
+
+    func backButtonDidTap() {
+        router?.returnToPreviousViewController()
     }
+
 }
 
 // MARK: Constants
