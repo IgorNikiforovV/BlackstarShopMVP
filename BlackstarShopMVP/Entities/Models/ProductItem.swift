@@ -31,7 +31,7 @@ struct ProductItem {
               description: productInfo.description,
               productImages: productInfo.productImages.map { ProductImageItem.productImageItem(from: $0) },
               offers: productInfo.offers
-                .sorted { size1, size2 in (Int(size1.quantity) ?? 0) < (Int(size2.quantity) ?? 0) }
+                .sorted { size1, size2 in (Int(size1.productOfferID) ?? 0) < (Int(size2.productOfferID) ?? 0) }
                 .map { ProductOfferItem.productOfferItem(from: $0) },
               selectedSizeIndex: productInfo.offers.isEmpty ? nil : 0,
               price: productInfo.price,

@@ -14,7 +14,7 @@ enum SheetActionService {
         with textStyle: [NSAttributedString.Key: Any]
     ) -> [ShadowSheetAction] {
         sizesAndActions.enumerated().map {
-            let attributedText = NSAttributedString(string: "\($0.element.size.size) (\($0.element.size.quantity))", attributes: textStyle)
+            let attributedText = NSAttributedString(string: $0.element.size.size, attributes: textStyle)
             return .init(attributedTitle: attributedText,
                          leftImages: [R.image.common.measure()!],
                          rightImages: [],

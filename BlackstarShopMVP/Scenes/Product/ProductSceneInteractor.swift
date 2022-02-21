@@ -53,10 +53,8 @@ extension ProductSceneInteractor: ProductSceneBusinessLogic {
 private extension ProductSceneInteractor {
 
     func chooseSize(index: Int) {
-        print(index)
         guard let productItem = productItem?.with(newSelectedSizeIndex: index) else { return }
         self.productItem = productItem
-        print(productItem.selectedSizeIndex)
     }
 
 }
