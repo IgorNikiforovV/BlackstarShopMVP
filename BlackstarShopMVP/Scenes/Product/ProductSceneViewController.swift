@@ -112,12 +112,18 @@ private extension ProductSceneViewController {
         navigationController?.view.backgroundColor = .clear
 
         configureBackButtonView()
+        configureBasketButtonView()
     }
 
     func configureBackButtonView() {
         let backButtonView = BackButtonView()
         backButtonView.delegate = self
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButtonView)
+    }
+
+    func configureBasketButtonView() {
+        let basketButtonView = BasketButtonView()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: basketButtonView)
     }
 
     func configureSeparator() {

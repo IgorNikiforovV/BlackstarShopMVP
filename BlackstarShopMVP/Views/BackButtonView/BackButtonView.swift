@@ -33,6 +33,8 @@ class BackButtonView: UIView {
 
 }
 
+// MARK: Private methods
+
 private extension BackButtonView {
 
     func initialize() {
