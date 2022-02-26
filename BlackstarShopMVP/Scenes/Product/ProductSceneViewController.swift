@@ -32,6 +32,8 @@ class ProductSceneViewController: UIViewController {
     @IBOutlet private weak var addBasketButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
+    private var basketButtonView = BasketButtonView()
+
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
@@ -122,7 +124,7 @@ private extension ProductSceneViewController {
     }
 
     func configureBasketButtonView() {
-        let basketButtonView = BasketButtonView()
+        basketButtonView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: basketButtonView)
     }
 
@@ -156,6 +158,16 @@ extension ProductSceneViewController: BackButtonViewDelegate {
 
     func backButtonDidTap() {
         router?.returnToPreviousViewController()
+    }
+
+}
+
+extension ProductSceneViewController: BasketButtonViewDelegate {
+
+    func basketButtonDidTap() {
+        print("\(#function)")
+
+        basketButtonView.updateBadge(with: "\(Int.random(in: 0...100))")
     }
 
 }
@@ -271,7 +283,5 @@ private extension ProductSceneViewController {
             NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 13)!,
             NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
         ]
-
-    }
 
 }

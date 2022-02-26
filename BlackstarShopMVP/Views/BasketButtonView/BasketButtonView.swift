@@ -8,25 +8,21 @@
 import UIKit
 
 protocol BasketButtonViewDelegate: AnyObject {
-    func backButtonDidTap()
+    func basketButtonDidTap()
 }
 
 class BasketButtonView: UIView {
 
-    private let numberLabel = UILabel()
-    private let raundedView = UIView()
+    // MARK: - Properties
 
-    private var backButtonImage: UIImageView {
-        let image = UIImageView(image: R.image.product.basket()!)
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }
+    private let badgeLabel = UILabel()
+    private let basketButtonImage = UIImageView()
+    private var widthBasketButtonImageConstraint: NSLayoutConstraint?
 
     weak var delegate: BasketButtonViewDelegate?
 
     init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        super.init(frame: CGRect(x: 0, y: 0, width: 30.5, height: 30.5))
         initialize()
     }
 
@@ -35,21 +31,22 @@ class BasketButtonView: UIView {
     }
 }
 
+// MARK: Public methods
+
 extension BasketButtonView {
 
-    func updateNumber(with num: Int) {
-        if num > 0 {
-            raundedView.isHidden = false
-            numberLabel.text = "\(num)"
+    func updateBadge(with number: String) {
+        if let num = Int(number), num > 0 {
+            badgeLabel.isHidden = false
+            badgeLabel.attributedText = Const.badgeAttributedText(number)
+            setVisibleBorders(showBigBorder: true)
         } else {
-            raundedView.isHidden = true
-            numberLabel.text = " "
+            badgeLabel.isHidden = true
+            badgeLabel.attributedText = Const.badgeAttributedText("")
+            setVisibleBorders(showBigBorder: false)
         }
+        setBadgeLabelFrame()
     }
-
-//    func fitNumberLabelIntoRaundedView(with text: String) {
-//        numberLabel
-//    }
 
 }
 
@@ -58,40 +55,71 @@ extension BasketButtonView {
 private extension BasketButtonView {
 
     func initialize() {
-        covereSuperview(subview: backButtonImage)
-
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(sender:)))
         addGestureRecognizer(tapGestureRecognizer)
 
-        layer.borderWidth = 1
         layer.borderColor = R.color.colors.turquoiseColor()?.cgColor
 
-        configureNumberLabel()
-        configureRaundedView()
+        configureBasketButtonImage()
+        configureBadgeLabel()
     }
 
-    func configureRaundedView() {
-        raundedView.backgroundColor = Const.roundedBackgroundColor
-        raundedView.translatesAutoresizingMaskIntoConstraints = false
-        raundedView.widthAnchor.constraint(equalTo: raundedView.heightAnchor).isActive = true
+    func configureBasketButtonImage() {
+        basketButtonImage.image = R.image.product.basket()!
+        basketButtonImage.contentMode = .scaleAspectFit
+        basketButtonImage.layer.borderColor = R.color.colors.turquoiseColor()?.cgColor
+        basketButtonImage.layer.borderWidth = 1
 
-        addSubview(raundedView)
-        numberLabel.centerXAnchor.constraint(equalTo: raundedView.centerXAnchor).isActive = true
-        numberLabel.centerYAnchor.constraint(equalTo: raundedView.centerYAnchor).isActive = true
+        basketButtonImage.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(basketButtonImage)
+        let badgeHeightHalf = CGFloat(Const.badgeHeight / 2)
+        NSLayoutConstraint.activate([
+            basketButtonImage.topAnchor.constraint(equalTo: topAnchor, constant: badgeHeightHalf),
+            basketButtonImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: badgeHeightHalf),
+            basketButtonImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -badgeHeightHalf),
+            basketButtonImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -badgeHeightHalf)
+        ])
     }
 
-    func configureNumberLabel() {
-        numberLabel.numberOfLines = 1
-        numberLabel.attributedText = Const.nameAttributedText("111")
-        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+    func configureBadgeLabel() {
+        badgeLabel.layer.borderColor = UIColor.white.cgColor
+        badgeLabel.layer.borderWidth = 1
+        badgeLabel.layer.masksToBounds = true
+        badgeLabel.layer.cornerRadius = badgeLabel.bounds.size.height / 2
+        badgeLabel.backgroundColor = Const.badgeBackgroundColor
 
-        raundedView.addSubview(numberLabel)
-        numberLabel.leftAnchor.constraint(equalTo: raundedView.leftAnchor).isActive = true
-        numberLabel.rightAnchor.constraint(equalTo: raundedView.rightAnchor).isActive = true
+        badgeLabel.isHidden = true
+
+        badgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(badgeLabel)
+        widthBasketButtonImageConstraint = badgeLabel.widthAnchor.constraint(equalToConstant: 0)
+        widthBasketButtonImageConstraint?.isActive = true
+        widthBasketButtonImageConstraint?.priority = UILayoutPriority(999)
+        NSLayoutConstraint.activate([
+            badgeLabel.topAnchor.constraint(equalTo: topAnchor),
+            badgeLabel.rightAnchor.constraint(equalTo: rightAnchor),
+            badgeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 30.5)
+        ])
+    }
+
+    func setBadgeLabelFrame() {
+        let newWidth = Const.badgeHeight + ((badgeLabel.text?.count ?? 1) - 1) * 8
+        widthBasketButtonImageConstraint?.constant = CGFloat(newWidth)
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+            self?.badgeLabel.layoutIfNeeded()
+            self?.badgeLabel.layer.cornerRadius = (self?.badgeLabel.bounds.size.height ?? 2) / 2
+        }, completion: nil)
+    }
+
+    func setVisibleBorders(showBigBorder: Bool) {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+            self?.layer.borderWidth = showBigBorder ? 1 : 0
+            self?.basketButtonImage.layer.borderWidth = showBigBorder ? 0 : 1
+        }, completion: nil)
     }
 
     @objc func handleTapGesture(sender: UITapGestureRecognizer) {
-        delegate?.backButtonDidTap()
+        delegate?.basketButtonDidTap()
     }
 
 }
@@ -102,18 +130,28 @@ private extension BasketButtonView {
 
     enum Const {
 
-        // rounded view
-        static let roundedBackgroundColor = R.color.colors.scarletColor()!
+        // badge label
+        static let badgeHeight = 13
+        static let badgeBackgroundColor = R.color.colors.scarletColor()!
 
-        // number label
-        static func nameAttributedText(_ text: String) -> NSAttributedString {
-            .init(string: text, attributes: nameAttributes)
+        static func badgeAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: badgeAttributes)
         }
 
-        static let nameAttributes: [NSAttributedString.Key: Any] = [
+        static let badgeAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.colors.whiteColor()!,
-            .font: R.font.sfProTextRegular(size: 12)!
+            .font: R.font.sfProTextSemibold(size: 11)!,
+            .paragraphStyle: badgeParagraphStyle,
+            .backgroundColor: R.color.colors.scarletColor()!
         ]
+
+        static let badgeParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
     }
 
 }

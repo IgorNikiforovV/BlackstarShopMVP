@@ -49,6 +49,7 @@
 		AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B4B265521E400DE5B2D /* UIImageView.swift */; };
 		AC953A33265977040077BBE6 /* SubcategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC953A32265977040077BBE6 /* SubcategoryInfo.swift */; };
 		AC953A3F265AD08E0077BBE6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC953A3E265AD08E0077BBE6 /* NetworkConst.swift */; };
+		AC9C1DB227C5E7AA0041EFE3 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */; };
 		ACB4ED6627A6E70100AAC997 /* ProductScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */; };
 		ACB4ED6727A6E70100AAC997 /* ProductSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */; };
 		ACB4ED6827A6E70100AAC997 /* ProductSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */; };
@@ -138,6 +139,7 @@
 		AC930B4B265521E400DE5B2D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		AC953A32265977040077BBE6 /* SubcategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryInfo.swift; sourceTree = "<group>"; };
 		AC953A3E265AD08E0077BBE6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
+		AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScenePresenter.swift; sourceTree = "<group>"; };
 		ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneWorker.swift; sourceTree = "<group>"; };
 		ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneRouter.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				ACE8C2EC27BEC48B00AC8319 /* String.swift */,
 				ACE8C30127C239AA00AC8319 /* UIView.swift */,
 				ACE8C30327C23C6B00AC8319 /* UITableView.swift */,
+				AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				ACB4ED7427B00F6200AAC997 /* ImageHorizontalCollectionView.swift in Sources */,
 				AC930B312653ADFA00DE5B2D /* CategorySceneViewController.swift in Sources */,
 				ACE8C30027C2393200AC8319 /* AlphaTransition.swift in Sources */,
+				AC9C1DB227C5E7AA0041EFE3 /* NSAttributedString.swift in Sources */,
 				ACB4ED6B27A6E70100AAC997 /* ProductSceneInteractor.swift in Sources */,
 				AC6D03112661336400AFC274 /* ScenesFactoryImpl.swift in Sources */,
 				AC6D030B26612FD600AFC274 /* Screens.swift in Sources */,
