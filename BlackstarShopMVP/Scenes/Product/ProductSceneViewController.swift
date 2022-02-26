@@ -284,4 +284,6 @@ private extension ProductSceneViewController {
             NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
         ]
 
+    }
+
 }

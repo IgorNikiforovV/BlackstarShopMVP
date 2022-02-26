@@ -102,7 +102,7 @@ private extension BasketButtonView {
         ])
     }
 
-    func setBadgeLabelFrame() {
+    func setBadgeLabelWidth() {
         let newWidth = Const.badgeHeight + ((badgeLabel.text?.count ?? 1) - 1) * 8
         widthBasketButtonImageConstraint?.constant = CGFloat(newWidth)
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: { [weak self] in
