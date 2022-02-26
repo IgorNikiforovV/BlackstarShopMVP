@@ -96,7 +96,6 @@ private extension CategorySceneInteractor {
                 case .failure(let error):
                     self.presenter?.prepareUIUpdatingData(response: .tableViewFailureReloading(error.localizedDescription))
                 }
-                self.presenter?.prepareUIUpdatingData(response: .refreshControlHidding(false))
             }
         }
     }
@@ -108,6 +107,7 @@ private extension CategorySceneInteractor {
         case .subcategories:
             if let subcategories = categories.first?.subcategories {
                 presenter?.prepareUIUpdatingData(response: .tableViewDataReloading(subcategories))
+                presenter?.prepareUIUpdatingData(response: .refreshControlHidding(true))
             }
         }
     }

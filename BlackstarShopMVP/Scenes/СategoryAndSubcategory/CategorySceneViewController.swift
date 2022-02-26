@@ -61,8 +61,8 @@ extension CategorySceneViewController: CategorySceneDisplayLogic {
             navigationItem.backButtonTitle = ""
             navigationItem.title = viewModel.title
         case .refreshControl:
-            tableView.refreshControl = refreshControl
             refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+            tableView.refreshControl = refreshControl
         }
     }
 
@@ -125,10 +125,8 @@ extension CategorySceneViewController: UITableViewDelegate {
 private extension CategorySceneViewController {
 
     func configureTableView() {
-        tableView.register(
-            UINib(nibName: CategoryCell.identifier, bundle: nil),
-            forCellReuseIdentifier: CategoryCell.identifier
-        )
+        tableView.register(UINib(nibName: CategoryCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: CategoryCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
     }
