@@ -2,64 +2,60 @@
 //  ProductSceneInteractor.swift
 //  BlackstarShopMVP
 //
-//  Created by Игорь Никифоров on 22.06.2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created by Игорь Никифоров on 30.01.2022.
+//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 protocol ProductSceneBusinessLogic {
-    func handleAction(request: ProductSceneModels.Request.ActionHandling)
+    func viewIsReady(request: ProductScene.StartupData.Request)
+    func addBasketTapped(request: ProductScene.AddBasketTrapping.Request)
 }
 
-protocol ProductSceneInteractorInput {
-    var productId: String? { get set }
-}
+class ProductSceneInteractor {
 
-class ProductSceneInteractor: ProductSceneBusinessLogic, ProductSceneInteractorInput {
+    var productItem: ProductItem?
 
     var presenter: ProductScenePresentationLogic?
-    var productWorker: ProductSceneWorker? = ProductSceneWorker()
+    var service: ProductSceneService?
 
-    // MARK: ProductSceneInteractorInput
+}
 
-    var productId: String?
+// MARK: ProductSceneBusinessLogic
 
-    // MARK: ProductBusinessLogic
+extension ProductSceneInteractor: ProductSceneBusinessLogic {
 
-    func handleAction(request: ProductSceneModels.Request.ActionHandling) {
-        switch request {
-        case .viewIsReady:
-            fetchData()
-        case .cellTapped(_):
-            print("cellTapped")
-        case .didPullToRefresh:
-            print("didPullToRefresh")
+    func viewIsReady(request: ProductScene.StartupData.Request) {
+        presenter?.presentData(with: ProductScene.StartupData.Response(product: productItem))
+    }
+
+    func addBasketTapped(request: ProductScene.AddBasketTrapping.Request) {
+        guard let product = productItem else { return }
+
+        if !product.offers.isEmpty {
+            let sizesAndActions: [(size: ProductOfferItem, action: () -> Void)] =
+            product.offers.enumerated().map { size in
+                let action: () -> Void = { [weak self] in self?.chooseSize(index: size.offset) }
+                return (size.element, action)
+            }
+            let sheetSizeActions = SheetActionService.sheetSizeActions(from: sizesAndActions,
+                                                                       and: product.selectedSizeIndex ?? 0,
+                                                                       with: request.sheetRowAttributtes)
+            presenter?.prepareSizesSheetData(with: ProductScene.AddBasketTrapping.Response(sheetActions: sheetSizeActions))
         }
     }
 
 }
 
-// MARK: Private methods
+// MARK: private methods
 
 private extension ProductSceneInteractor {
 
-    func fetchData() {
-        guard let productId = productId else { return }
-        productWorker?.fetchProducts(productId: productId) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let productsInfo):
-                    let products = productsInfo
-                        .map { $0.value }
-                        .sorted { $0.sortOrder > $1.sortOrder }
-                    let cellItems = products.map { ProductCellItem.init(productInfo: $0) }
-                    self.presenter?.prepareUIUpdatingData(response: .collectionViewDataReloading(cellItems))
-                case .failure(let error):
-                    self.presenter?.prepareUIUpdatingData(response: .collectionViewFailureReloading(error.localizedDescription))
-                }
-            }
-        }
+    func chooseSize(index: Int) {
+        guard let productItem = productItem?.with(newSelectedSizeIndex: index) else { return }
+        self.productItem = productItem
     }
 
 }

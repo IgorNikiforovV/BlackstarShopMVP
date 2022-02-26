@@ -119,7 +119,7 @@ private extension CategorySceneInteractor {
             presenter?.prepareNavigationData(response: .subcategoriesScene(categoryBoxItem))
         case .subcategories:
             if let subcategoryId = categories.first?.subcategories[index].id {
-                presenter?.prepareNavigationData(response: .productsScene(subcategoryId))
+                presenter?.prepareNavigationData(response: .productListScene(subcategoryId))
             }
         }
     }

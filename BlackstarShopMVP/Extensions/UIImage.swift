@@ -21,3 +21,16 @@ extension UIImage {
     }
 
 }
+
+extension UIImage {
+
+// taken from https://nshipster.com/image-resizing/
+
+    func resizedImage(for size: CGSize) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+
+}

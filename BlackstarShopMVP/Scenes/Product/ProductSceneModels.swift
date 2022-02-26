@@ -2,62 +2,37 @@
 //  ProductSceneModels.swift
 //  BlackstarShopMVP
 //
-//  Created by Игорь Никифоров on 22.06.2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created by Игорь Никифоров on 30.01.2022.
+//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-enum ProductSceneModels {
+enum ProductScene {
 
-    struct Request {
-        enum ActionHandling {
-            case viewIsReady
-            case cellTapped(_ index: Int)
-            case didPullToRefresh
+    enum StartupData {
+        struct Request {}
+        struct Response {
+            let product: ProductItem?
         }
-    }
-    struct Response {
-        enum UIConfiguration {
-            case navBar(_ title: String)
-            case refreshControl
-        }
-        enum UIUpdating {
-            case refreshControlHidding(_ isHidden: Bool)
-            case collectionViewDataReloading(_ seccess: [ProductCellInput])
-            case collectionViewFailureReloading(_ failure: String)
-        }
-        enum Routing {
-            case productsDetailScene(_ subcategoryId: Int)
-        }
-    }
-    struct ViewModel {
-        enum UIConfiguration {
-            case navBarConfiguration(_ model: DisplayedNavBar)
-            case refreshControl
-        }
-        enum UIUpdating {
-            case refreshControlHidding(_ isHidden: Bool)
-            case collectionViewDataReloading(_ seccess: [ProductCellInput])
-            case collectionViewErrorReloading(_ failure: String)
-        }
-        enum Routing {
-            case productsDetailScene(_ subcategoryId: Int)
+        struct ViewModel {
+            let imageStringUrls: [URL]
+            let productName: String
+            let price: String
+            let description: String?
         }
     }
 
-}
-
-struct ProductCellItem: ProductCellInput {
-    var title: String
-    var description: String?
-    var picture: String?
-    var price: String
-
-    init(productInfo: ProductInfo) {
-        title = productInfo.name
-        description = productInfo.description
-        picture = productInfo.mainImage
-        price = String(productInfo.price.split(separator: ".").first ?? "")
+    enum AddBasketTrapping {
+        struct Request {
+            let sheetRowAttributtes: [NSAttributedString.Key: Any]
+        }
+        struct Response {
+            let sheetActions: [ShadowSheetAction]
+        }
+        struct ViewModel {
+            let sheetActions: [ShadowSheetAction]
+        }
     }
+
 }

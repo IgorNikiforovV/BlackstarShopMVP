@@ -16,6 +16,7 @@ class NetworkServiceImpl: NetworkService {
 
     func requestData<T: Decodable>(endPoint: EndPoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
         session.dataTask(with: endPoint.asURLRequest()) { data, response, error in
+            NetworkLogger.log(response: response as? HTTPURLResponse, data: data, error: error)
             if let error = error {
                 completion(.failure(.transportError(error)))
                 return

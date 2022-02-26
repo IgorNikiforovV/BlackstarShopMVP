@@ -19,34 +19,34 @@ protocol EndPoint {
 enum BlackStarShopEndPoint: EndPoint {
 
     case category
-    case product(productId: String)
+    case products(subcategoryId: String)
 
     var baseURL: URL { URL(string: "\(NetworkConst.baseUrl)\(query)")! }
 
     var method: String {
         switch self {
-        case .category, .product:
+        case .category, .products:
             return "GET"
         }
     }
 
     var parameters: [String: Any]? {
         switch self {
-        case .category, .product:
+        case .category, .products:
             return nil
         }
     }
 
     var headers: [String: String?] {
         switch self {
-        case .category, .product:
+        case .category, .products:
             return [:]
         }
     }
 
     var path: String {
         switch self {
-        case .category, .product:
+        case .category, .products:
             return "index.php"
         }
     }
@@ -55,8 +55,8 @@ enum BlackStarShopEndPoint: EndPoint {
         switch self {
         case .category:
             return "?route=api/v1/categories"
-        case .product(let productId):
-            return "?route=api/v1/products&cat_id=\(productId)"
+        case .products(let subcategoryId):
+            return "?route=api/v1/products&cat_id=\(subcategoryId)"
         }
     }
 

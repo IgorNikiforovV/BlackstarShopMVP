@@ -11,6 +11,7 @@ enum NetworkError: Error {
     case serverError(statusCode: Int)
     case noData
     case decodingError(Error)
+    case noResponseUrl
 }
 
 extension NetworkError {
@@ -27,6 +28,8 @@ extension NetworkError {
             return "Данные не найдены"
         case .decodingError(let error):
             return "Ошибка парсинга данных: \(error.localizedDescription)"
+        case .noResponseUrl:
+            return "В ответе запроса не пришел url"
         }
     }
 
@@ -42,6 +45,8 @@ extension NetworkError {
             return 4
         case .decodingError:
             return 5
+        case .noResponseUrl:
+            return 6
         }
     }
 

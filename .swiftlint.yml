@@ -28,11 +28,11 @@ opt_in_rules:
   - first_where
   # force_unwrapping
   - implicitly_unwrapped_optional
-  - indentation_width
+  # indentation_width
   - last_where
   - legacy_random
   - literal_expression_end_indentation
-  - multiline_arguments
+  # multiline_arguments
   - multiline_function_chains
   - multiline_literal_brackets
   - multiline_parameters
@@ -45,7 +45,7 @@ opt_in_rules:
   - redundant_type_annotation
   - strict_fileprivate
   - toggle_bool
-  - trailing_closure
+  # trailing_closure
   - unneeded_parentheses_in_closure_argument
   - unused_import
   # vertical_whitespace_closing_braces

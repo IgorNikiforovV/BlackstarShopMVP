@@ -5,6 +5,8 @@
 //  Created by Игорь Никифоров on 28.05.2021.
 //
 
+import Foundation
+
 enum ScenesFactoryImpl: ScenesFactory {
 
     static func makeCategoriesScene(_ subcategories: CategoryBox?) -> Presentable & CategorySceneDisplayLogic {
@@ -23,7 +25,22 @@ enum ScenesFactoryImpl: ScenesFactory {
         return viewController
     }
 
-    static func makeProductScene(_ productId: String) -> Presentable & ProductSceneDisplayLogic {
+    static func makeProductListScene(_ subcategoryId: String) -> Presentable & ProductListSceneDisplayLogic {
+        let viewController        = ProductListSceneViewController()
+        let interactor            = ProductListSceneInteractor()
+        let presenter             = ProductListScenePresenter()
+        let router                = ProductListSceneRouter()
+        viewController.interactor = interactor
+        viewController.router     = router
+        interactor.presenter      = presenter
+        presenter.viewController  = viewController
+        router.viewController     = viewController
+        interactor.subcategoryId = subcategoryId
+
+        return viewController
+    }
+
+    static func makeProductScene(_ product: ProductItem) -> Presentable & ProductSceneDisplayLogic {
         let viewController        = ProductSceneViewController()
         let interactor            = ProductSceneInteractor()
         let presenter             = ProductScenePresenter()
@@ -33,10 +50,9 @@ enum ScenesFactoryImpl: ScenesFactory {
         interactor.presenter      = presenter
         presenter.viewController  = viewController
         router.viewController     = viewController
-        interactor.productId = productId
+        interactor.productItem = product
 
         return viewController
     }
-
 
 }

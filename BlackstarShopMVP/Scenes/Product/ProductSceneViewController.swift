@@ -2,31 +2,44 @@
 //  ProductSceneViewController.swift
 //  BlackstarShopMVP
 //
-//  Created by Игорь Никифоров on 22.06.2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created by Игорь Никифоров on 30.01.2022.
+//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
 protocol ProductSceneDisplayLogic: AnyObject {
-    func configureUI(viewModel: ProductSceneModels.ViewModel.UIConfiguration)
-    func updateUI(viewModel: ProductSceneModels.ViewModel.UIUpdating)
-    func navigateToScene(viewModel: ProductSceneModels.ViewModel.Routing)
+    func updateImageSlider(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductName(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductDescription(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateProductPrice(with viewModel: ProductScene.StartupData.ViewModel)
+    func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel)
 }
 
-class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
+class ProductSceneViewController: UIViewController {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var sliderView: ImageHorizontalCollectionView!
+    @IBOutlet private weak var contentContainerStackView: UIStackView!
+    @IBOutlet private weak var imagesContainerView: UIView!
+    @IBOutlet private weak var priceContainerStackView: UIStackView!
+
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var separatorView: UIView!
+    @IBOutlet private weak var priceTitleLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var addBasketButton: UIButton!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+
+    // MARK: - Properties
+
+    private var basketButtonView = BasketButtonView()
 
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
-    // MARK: @IBOutlets
-
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var noDataLabel: UILabel!
-
-    private var products = [ProductCellInput]()
-
-    // MARK: Object lifecycle
+    // MARK: - Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -36,118 +49,245 @@ class ProductSceneViewController: UIViewController, ProductSceneDisplayLogic {
         super.init(coder: aDecoder)
     }
 
-    // MARK: Routing
+    // MARK: - Routing
 
-    // MARK: View lifecycle
+
+
+    // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor?.handleAction(request: .viewIsReady)
+        makeInitialSettings()
 
-        configureCollectionView()
-        configureNoDataLabel()
+        interactor?.viewIsReady(request: ProductScene.StartupData.Request())
     }
 
-    func configureUI(viewModel: ProductSceneModels.ViewModel.UIConfiguration) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    }
-
-    func updateUI(viewModel: ProductSceneModels.ViewModel.UIUpdating) {
-        switch viewModel {
-        case .refreshControlHidding(_):
-            print("refreshControlHidding")
-        case .collectionViewDataReloading(let productCellItems):
-            noDataLabel.isHidden = !productCellItems.isEmpty
-            products = productCellItems
-            collectionView.reloadData()
-        case .collectionViewErrorReloading(_):
-            products = []
-            collectionView.reloadData()
-        }
-    }
-
-    func navigateToScene(viewModel: ProductSceneModels.ViewModel.Routing) {
-
+        configureNavigationBar()
     }
 
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - ProductSceneDisplayLogic
 
-extension ProductSceneViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        products.count
+extension ProductSceneViewController: ProductSceneDisplayLogic {
+    func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
+        sliderView.configure(response.imageStringUrls)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath)
-        if let cell = cell as? ProductCell {
-            cell.configure(products[indexPath.item])
-        }
-        return cell
+    func updateProductName(with response: ProductScene.StartupData.ViewModel) {
+        nameLabel.attributedText = Const.nameAttributedText(response.productName)
     }
 
+    func updateProductPrice(with response: ProductScene.StartupData.ViewModel) {
+        priceLabel.alpha = 0.5
+        priceLabel.attributedText = Const.priceAttributedText(response.price)
+    }
+
+    func updateProductDescription(with response: ProductScene.StartupData.ViewModel) {
+        guard let description = response.description else { descriptionLabel.isHidden = true; return }
+        descriptionLabel.attributedText = description.fromHTML(attributes: [:],
+                                                               commonAttribute: Const.descriptionAttributes)
+    }
+
+    func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel) {
+        let sheetInfo = ShadowSheetInfo(headerText: Const.sizeSheetTitleAttributed,
+                                        checkImage: Const.checkMark,
+                                        actions: viewModel.sheetActions)
+        router?.showSheetController(sheetInfo: sheetInfo)
+    }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension ProductSceneViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let frame = collectionView.frame
-        let cellWidth = (frame.width - Const.allCellSpasing) / Const.oneRowCellCount
-        return CGSize(width: cellWidth, height: Const.cellHeight)
-    }
-
-}
-
-// MARK: Private methods
+// MARK: private methods
 
 private extension ProductSceneViewController {
-
-    func configureCollectionView() {
-        collectionView.register(
-            UINib(nibName: ProductCell.identifier, bundle: nil),
-            forCellWithReuseIdentifier: ProductCell.identifier
-        )
+    func makeInitialSettings() {
+        configureSeparator()
+        configurePriceTitle()
+        configureAddBasket()
+        configureContentContainerStackViewSpacing()
     }
 
-    func configureNoDataLabel() {
-        noDataLabel.isHidden = true
-        noDataLabel.attributedText = Const.noDataAttributedText()
+    func configureNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+
+        configureBackButtonView()
+        configureBasketButtonView()
+    }
+
+    func configureBackButtonView() {
+        let backButtonView = BackButtonView()
+        backButtonView.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButtonView)
+    }
+
+    func configureBasketButtonView() {
+        basketButtonView.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: basketButtonView)
+    }
+
+    func configureSeparator() {
+        separatorView.backgroundColor = Const.separatorViewCoor
+    }
+
+    func configurePriceTitle() {
+        priceTitleLabel.attributedText = Const.priceTitleAttributedText
+    }
+
+    func configureContentContainerStackViewSpacing() {
+        contentContainerStackView.setCustomSpacing(0, after: nameLabel)
+        contentContainerStackView.setCustomSpacing(20, after: priceContainerStackView)
+        contentContainerStackView.setCustomSpacing(28, after: addBasketButton)
+    }
+
+    func configureAddBasket() {
+        addBasketButton.layer.cornerRadius = Const.addBasketCornerRadius
+        addBasketButton.backgroundColor = Const.addBasketBackground
+        addBasketButton.setAttributedTitle(Const.addBasketTitleAttributedText, for: .normal)
+    }
+
+    @IBAction func addBascketButtonTapped(_ sender: UIButton) {
+        interactor?.addBasketTapped(request: ProductScene.AddBasketTrapping.Request(sheetRowAttributtes: Const.sheetItemAttributes))
     }
 
 }
+
+// MARK: BackButtonViewDelegate
+
+extension ProductSceneViewController: BackButtonViewDelegate {
+
+    func backButtonDidTap() {
+        router?.returnToPreviousViewController()
+    }
+
+}
+
+// MARK: BasketButtonViewDelegate
+
+extension ProductSceneViewController: BasketButtonViewDelegate {
+
+    func basketButtonDidTap() {
+        tabBarController?.selectedIndex = 1
+    }
+
+}
+
+// MARK: Constants
 
 private extension ProductSceneViewController {
 
     enum Const {
 
-        // cell
-        static let cellHeight: CGFloat = 260
-        static var allCellSpasing: CGFloat {
-            leftCellSpasing + betweenCellsSpacing + rightCellSpasing
+        // name label
+        static func nameAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: nameAttributes)
         }
-        static let rightCellSpasing: CGFloat = 16
-        static let leftCellSpasing: CGFloat = 16
-        static let betweenCellsSpacing: CGFloat = 8
-        static let oneRowCellCount: CGFloat = 2
 
-        // no data label
-        static func noDataAttributedText() -> NSAttributedString {
-            NSAttributedString(string: noDataTitle, attributes: titleAttributes)
+        static let nameAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayBold(size: 36)!,
+            .paragraphStyle: nameParagraphStyle
+        ]
+
+        static let nameParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 0.93
+            paragraphStyle.alignment = .center
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // separator view
+        static let separatorViewCoor = R.color.colors.separatorLineColor()!
+
+        // price title label
+        static var priceTitleAttributedText: NSAttributedString {
+            let priceTitle = R.string.localizable.productPriceTitle()
+            return .init(string: priceTitle, attributes: priceTitleAttributes)
         }
-        static let noDataTitle = R.string.localizable.productNoDataTitle()
-        static let titleAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!,
-            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 13)!,
-            NSAttributedString.Key.kern: 0.19
+
+        static let priceTitleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProTextRegular(size: 18)!,
+            .paragraphStyle: priceTitleParagraphStyle
+        ]
+
+        static let priceTitleParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1
+            paragraphStyle.alignment = .left
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // price label
+        static func priceAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: priceAttributes)
+        }
+
+        static let priceAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayBold(size: 20)!,
+            .paragraphStyle: priceParagraphStyle
+        ]
+
+        static let priceParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 0.95
+            paragraphStyle.alignment = .right
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        // addBasket button
+        static let addBasketBackground = R.color.colors.blueColor()!
+        static let addBasketCornerRadius: CGFloat = 10
+        static let addBasketTtile = R.string.localizable.productAddBasketTitle()
+        static let addBasketTitleAttributedText = NSAttributedString(string: addBasketTtile, attributes: addBasketAttributes)
+        static let addBasketAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.whiteColor()!,
+            .font: R.font.sfProDisplayMedium(size: 16)!
+        ]
+
+        // description label
+        static func descriptionAttributedText(_ text: String) -> NSAttributedString {
+            .init(string: text, attributes: descriptionAttributes)
+        }
+
+        static let descriptionAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProTextRegular(size: 16)!,
+            .paragraphStyle: descriptionParagraphStyle,
+            .kern: -0.27
+        ]
+
+        static let descriptionParagraphStyle: NSMutableParagraphStyle = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1.07
+            paragraphStyle.alignment = .left
+            paragraphStyle.lineBreakMode = .byTruncatingTail
+            return paragraphStyle
+        }()
+
+        static let checkMark = R.image.common.checkMark()
+        static let sizeSheetTitleAttributed = NSAttributedString(string: Const.sizeSheetTitle,
+                                                                 attributes: Const.sheetHeaderAttributes)
+        static let sizeSheetTitle = R.string.localizable.productAlertSizeTitle()
+
+        static let sheetHeaderAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 14)!,
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
+        ]
+
+        static let sheetItemAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: R.font.sfProTextSemibold(size: 13)!,
+            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!
         ]
 
     }

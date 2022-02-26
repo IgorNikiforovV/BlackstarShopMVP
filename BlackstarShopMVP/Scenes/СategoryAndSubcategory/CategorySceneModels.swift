@@ -29,7 +29,7 @@ enum CategorySceneModels {
         }
         enum Routing {
             case subcategoriesScene(_ model: CategoryBox)
-            case productsScene(_ subcategoryId: Int)
+            case productListScene(_ subcategoryId: Int)
         }
     }
     struct ViewModel {
@@ -44,7 +44,7 @@ enum CategorySceneModels {
         }
         enum Routing {
             case subcategoriesScene(_ model: CategoryBox)
-            case productsScene(_ subcategoryId: Int)
+            case productListScene(_ subcategoryId: Int)
         }
     }
 

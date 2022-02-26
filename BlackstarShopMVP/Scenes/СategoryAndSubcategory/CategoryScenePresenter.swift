@@ -6,7 +6,7 @@
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol CategoryScenePresentationLogic {
     func prepareUIConfigurationData(response: CategorySceneModels.Response.UIConfiguration)
@@ -51,8 +51,8 @@ class CategoryScenePresenter: CategoryScenePresentationLogic {
         case .subcategoriesScene(let categoryBox):
             guard categoryBox.stateScreen == .subcategories else { return }
             viewController?.navigateToScene(viewModel: .subcategoriesScene(categoryBox))
-        case .productsScene(let subcategoryId):
-            viewController?.navigateToScene(viewModel: .productsScene(subcategoryId))
+        case .productListScene(let subcategoryId):
+            viewController?.navigateToScene(viewModel: .productListScene(subcategoryId))
         }
     }
 

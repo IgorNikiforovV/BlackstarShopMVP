@@ -2,39 +2,41 @@
 //  ProductScenePresenter.swift
 //  BlackstarShopMVP
 //
-//  Created by Игорь Никифоров on 22.06.2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created by Игорь Никифоров on 30.01.2022.
+//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol ProductScenePresentationLogic {
-    func prepareUIConfigurationData(response: ProductSceneModels.Response.UIConfiguration)
-    func prepareUIUpdatingData(response: ProductSceneModels.Response.UIUpdating)
-    func prepareNavigationData(response: ProductSceneModels.Response.Routing)
+    func presentData(with response: ProductScene.StartupData.Response)
+    func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response)
 }
 
 class ProductScenePresenter: ProductScenePresentationLogic {
-
     weak var viewController: ProductSceneDisplayLogic?
 
-    func prepareUIConfigurationData(response: ProductSceneModels.Response.UIConfiguration) {
+    func presentData(with response: ProductScene.StartupData.Response) {
+        guard let product = response.product else { return }
 
+        // TODO не забыть переделать сортировку в числовой формат
+        let imageUrls = product.productImages
+            .sorted(by: { image1, image2 in image1.sortOrder > image2.sortOrder })
+            .compactMap { URL(string: "\(NetworkConst.baseUrl)\($0.imageURL)") }
+
+        let response = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
+                                                          productName: product.name,
+                                                          price: product.preparedPrice,
+                                                          description: product.description)
+
+        viewController?.updateImageSlider(with: response)
+        viewController?.updateProductName(with: response)
+        viewController?.updateProductPrice(with: response)
+        viewController?.updateProductDescription(with: response)
     }
 
-    func prepareUIUpdatingData(response: ProductSceneModels.Response.UIUpdating) {
-        switch response {
-        case .refreshControlHidding(_):
-            print("refreshControlHidding")
-        case .collectionViewDataReloading(let productCellItems):
-            viewController?.updateUI(viewModel: .collectionViewDataReloading(productCellItems))
-        case .collectionViewFailureReloading(let error):
-            viewController?.updateUI(viewModel: .collectionViewErrorReloading(error))
-        }
-    }
-
-    func prepareNavigationData(response: ProductSceneModels.Response.Routing) {
-
+    func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response) {
+        viewController?.showSizesSheet(with: ProductScene.AddBasketTrapping.ViewModel(sheetActions: response.sheetActions))
     }
 
 }

@@ -9,5 +9,6 @@ target 'BlackstarShopMVP' do
 
 pod 'SwiftLint'
 pod 'R.swift'
+pod 'SkeletonView'
 
 end

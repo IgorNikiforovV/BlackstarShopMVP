@@ -80,7 +80,7 @@ private extension ProductCell {
         buyButton.backgroundColor = Const.buyBackgroundColor
         buyButton.layer.cornerRadius = 5
         buyButton.setAttributedTitle(
-            NSAttributedString(string: Const.buyTitle, attributes: Const.buyTitleAttributes
+            .init(string: Const.buyTitle, attributes: Const.buyTitleAttributes
         ), for: .normal)
     }
 
@@ -94,11 +94,11 @@ private extension ProductCell {
         static let borderColor = R.color.colors.separatorColor()!
 
         // buyButton
-        static let buyTitle = R.string.localizable.productCellBayButtonTitle()
+        static let buyTitle = R.string.localizable.productCellPayTitle()
         static let buyBackgroundColor = R.color.colors.pinkColor()!
         static let buyTitleAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: R.color.colors.whiteColor()!,
-            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 8)!
+            .foregroundColor: R.color.colors.whiteColor()!,
+            .font: R.font.sfProDisplayMedium(size: 8)!
         ]
 
         static let imageBackgroundColor = R.color.colors.lightGreyColor()
@@ -106,28 +106,28 @@ private extension ProductCell {
 
         // title
         static let titleAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!,
-            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 16)!,
-            NSAttributedString.Key.kern: 0.19
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayMedium(size: 16)!,
+            .kern: 0.19
         ]
 
         // description
         static let descriptionAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: R.color.colors.grayColor()!,
-            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 11)!,
-            NSAttributedString.Key.kern: 0.19
+            .foregroundColor: R.color.colors.grayColor()!,
+            .font: R.font.sfProDisplayMedium(size: 11)!,
+            .kern: 0.19
         ]
 
         // price
         static func priceAttributedText(_ text: String) -> NSAttributedString {
             let price = R.string.localizable.productCellPriceTitle(text)
-            return NSAttributedString(string: price, attributes: priceAttributes)
+            return .init(string: price, attributes: priceAttributes)
         }
 
         static let priceAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: R.color.colors.blackColor()!,
-            NSAttributedString.Key.font: R.font.sfProDisplayMedium(size: 16)!,
-            NSAttributedString.Key.kern: 0.19
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayMedium(size: 16)!,
+            .kern: 0.19
         ]
 
         static func url(from text: String?) -> URL? {

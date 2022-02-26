@@ -2,22 +2,12 @@
 //  ProductSceneWorker.swift
 //  BlackstarShopMVP
 //
-//  Created by Игорь Никифоров on 22.06.2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created by Игорь Никифоров on 30.01.2022.
+//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class ProductSceneWorker {
-
-    var networkService: NetworkService
-
-    init(networkService: NetworkService = NetworkServiceImpl()) {
-        self.networkService = networkService
-    }
-
-    func fetchProducts(productId: String, completion: @escaping (Result<[String: ProductInfo], NetworkError>) -> Void) {
-        networkService.requestData(endPoint: BlackStarShopEndPoint.product(productId: productId), completion: completion)
-    }
+class ProductSceneService {
 
 }

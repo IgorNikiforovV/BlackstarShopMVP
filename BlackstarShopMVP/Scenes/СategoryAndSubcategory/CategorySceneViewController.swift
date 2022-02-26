@@ -84,9 +84,9 @@ extension CategorySceneViewController: CategorySceneDisplayLogic {
     func navigateToScene(viewModel: CategorySceneModels.ViewModel.Routing) {
         switch viewModel {
         case .subcategoriesScene(let categoryBox):
-            routeToSubscategoriesScreen(categoryBox)
-        case .productsScene(let subcategoryId):
-            print("subcategoryId: \(subcategoryId)")
+            router?.showSubcategoryScene(categoryBox: categoryBox)
+        case .productListScene(let subcategoryId):
+            router?.showProductListScene(subcategoryId: "\(subcategoryId)")
         }
     }
 
@@ -137,13 +137,6 @@ private extension CategorySceneViewController {
         refreshControl.beginRefreshing()
         refreshControl.isHidden = true
         interactor?.handleAction(request: .didPullToRefresh)
-    }
-
-    func routeToSubscategoriesScreen(_ categoryBox: CategoryBox) {
-        navigationController?.modalPresentationStyle = .fullScreen
-        navigationController?.modalTransitionStyle = .partialCurl
-        let subcategories = ScenesFactoryImpl.makeCategoriesScene(categoryBox).toPresent()
-        navigationController?.pushViewController(subcategories, animated: true)
     }
 
 }
