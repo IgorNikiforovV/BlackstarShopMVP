@@ -41,6 +41,7 @@ class CategoryScenePresenter: CategoryScenePresentationLogic {
         case .tableViewDataReloading(let cellModels):
             let categoryCellsVM = categoryCellsVM(from: cellModels)
             viewController?.updateUI(viewModel: .tableViewDataReloading(categoryCellsVM))
+            viewController?.updateUI(viewModel: .refreshControlHidding(true))
         case .tableViewFailureReloading(let errorText):
             viewController?.updateUI(viewModel: .tableViewErrorReloading(errorText))
         }
