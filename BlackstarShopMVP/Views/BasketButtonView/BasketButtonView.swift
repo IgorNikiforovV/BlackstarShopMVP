@@ -22,7 +22,7 @@ class BasketButtonView: UIView {
     weak var delegate: BasketButtonViewDelegate?
 
     init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 30.5, height: 30.5))
+        super.init(frame: CGRect(x: 0, y: 0, width: Const.contentViewWidth, height: Const.contentViewHeight))
         initialize()
     }
 
@@ -45,7 +45,7 @@ extension BasketButtonView {
             badgeLabel.attributedText = Const.badgeAttributedText("")
             setVisibleBorders(showBigBorder: false)
         }
-        setBadgeLabelFrame()
+        setBadgeLabelWidth()
     }
 
 }
@@ -98,12 +98,12 @@ private extension BasketButtonView {
         NSLayoutConstraint.activate([
             badgeLabel.topAnchor.constraint(equalTo: topAnchor),
             badgeLabel.rightAnchor.constraint(equalTo: rightAnchor),
-            badgeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 30.5)
+            badgeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: Const.contentViewWidth)
         ])
     }
 
     func setBadgeLabelWidth() {
-        let newWidth = Const.badgeHeight + ((badgeLabel.text?.count ?? 1) - 1) * 8
+        let newWidth = Const.badgeHeight + ((badgeLabel.text?.count ?? 1) - 1) * 7
         widthBasketButtonImageConstraint?.constant = CGFloat(newWidth)
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: { [weak self] in
             self?.badgeLabel.layoutIfNeeded()
@@ -129,6 +129,10 @@ private extension BasketButtonView {
 private extension BasketButtonView {
 
     enum Const {
+
+        // content view
+        static let contentViewWidth = 30.5
+        static let contentViewHeight = 30.5
 
         // badge label
         static let badgeHeight = 13

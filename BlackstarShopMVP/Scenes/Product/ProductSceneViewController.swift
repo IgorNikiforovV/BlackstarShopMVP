@@ -18,7 +18,7 @@ protocol ProductSceneDisplayLogic: AnyObject {
 
 class ProductSceneViewController: UIViewController {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
     @IBOutlet private weak var sliderView: ImageHorizontalCollectionView!
     @IBOutlet private weak var contentContainerStackView: UIStackView!
@@ -31,6 +31,8 @@ class ProductSceneViewController: UIViewController {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var addBasketButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
+
+    // MARK: - Properties
 
     private var basketButtonView = BasketButtonView()
 
@@ -166,8 +168,6 @@ extension ProductSceneViewController: BasketButtonViewDelegate {
 
     func basketButtonDidTap() {
         print("\(#function)")
-
-        basketButtonView.updateBadge(with: "\(Int.random(in: 0...100))")
     }
 
 }
