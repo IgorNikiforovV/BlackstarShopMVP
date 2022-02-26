@@ -11,6 +11,7 @@ import Foundation
 protocol ProductSceneRoutingLogic {
     func showSheetController(sheetInfo: ShadowSheetInfo)
     func returnToPreviousViewController()
+    func showBasketSceneTab()
 }
 
 class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
@@ -31,6 +32,12 @@ class ProductSceneRouter: NSObject, ProductSceneRoutingLogic {
 
     func returnToPreviousViewController() {
         viewController?.navigationController?.popViewController(animated: true)
+    }
+
+    func showBasketSceneTab() {
+        if let mainTabBarController = viewController?.tabBarController as? MainTabBarController {
+            mainTabBarController.switchToBasketTab()
+        }
     }
 
 }

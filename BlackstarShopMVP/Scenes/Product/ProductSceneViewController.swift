@@ -39,7 +39,7 @@ class ProductSceneViewController: UIViewController {
     var interactor: ProductSceneBusinessLogic?
     var router: (NSObjectProtocol & ProductSceneRoutingLogic)?
 
-    // MARK: Object lifecycle
+    // MARK: - Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -49,11 +49,11 @@ class ProductSceneViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
-    // MARK: Routing
+    // MARK: - Routing
 
 
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +70,8 @@ class ProductSceneViewController: UIViewController {
     }
 
 }
+
+// MARK: - ProductSceneDisplayLogic
 
 extension ProductSceneViewController: ProductSceneDisplayLogic {
     func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
@@ -156,6 +158,8 @@ private extension ProductSceneViewController {
 
 }
 
+// MARK: BackButtonViewDelegate
+
 extension ProductSceneViewController: BackButtonViewDelegate {
 
     func backButtonDidTap() {
@@ -164,10 +168,12 @@ extension ProductSceneViewController: BackButtonViewDelegate {
 
 }
 
+// MARK: BasketButtonViewDelegate
+
 extension ProductSceneViewController: BasketButtonViewDelegate {
 
     func basketButtonDidTap() {
-        print("\(#function)")
+        tabBarController?.selectedIndex = 1
     }
 
 }

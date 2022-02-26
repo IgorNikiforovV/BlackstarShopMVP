@@ -9,10 +9,22 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
+    // MARK: - Properties
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureMainTabBarControllers()
+    }
+
+}
+
+// MARK: Public methods
+
+extension MainTabBarController {
+
+    func switchToBasketTab() {
+        selectedIndex = 1
     }
 
 }
@@ -22,7 +34,6 @@ class MainTabBarController: UITabBarController {
 private extension MainTabBarController {
 
     func generateNavController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
-        print("rootViewController: ", rootViewController)
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
