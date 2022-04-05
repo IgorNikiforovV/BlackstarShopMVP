@@ -10,5 +10,6 @@ target 'BlackstarShopMVP' do
 pod 'SwiftLint'
 pod 'R.swift'
 pod 'SkeletonView'
+pod 'RealmSwift', '~>10'
 
 end
