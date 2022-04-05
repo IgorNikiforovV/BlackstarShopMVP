@@ -55,6 +55,15 @@
 		ACA0839B27FA1C6F004F61EB /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839A27FA1C6F004F61EB /* DomainConvertibleType.swift */; };
 		ACA0839D27FA1C80004F61EB /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839C27FA1C80004F61EB /* RealmRepresentable.swift */; };
 		ACA0839F27FA248D004F61EB /* DomainDatabaseChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839E27FA248D004F61EB /* DomainDatabaseChange.swift */; };
+		ACA083A827FCB95F004F61EB /* BasketScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */; };
+		ACA083A927FCB95F004F61EB /* BasketSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */; };
+		ACA083AA27FCB95F004F61EB /* BasketSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */; };
+		ACA083AB27FCB95F004F61EB /* BasketSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */; };
+		ACA083AC27FCB95F004F61EB /* BasketSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */; };
+		ACA083AD27FCB95F004F61EB /* BasketSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */; };
+		ACA083AE27FCB95F004F61EB /* BasketSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */; };
+		ACA083B227FCBED9004F61EB /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083B027FCBED9004F61EB /* BasketCell.swift */; };
+		ACA083B327FCBED9004F61EB /* BasketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA083B127FCBED9004F61EB /* BasketCell.xib */; };
 		ACB4ED6627A6E70100AAC997 /* ProductScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */; };
 		ACB4ED6727A6E70100AAC997 /* ProductSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */; };
 		ACB4ED6827A6E70100AAC997 /* ProductSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */; };
@@ -151,6 +160,15 @@
 		ACA0839A27FA1C6F004F61EB /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
 		ACA0839C27FA1C80004F61EB /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
 		ACA0839E27FA248D004F61EB /* DomainDatabaseChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainDatabaseChange.swift; sourceTree = "<group>"; };
+		ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketScenePresenter.swift; sourceTree = "<group>"; };
+		ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneWorker.swift; sourceTree = "<group>"; };
+		ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneRouter.swift; sourceTree = "<group>"; };
+		ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneModels.swift; sourceTree = "<group>"; };
+		ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneViewController.swift; sourceTree = "<group>"; };
+		ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneInteractor.swift; sourceTree = "<group>"; };
+		ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketSceneViewController.xib; sourceTree = "<group>"; };
+		ACA083B027FCBED9004F61EB /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
+		ACA083B127FCBED9004F61EB /* BasketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketCell.xib; sourceTree = "<group>"; };
 		ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScenePresenter.swift; sourceTree = "<group>"; };
 		ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneWorker.swift; sourceTree = "<group>"; };
 		ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneRouter.swift; sourceTree = "<group>"; };
@@ -320,6 +338,7 @@
 				AC930AFD26514CB900DE5B2D /* СategoryAndSubcategory */,
 				AC5E691026811DB900408DB4 /* ProductList */,
 				ACB4ED5E27A6E6C500AAC997 /* Product */,
+				ACA083A027FCB907004F61EB /* Basket */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -414,6 +433,29 @@
 			path = Conversion;
 			sourceTree = "<group>";
 		};
+		ACA083A027FCB907004F61EB /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */,
+				ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */,
+				ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */,
+				ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */,
+				ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */,
+				ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */,
+				ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		ACA083AF27FCBE77004F61EB /* BasketCell */ = {
+			isa = PBXGroup;
+			children = (
+				ACA083B027FCBED9004F61EB /* BasketCell.swift */,
+				ACA083B127FCBED9004F61EB /* BasketCell.xib */,
+			);
+			path = BasketCell;
+			sourceTree = "<group>";
+		};
 		ACB4ED4027A6C56E00AAC997 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +465,7 @@
 				AC930B342653F51200DE5B2D /* СategoryCell */,
 				AC5E691F268122A400408DB4 /* ProductCell */,
 				ACB4ED4127A6C5CF00AAC997 /* ImageSlider */,
+				ACA083AF27FCBE77004F61EB /* BasketCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -675,6 +718,7 @@
 				AC930B432655164100DE5B2D /* SF-Pro-Display-Medium.otf in Resources */,
 				AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */,
 				AC930B332653ADFA00DE5B2D /* CategorySceneViewController.xib in Resources */,
+				ACA083AE27FCB95F004F61EB /* BasketSceneViewController.xib in Resources */,
 				ACE8C2F627C2375900AC8319 /* ActionSheetCell.xib in Resources */,
 				AC930B472655164100DE5B2D /* SF-Pro-Text-Light.otf in Resources */,
 				ACE8C2FC27C2375900AC8319 /* ShadowActionSheetController.xib in Resources */,
@@ -685,6 +729,7 @@
 				AC8E6EAD264E7CA3009A2A20 /* Main.storyboard in Resources */,
 				AC5E6923268122DD00408DB4 /* ProductCell.xib in Resources */,
 				ACB4ED7127A9A5C600AAC997 /* ProductSceneViewController.xib in Resources */,
+				ACA083B327FCBED9004F61EB /* BasketCell.xib in Resources */,
 				ACD82D5F26825A71007E451D /* Localizable.strings in Resources */,
 				AC5E691E26811DD100408DB4 /* ProductListSceneViewController.xib in Resources */,
 				AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -820,6 +865,8 @@
 				ACE8C2FA27C2375900AC8319 /* ActionSheetCell.swift in Sources */,
 				ACE8C2F827C2375900AC8319 /* ShadowActionSheetController.swift in Sources */,
 				ACB4ED6727A6E70100AAC997 /* ProductSceneWorker.swift in Sources */,
+				ACA083B227FCBED9004F61EB /* BasketCell.swift in Sources */,
+				ACA083AD27FCB95F004F61EB /* BasketSceneInteractor.swift in Sources */,
 				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
 				ACB4ED7927B0128300AAC997 /* ImageHorizontalCollectionCell.swift in Sources */,
 				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
@@ -830,18 +877,23 @@
 				AC5E691C26811DD100408DB4 /* ProductListSceneViewController.swift in Sources */,
 				ACE9587327EA4CF700B792DD /* DatabaseChange.swift in Sources */,
 				ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */,
+				ACA083A827FCB95F004F61EB /* BasketScenePresenter.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategorySceneModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategorySceneRouter.swift in Sources */,
 				AC6D030F2661326100AFC274 /* UIViewController.swift in Sources */,
 				ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */,
+				ACA083A927FCB95F004F61EB /* BasketSceneWorker.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 				AC6E8D1E266014F7007EA6A9 /* UIImage.swift in Sources */,
 				ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */,
 				ACE8C2FB27C2375900AC8319 /* ActionSheetHeaderView.swift in Sources */,
+				ACA083AB27FCB95F004F61EB /* BasketSceneModels.swift in Sources */,
+				ACA083AA27FCB95F004F61EB /* BasketSceneRouter.swift in Sources */,
 				AC5E6922268122DD00408DB4 /* ProductCell.swift in Sources */,
 				ACE8C2EB27BC2D0500AC8319 /* Numeric.swift in Sources */,
 				ACE8C31427C55D7A00AC8319 /* BasketButtonView.swift in Sources */,
 				ACA0839B27FA1C6F004F61EB /* DomainConvertibleType.swift in Sources */,
+				ACA083AC27FCB95F004F61EB /* BasketSceneViewController.swift in Sources */,
 				AC5E691926811DD100408DB4 /* ProductListSceneWorker.swift in Sources */,
 				AC5E691D26811DD100408DB4 /* ProductListSceneInteractor.swift in Sources */,
 				AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */,
