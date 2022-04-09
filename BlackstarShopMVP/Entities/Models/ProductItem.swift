@@ -18,6 +18,7 @@ struct ProductItem {
     let selectedSizeIndex: Int?
     let price: String
     let sortOrder: String
+    let colorName: String
     var preparedPrice: String {
         guard let intPrice = Float(price.trimmingCharacters(in: .whitespaces)) else { return "-" }
         return intPrice.currencyRUB
@@ -35,7 +36,8 @@ struct ProductItem {
                 .map { ProductOfferItem.productOfferItem(from: $0) },
               selectedSizeIndex: productInfo.offers.isEmpty ? nil : 0,
               price: productInfo.price,
-              sortOrder: productInfo.sortOrder)
+              sortOrder: productInfo.sortOrder,
+              colorName: productInfo.colorName)
     }
 }
 
@@ -58,7 +60,6 @@ struct ProductOfferItem {
 }
 
 extension ProductItem {
-
     func with(newSelectedSizeIndex: Int) -> Self? {
         guard offers.indices.contains(newSelectedSizeIndex) else { return nil }
         return .init(id: id,
@@ -70,7 +71,7 @@ extension ProductItem {
                      offers: offers,
                      selectedSizeIndex: newSelectedSizeIndex,
                      price: price,
-                     sortOrder: sortOrder)
+                     sortOrder: sortOrder,
+                     colorName: colorName)
     }
-
 }

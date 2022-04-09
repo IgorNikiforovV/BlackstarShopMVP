@@ -26,7 +26,6 @@ struct SubcategoryInfo: Decodable {
 // since the field can be both a string or a number, we need to write our own decoder
 
 extension SubcategoryInfo {
-
     enum CodingKeys: String, CodingKey {
         case id
         case sortOrder
@@ -53,6 +52,4 @@ extension SubcategoryInfo {
         iconImage = try values.decode(String.self, forKey: .iconImage)
         name = try values.decode(String.self, forKey: .name)
     }
-
-
 }
