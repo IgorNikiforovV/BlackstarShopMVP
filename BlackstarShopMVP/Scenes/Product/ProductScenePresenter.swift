@@ -11,9 +11,11 @@ import Foundation
 protocol ProductScenePresentationLogic {
     func presentData(with response: ProductScene.StartupData.Response)
     func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response)
+    func changeBasketBage(with response: ProductScene.BasketBageChanging.Response)
 }
 
 class ProductScenePresenter: ProductScenePresentationLogic {
+
     weak var viewController: ProductSceneDisplayLogic?
 
     func presentData(with response: ProductScene.StartupData.Response) {
@@ -39,4 +41,7 @@ class ProductScenePresenter: ProductScenePresentationLogic {
         viewController?.showSizesSheet(with: ProductScene.AddBasketTrapping.ViewModel(sheetActions: response.sheetActions))
     }
 
+    func changeBasketBage(with response: ProductScene.BasketBageChanging.Response) {
+        viewController?.changeBasketBage(with: ProductScene.BasketBageChanging.ViewModel(count: response.count))
+    }
 }

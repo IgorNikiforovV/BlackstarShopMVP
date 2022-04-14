@@ -11,10 +11,13 @@ class MainTabBarController: UITabBarController {
 
     // MARK: - Properties
 
+    let storageService: GlobalBasketStorageService? = GlobalBasketStorageServiceImpl.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureMainTabBarControllers()
+        setBasketStorageNotification()
     }
 
 }
@@ -48,6 +51,19 @@ private extension MainTabBarController {
             generateNavController(for: categoryController, title: "Магазин", image: Const.searchIcon),
             generateNavController(for: productsController, title: "Корзина", image: Const.basketIcon)
         ]
+    }
+
+    func setBasketStorageNotification() {
+        storageService?.addObserver(object: self)
+    }
+
+}
+
+extension MainTabBarController: BasketItemsSubscribable {
+
+    func basketItemsDidChange(newBasketItems: [BasketItem]) {
+        let badgeValue = newBasketItems.isEmpty ? nil : "\(newBasketItems.count)"
+        tabBar.items?[safeIndex: 1]?.badgeValue = badgeValue
     }
 
 }

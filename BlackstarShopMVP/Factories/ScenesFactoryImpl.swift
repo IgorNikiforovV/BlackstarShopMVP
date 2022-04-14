@@ -51,6 +51,7 @@ enum ScenesFactoryImpl: ScenesFactory {
         presenter.viewController  = viewController
         router.viewController     = viewController
         interactor.productItem = product
+        interactor.storageService = GlobalBasketStorageServiceImpl.shared
 
         return viewController
     }

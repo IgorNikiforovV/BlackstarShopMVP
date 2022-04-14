@@ -17,6 +17,7 @@ struct DatabaseChange<T: Object> where T: DomainConvertibleType {
 
     var initialResult: [T] = []
 
+    var changeResults: [T] = []
     var insertions: [T] = []
     var modifications: [T] = []
     var deleteIndexes: [Int] = []
@@ -43,13 +44,16 @@ struct DatabaseChange<T: Object> where T: DomainConvertibleType {
 
         self.insertions = insertIndexes.map { results.count > $0 ? results[$0] : nil }.compactMap { $0 }
         self.modifications = modifyIndexes.map { results.count > $0 ? results[$0] : nil }.compactMap { $0 }
+        self.changeResults = Array(results)
     }
 }
 
 extension DatabaseChange: DomainConvertibleType {
 
     func asDomain() -> DomainDatabaseChange<T.DomainType> {
-        DomainDatabaseChange(insertions: insertions.map { $0.asDomain() },
+        DomainDatabaseChange(initialResult: initialResult.map { $0.asDomain() },
+                             changeResults: changeResults.map { $0.asDomain() },
+                             insertions: insertions.map { $0.asDomain() },
                              modifications: modifications.map { $0.asDomain() },
                              deleteIndexes: deleteIndexes,
                              insertIndexes: insertIndexes,

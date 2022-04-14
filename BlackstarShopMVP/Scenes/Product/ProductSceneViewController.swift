@@ -14,6 +14,7 @@ protocol ProductSceneDisplayLogic: AnyObject {
     func updateProductDescription(with viewModel: ProductScene.StartupData.ViewModel)
     func updateProductPrice(with viewModel: ProductScene.StartupData.ViewModel)
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel)
+    func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel)
 }
 
 class ProductSceneViewController: UIViewController {
@@ -74,6 +75,7 @@ class ProductSceneViewController: UIViewController {
 // MARK: - ProductSceneDisplayLogic
 
 extension ProductSceneViewController: ProductSceneDisplayLogic {
+
     func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
         sliderView.configure(response.imageStringUrls)
     }
@@ -98,6 +100,10 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
                                         checkImage: Const.checkMark,
                                         actions: viewModel.sheetActions)
         router?.showSheetController(sheetInfo: sheetInfo)
+    }
+
+    func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel) {
+        basketButtonView.updateBadge(with: "\(viewModel.count)")
     }
 }
 

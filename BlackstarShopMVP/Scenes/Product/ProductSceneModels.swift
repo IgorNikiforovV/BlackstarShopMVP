@@ -35,4 +35,14 @@ enum ProductScene {
         }
     }
 
+    enum BasketBageChanging  {
+        struct Request {}
+        struct Response {
+            let count: Int
+        }
+        struct ViewModel {
+            let count: Int
+        }
+    }
+
 }

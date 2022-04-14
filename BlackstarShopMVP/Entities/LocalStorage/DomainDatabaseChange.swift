@@ -6,6 +6,8 @@
 //
 
 struct DomainDatabaseChange<T> {
+    let initialResult: [T]
+    let changeResults: [T]
     let insertions: [T]
     let modifications: [T]
     let deleteIndexes: [Int]

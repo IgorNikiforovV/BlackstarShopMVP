@@ -19,6 +19,7 @@ class ProductSceneInteractor {
 
     var presenter: ProductScenePresentationLogic?
     var service: ProductSceneService?
+    var storageService: GlobalBasketStorageService?
 
 }
 
@@ -27,6 +28,9 @@ class ProductSceneInteractor {
 extension ProductSceneInteractor: ProductSceneBusinessLogic {
 
     func viewIsReady(request: ProductScene.StartupData.Request) {
+        setBasketStorageNotification()
+        setBasketBage()
+
         presenter?.presentData(with: ProductScene.StartupData.Response(product: productItem))
     }
 
@@ -55,6 +59,30 @@ private extension ProductSceneInteractor {
     func chooseSize(index: Int) {
         guard let productItem = productItem?.with(newSelectedSizeIndex: index) else { return }
         self.productItem = productItem
+
+        saveProductItemToBasket(productItem: productItem)
+    }
+
+    func saveProductItemToBasket(productItem: ProductItem) {
+        let basketItem = BasketItem.basketItem(from: productItem)
+        storageService?.addBasketItem(newBasketItem: basketItem)
+    }
+
+    func setBasketStorageNotification() {
+        storageService?.addObserver(object: self)
+    }
+
+    func setBasketBage() {
+        let bageValue = storageService?.basketItems.count ?? 0
+        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: bageValue))
+    }
+
+}
+
+extension ProductSceneInteractor: BasketItemsSubscribable {
+
+    func basketItemsDidChange(newBasketItems: [BasketItem]) {
+        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: newBasketItems.count))
     }
 
 }

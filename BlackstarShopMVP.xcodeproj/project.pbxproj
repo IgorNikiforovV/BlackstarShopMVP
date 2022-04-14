@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		97C32D0A2990F0096777344D /* Pods_BlackstarShopMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9537D0EA063E6250A8F03592 /* Pods_BlackstarShopMVP.framework */; };
 		AC37481B280151AF00EA3677 /* DBBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37481A280151AF00EA3677 /* DBBasketService.swift */; };
+		AC37481D2805E4A700EA3677 /* GlobalDBBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */; };
 		AC5E691826811DD100408DB4 /* ProductListScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */; };
 		AC5E691926811DD100408DB4 /* ProductListSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */; };
 		AC5E691A26811DD100408DB4 /* ProductListSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */; };
@@ -116,6 +117,7 @@
 		0DFBA5A35104DAD62A86EB28 /* Pods-BlackstarShopMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.debug.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.debug.xcconfig"; sourceTree = "<group>"; };
 		9537D0EA063E6250A8F03592 /* Pods_BlackstarShopMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackstarShopMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC37481A280151AF00EA3677 /* DBBasketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBasketService.swift; sourceTree = "<group>"; };
+		AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDBBasketService.swift; sourceTree = "<group>"; };
 		AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListScenePresenter.swift; sourceTree = "<group>"; };
 		AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListSceneWorker.swift; sourceTree = "<group>"; };
 		AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListSceneRouter.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			children = (
 				AC96C4DC27CBB6080027F59A /* DatabaseManager.swift */,
 				AC37481A280151AF00EA3677 /* DBBasketService.swift */,
+				AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -918,6 +921,7 @@
 				ACE8C31427C55D7A00AC8319 /* BasketButtonView.swift in Sources */,
 				ACA0839B27FA1C6F004F61EB /* DomainConvertibleType.swift in Sources */,
 				ACA083AC27FCB95F004F61EB /* BasketSceneViewController.swift in Sources */,
+				AC37481D2805E4A700EA3677 /* GlobalDBBasketService.swift in Sources */,
 				AC5E691926811DD100408DB4 /* ProductListSceneWorker.swift in Sources */,
 				AC5E691D26811DD100408DB4 /* ProductListSceneInteractor.swift in Sources */,
 				AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */,
