@@ -80,6 +80,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="colorLabel" destination="8md-Fj-X2S" id="KFs-Ie-r4T"/>
+                <outlet property="deleteImageView" destination="TWr-CP-MND" id="iKa-6Q-0sl"/>
+                <outlet property="mainImageView" destination="RZC-tC-I3a" id="7ea-Fe-9xq"/>
+                <outlet property="nameLabel" destination="Q3W-gV-5KU" id="ZTp-mR-5cB"/>
+                <outlet property="priceLabel" destination="FPe-e8-gil" id="64a-Qd-oK9"/>
+                <outlet property="sizeLabel" destination="an5-rb-R12" id="Z1J-ei-fCN"/>
+            </connections>
             <point key="canvasLocation" x="173.18840579710147" y="117.52232142857142"/>
         </tableViewCell>
     </objects>

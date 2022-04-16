@@ -463,8 +463,8 @@
 		ACA083AF27FCBE77004F61EB /* BasketCell */ = {
 			isa = PBXGroup;
 			children = (
-				ACA083B027FCBED9004F61EB /* BasketCell.swift */,
 				ACA083B127FCBED9004F61EB /* BasketCell.xib */,
+				ACA083B027FCBED9004F61EB /* BasketCell.swift */,
 			);
 			path = BasketCell;
 			sourceTree = "<group>";
