@@ -259,8 +259,8 @@
 				AC5E691526811DD100408DB4 /* ProductListSceneViewController.swift */,
 				AC5E691626811DD100408DB4 /* ProductListSceneInteractor.swift */,
 				AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */,
-				AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */,
 				AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */,
+				AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -369,8 +369,8 @@
 				AC930B2A2653ADFA00DE5B2D /* CategorySceneViewController.swift */,
 				AC930B2B2653ADFA00DE5B2D /* CategorySceneInteractor.swift */,
 				AC930B262653ADFA00DE5B2D /* CategoryScenePresenter.swift */,
-				AC930B272653ADFA00DE5B2D /* CategorySceneWorker.swift */,
 				AC930B282653ADFA00DE5B2D /* CategorySceneRouter.swift */,
+				AC930B272653ADFA00DE5B2D /* CategorySceneWorker.swift */,
 			);
 			path = "СategoryAndSubcategory";
 			sourceTree = "<group>";
@@ -450,12 +450,12 @@
 			isa = PBXGroup;
 			children = (
 				ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */,
-				ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */,
-				ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */,
-				ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */,
 				ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */,
 				ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */,
 				ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */,
+				ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */,
+				ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */,
+				ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -508,8 +508,8 @@
 				ACB4ED6327A6E70100AAC997 /* ProductSceneViewController.swift */,
 				ACB4ED6427A6E70100AAC997 /* ProductSceneInteractor.swift */,
 				ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */,
-				ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */,
 				ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */,
+				ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";

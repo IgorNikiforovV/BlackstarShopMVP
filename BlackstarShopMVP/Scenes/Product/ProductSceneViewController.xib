@@ -39,7 +39,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlb-5w-4Ro" userLabel="ImageHorizontalCollectionView" customClass="ImageHorizontalCollectionView" customModule="BlackstarShopMVP" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
+                                            <rect key="frame" x="0.0" y="430" width="414" height="0.0"/>
                                         </view>
                                     </subviews>
                                     <constraints>

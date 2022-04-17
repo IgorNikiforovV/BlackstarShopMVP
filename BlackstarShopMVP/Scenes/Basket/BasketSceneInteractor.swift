@@ -13,12 +13,9 @@ protocol BasketSceneBusinessLogic {
 class BasketSceneInteractor: BasketSceneBusinessLogic {
 
     var presenter: BasketScenePresentationLogic?
-    var service: BasketSceneService?
+    var storageService: GlobalBasketStorageService?
 
     func makeRequest(request: BasketScene.Model.Request.RequestType) {
-        if service == nil {
-            service = BasketSceneService()
-        }
     }
 
 }

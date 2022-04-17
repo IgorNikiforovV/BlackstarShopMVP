@@ -13,9 +13,9 @@ protocol BasketSceneRoutingLogic {
 }
 
 class BasketSceneRouter: NSObject, BasketSceneRoutingLogic {
-    
+
     weak var viewController: BasketSceneViewController?
-    
+
     // MARK: Routing
-    
+
 }

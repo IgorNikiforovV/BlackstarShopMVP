@@ -35,7 +35,7 @@ enum ProductScene {
         }
     }
 
-    enum BasketBageChanging  {
+    enum BasketBageChanging {
         struct Request {}
         struct Response {
             let count: Int
