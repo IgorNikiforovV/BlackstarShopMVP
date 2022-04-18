@@ -9,7 +9,7 @@
 import UIKit
 
 enum BasketScene {
-    
+
     enum Model {
         struct Request {
             enum RequestType {
