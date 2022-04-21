@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import Rswift
 
 protocol BasketSceneDisplayLogic: AnyObject {
-    func displayData(viewModel: BasketScene.Model.ViewModel.ViewModelData)
+    func showBasketProducts(with viewModel: BasketScene.StartupData.ViewModel)
 }
 
-class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
+class BasketSceneViewController: UIViewController {
 
     // MARK: - IBOutlets
 
+    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var totalTitleLabel: UILabel!
     @IBOutlet private weak var totalPriceLabel: UILabel!
     @IBOutlet private weak var separatorView: UIView!
@@ -25,6 +27,8 @@ class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
 
     var interactor: BasketSceneBusinessLogic?
     var router: (NSObjectProtocol & BasketSceneRoutingLogic)?
+
+    private var basketCells = [BasketCellInput]()
 
     // MARK: Object lifecycle
 
@@ -44,10 +48,17 @@ class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
         super.viewDidLoad()
 
         makeInitialSettings()
+        interactor?.viewIsReady(request: BasketScene.StartupData.Request())
     }
 
-    func displayData(viewModel: BasketScene.Model.ViewModel.ViewModelData) {
+}
 
+extension BasketSceneViewController: BasketSceneDisplayLogic {
+
+    func showBasketProducts(with viewModel: BasketScene.StartupData.ViewModel) {
+        configureTotalPrice(price: viewModel.totalPrice)
+        basketCells = viewModel.basketCells
+        tableView.reloadData()
     }
 
 }
@@ -57,33 +68,66 @@ class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
 private extension BasketSceneViewController {
 
     func makeInitialSettings() {
+        interactor?.setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request(subscriber: self))
+
+        configureTableView()
         configureTotalTitle()
-        configureTotalPrice()
         configureSeparator()
         configureSeparator()
-        placeOrderTitle()
+        configurePlaceOrderTitle()
+    }
+
+    func configureTableView() {
+        tableView.register(R.nib.basketCell)
     }
 
     func configureTotalTitle() {
         totalTitleLabel.attributedText = Const.totalTitleAttributedText
     }
 
-    func configureTotalPrice() {
-        totalPriceLabel.attributedText = Const.totalPriceAttributedText("2 500Р")
-        totalPriceLabel.alpha = 0.4
+    func configureTotalPrice(price: String) {
+        totalPriceLabel.attributedText = Const.totalPriceAttributedText(price)
+        totalPriceLabel.alpha = 0.6
     }
 
     func configureSeparator() {
         separatorView.backgroundColor = Const.separatorViewCoor
     }
 
-    func placeOrderTitle() {
+    func configurePlaceOrderTitle() {
         placeOrderButton.layer.cornerRadius = Const.placeOrderCornerRadius
         placeOrderButton.backgroundColor = Const.placeOrderBackground
         placeOrderButton.setAttributedTitle(Const.placeOrderAttributedText(isBasketEmpty: false), for: .normal)
     }
 
 }
+
+// MARK: BasketItemsSubscribable
+
+extension BasketSceneViewController: BasketItemsSubscribable {
+
+    func basketItemsDidChange(newBasketItems: [BasketItem]) {
+        interactor?.storageWasChanged(request: BasketScene.StorageChange.Request(newBasketItems: newBasketItems))
+    }
+
+}
+
+extension BasketSceneViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        basketCells.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.basketCell, for: indexPath)!
+        if let basketCell = basketCells[safeIndex: indexPath.item] {
+            cell.configure(basketCell)
+        }
+        return cell
+    }
+
+}
+
 
 // MARK: Constants
 

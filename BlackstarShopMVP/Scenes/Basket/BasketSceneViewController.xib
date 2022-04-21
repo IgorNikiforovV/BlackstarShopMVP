@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="placeOrderButton" destination="BvP-8j-vo3" id="N1L-pH-YZv"/>
                 <outlet property="separatorView" destination="oXq-LX-tnE" id="xiX-z7-t0p"/>
+                <outlet property="tableView" destination="tnC-bk-yrS" id="HPD-hB-eI4"/>
                 <outlet property="totalPriceLabel" destination="ZAM-NA-oqf" id="Y6h-Ex-hxh"/>
                 <outlet property="totalTitleLabel" destination="1eW-Li-BdW" id="gpl-CF-DVl"/>
                 <outlet property="view" destination="Jf6-2I-eus" id="MNT-hm-Yxx"/>
@@ -28,6 +29,10 @@
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tnC-bk-yrS">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="628.5"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="BLe-DK-Cba"/>
+                                <outlet property="delegate" destination="-1" id="u76-sR-oYW"/>
+                            </connections>
                         </tableView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="STN-BS-7B7">
                             <rect key="frame" x="0.0" y="648.5" width="414" height="145.5"/>

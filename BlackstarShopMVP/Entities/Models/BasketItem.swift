@@ -13,7 +13,7 @@ struct BasketItem {
     let name: String
     let imagePath: String?
     let colorName: String
-    let size: Int?
+    let size: String?
     let price: String
 }
 
@@ -24,7 +24,7 @@ extension BasketItem {
                    name: productItem.name,
                    imagePath: productItem.mainImage,
                    colorName: productItem.colorName,
-                   size: productItem.selectedSizeIndex,
+                   size: productItem.selectedSize,
                    price: productItem.price)
     }
 }

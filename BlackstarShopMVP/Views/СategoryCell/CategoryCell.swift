@@ -16,10 +16,6 @@ protocol CategoryCellInput {
 
 class CategoryCell: UITableViewCell {
 
-    // MARK: Properties
-
-    static let identifier = "CategoryCell"
-
     // MARK: @IBOutlet
 
     @IBOutlet private weak var pictureImageView: UIImageView!
@@ -27,6 +23,10 @@ class CategoryCell: UITableViewCell {
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var separatorView: UIView!
     @IBOutlet private weak var roundedView: UIView!
+
+    // MARK: Properties
+
+    static let identifier = "CategoryCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()

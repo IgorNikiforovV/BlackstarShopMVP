@@ -23,6 +23,10 @@ struct ProductItem {
         guard let intPrice = Float(price.trimmingCharacters(in: .whitespaces)) else { return "-" }
         return intPrice.currencyRUB
     }
+    var selectedSize: String? {
+        guard let index = selectedSizeIndex else { return nil }
+        return offers[safeIndex: index]?.size
+    }
 
     static func productItem(id: String, from productInfo: ProductInfo) -> ProductItem {
         .init(id: id,

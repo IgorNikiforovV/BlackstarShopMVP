@@ -7,15 +7,34 @@
 //
 
 protocol BasketSceneBusinessLogic {
-    func makeRequest(request: BasketScene.Model.Request.RequestType)
+    func viewIsReady(request: BasketScene.StartupData.Request)
+    func setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request)
+    func storageWasChanged(request: BasketScene.StorageChange.Request)
 }
 
-class BasketSceneInteractor: BasketSceneBusinessLogic {
+class BasketSceneInteractor {
 
     var presenter: BasketScenePresentationLogic?
     var storageService: GlobalBasketStorageService?
+    private var basketItems = [BasketItem]()
 
-    func makeRequest(request: BasketScene.Model.Request.RequestType) {
+}
+
+// MARK: BasketSceneBusinessLogic
+
+extension BasketSceneInteractor: BasketSceneBusinessLogic {
+
+    func viewIsReady(request: BasketScene.StartupData.Request) {
+        basketItems = storageService?.basketItems ?? []
+        presenter?.presentData(with: BasketScene.StartupData.Response(basketItems: basketItems))
+    }
+
+    func setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request) {
+        storageService?.addObserver(object: request.subscriber)
+    }
+
+    func storageWasChanged(request: BasketScene.StorageChange.Request) {
+        basketItems = request.newBasketItems
     }
 
 }

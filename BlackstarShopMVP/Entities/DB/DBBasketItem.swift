@@ -13,7 +13,7 @@ class DBBasketItem: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var imagePath: String?
     @objc dynamic var colorName: String = ""
-    let size = RealmProperty<Int?>()
+    @objc dynamic var size: String?
     @objc dynamic var price: String = ""
 
     override class func primaryKey() -> String? {
@@ -31,7 +31,7 @@ extension BasketItem: RealmRepresentable {
             $0.name = name
             $0.imagePath = imagePath
             $0.colorName = colorName
-            $0.size.value = size
+            $0.size = size
             $0.price = price
         }
     }
@@ -46,7 +46,7 @@ extension DBBasketItem: DomainConvertibleType {
                    name: name,
                    imagePath: imagePath,
                    colorName: colorName,
-                   size: size.value,
+                   size: size,
                    price: price)
     }
 }

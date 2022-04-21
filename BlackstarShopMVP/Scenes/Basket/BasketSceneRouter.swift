@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BasketSceneRoutingLogic {
-    
+
 }
 
 class BasketSceneRouter: NSObject, BasketSceneRoutingLogic {

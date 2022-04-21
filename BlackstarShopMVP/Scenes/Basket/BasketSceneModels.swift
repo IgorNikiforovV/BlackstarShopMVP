@@ -9,23 +9,36 @@
 import UIKit
 
 enum BasketScene {
-
-    enum Model {
-        struct Request {
-            enum RequestType {
-                case some
-            }
-        }
+    enum StartupData {
+        struct Request {}
         struct Response {
-            enum ResponseType {
-                case some
-            }
+            let basketItems: [BasketItem]
         }
         struct ViewModel {
-            enum ViewModelData {
-                case some
-            }
+            let basketCells: [BasketCellInput]
+            let totalPrice: String
         }
     }
 
+    enum StorageSubscribing {
+        struct Request {
+            let subscriber: BasketItemsSubscribable
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
+    enum StorageChange {
+        struct Request {
+            let newBasketItems: [BasketItem]
+        }
+        struct Response {
+            let newBasketItems: [BasketItem]
+            let totalPrice: Double
+        }
+        struct ViewModel {
+            let basketCells: [BasketCellInput]
+            let totalPrice: String
+        }
+    }
 }

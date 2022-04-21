@@ -10,7 +10,7 @@ import UIKit
 protocol BasketCellInput {
     var imageUrl: URL? { get }
     var name: String { get }
-    var size: String { get }
+    var size: String? { get }
     var color: String { get }
     var price: String { get }
 }
@@ -26,6 +26,10 @@ class BasketCell: UITableViewCell {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var deleteImageView: UIImageView!
 
+    // MARK: Properties
+
+    static let identifier = "BasketCell"
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -40,7 +44,7 @@ extension BasketCell {
     func configure(_ viewModel: BasketCellInput) {
         mainImageView.load(url: viewModel.imageUrl, placeholder: UIImage())
         nameLabel.attributedText = Const.nameAttributedText(viewModel.name)
-        sizeLabel.attributedText = Const.sizeAttributedText(viewModel.size)
+        sizeLabel.attributedText = Const.sizeAttributedText(viewModel.size ?? "не задан")
         colorLabel.attributedText = Const.colorAttributedText(viewModel.color)
         priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
         deleteImageView.image = Const.basketImage

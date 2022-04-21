@@ -16,10 +16,6 @@ protocol ProductCellInput {
 
 class ProductCell: UICollectionViewCell {
 
-    // MARK: Properties
-
-    static let identifier = "ProductCell"
-
     // MARK: @IBOutlet
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -27,6 +23,10 @@ class ProductCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var buyButton: UIButton!
+
+    // MARK: Properties
+
+    static let identifier = "ProductCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
