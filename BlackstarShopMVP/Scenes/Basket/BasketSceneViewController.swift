@@ -65,6 +65,8 @@ extension BasketSceneViewController: BasketSceneDisplayLogic {
     func showChangedBasketProducts(with viewModel: BasketScene.StorageChange.ViewModel) {
         basketCellViewModels = viewModel.basketCells
 
+        configureTotalPrice(price: viewModel.totalPrice)
+
         let deleteIndexPaths = viewModel.deletedItemsIndexes
             .filter { basketCellViewModels.indices.contains($0) }
             .map { IndexPath(item: $0, section: 0) }
