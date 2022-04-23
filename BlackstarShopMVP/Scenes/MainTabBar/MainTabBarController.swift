@@ -60,6 +60,12 @@ private extension MainTabBarController {
 }
 
 extension MainTabBarController: BasketItemsSubscribable {
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        let newBasketItems = basketItemsChange.result
+        let badgeValue = newBasketItems.isEmpty ? nil : "\(newBasketItems.count)"
+        tabBar.items?[safeIndex: 1]?.badgeValue = badgeValue
+    }
+
 
     func basketItemsDidChange(newBasketItems: [BasketItem]) {
         let badgeValue = newBasketItems.isEmpty ? nil : "\(newBasketItems.count)"

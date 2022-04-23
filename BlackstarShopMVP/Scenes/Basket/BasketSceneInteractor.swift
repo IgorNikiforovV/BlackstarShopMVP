@@ -25,7 +25,7 @@ class BasketSceneInteractor {
 extension BasketSceneInteractor: BasketSceneBusinessLogic {
 
     func viewIsReady(request: BasketScene.StartupData.Request) {
-        basketItems = storageService?.basketItems ?? []
+        basketItems = storageService?.basketItemsChange?.result ?? []
         presenter?.presentData(with: BasketScene.StartupData.Response(basketItems: basketItems))
     }
 
@@ -34,7 +34,10 @@ extension BasketSceneInteractor: BasketSceneBusinessLogic {
     }
 
     func storageWasChanged(request: BasketScene.StorageChange.Request) {
-        basketItems = request.newBasketItems
+        let basketItemsChange = request.basketItemsChange
+        basketItems = basketItemsChange.result
+        let request = BasketScene.StorageChange.Response(basketItemsChange: basketItemsChange)
+        presenter?.presentNewStorageData(request: request)
     }
 
 }

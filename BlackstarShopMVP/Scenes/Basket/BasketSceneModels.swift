@@ -30,14 +30,15 @@ enum BasketScene {
 
     enum StorageChange {
         struct Request {
-            let newBasketItems: [BasketItem]
+            let basketItemsChange: DomainDatabaseChange<BasketItem>
         }
         struct Response {
-            let newBasketItems: [BasketItem]
-            let totalPrice: Double
+            let basketItemsChange: DomainDatabaseChange<BasketItem>
         }
         struct ViewModel {
             let basketCells: [BasketCellInput]
+            let deletedItemsIndexes: [Int]
+            let insertedItemsIndexes: [Int]
             let totalPrice: String
         }
     }

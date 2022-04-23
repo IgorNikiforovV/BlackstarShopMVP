@@ -13,4 +13,7 @@ struct DomainDatabaseChange<T> {
     let deleteIndexes: [Int]
     let insertIndexes: [Int]
     let modifyIndexes: [Int]
+    var result: [T] {
+        initialResult.isEmpty ? changeResults : initialResult
+    }
 }

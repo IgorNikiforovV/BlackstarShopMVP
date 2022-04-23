@@ -10,18 +10,37 @@ import UIKit
 
 protocol BasketScenePresentationLogic {
     func presentData(with response: BasketScene.StartupData.Response)
+    func presentNewStorageData(request: BasketScene.StorageChange.Response)
 }
 
-class BasketScenePresenter: BasketScenePresentationLogic {
+class BasketScenePresenter {
 
     weak var viewController: BasketSceneDisplayLogic?
+
+}
+
+extension BasketScenePresenter: BasketScenePresentationLogic {
 
     func presentData(with response: BasketScene.StartupData.Response) {
         let basketCells = basketCellViewModels(from: response.basketItems)
         let totalPrice = sumPrices(from: response.basketItems)
         let viewModel = BasketScene.StartupData.ViewModel(basketCells: basketCells, totalPrice: totalPrice)
-        viewController?.showBasketProducts(with: viewModel)
+        viewController?.showInitialBasketProducts(with: viewModel)
     }
+
+    func presentNewStorageData(request: BasketScene.StorageChange.Response) {
+        let basketItems = request.basketItemsChange.changeResults
+        let basketCells = basketCellViewModels(from: basketItems)
+        let totalPrice = sumPrices(from: basketItems)
+        let deletedItemsIndexes = request.basketItemsChange.deleteIndexes
+        let insertedItemsIndexes = request.basketItemsChange.insertIndexes
+        let viewModel = BasketScene.StorageChange.ViewModel(basketCells: basketCells,
+                                                            deletedItemsIndexes: deletedItemsIndexes,
+                                                            insertedItemsIndexes: insertedItemsIndexes,
+                                                            totalPrice: totalPrice)
+        viewController?.showChangedBasketProducts(with: viewModel)
+    }
+
 
 }
 

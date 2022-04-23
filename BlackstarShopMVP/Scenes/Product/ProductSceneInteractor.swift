@@ -73,7 +73,7 @@ private extension ProductSceneInteractor {
     }
 
     func setBasketBage() {
-        let bageValue = storageService?.basketItems.count ?? 0
+        let bageValue = storageService?.basketItemsChange?.result.count ?? 0
         presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: bageValue))
     }
 
@@ -81,8 +81,9 @@ private extension ProductSceneInteractor {
 
 extension ProductSceneInteractor: BasketItemsSubscribable {
 
-    func basketItemsDidChange(newBasketItems: [BasketItem]) {
-        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: newBasketItems.count))
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        let newBasketItemsCount = basketItemsChange.result.count
+        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: newBasketItemsCount))
     }
 
 }

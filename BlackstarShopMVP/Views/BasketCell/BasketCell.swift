@@ -32,6 +32,12 @@ class BasketCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        let color = selected ? Const.lightGreyColor : Const.whiteColor
+        contentView.backgroundColor = color
+    }
+
 }
 
 // MARK: - Public methods
@@ -54,6 +60,11 @@ private extension BasketCell {
 
     enum Const {
 
+        // contentView
+        static let lightGreyColor = R.color.colors.lightGreyColor()!
+        static let whiteColor = R.color.colors.whiteColor()!
+
+        // image View
         static let imageUrlPlaceholder = R.image.common.placeholder()!
 
         static func imageUrl(from text: String?) -> URL? {

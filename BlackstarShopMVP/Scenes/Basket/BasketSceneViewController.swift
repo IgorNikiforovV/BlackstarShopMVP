@@ -10,7 +10,8 @@ import UIKit
 import Rswift
 
 protocol BasketSceneDisplayLogic: AnyObject {
-    func showBasketProducts(with viewModel: BasketScene.StartupData.ViewModel)
+    func showInitialBasketProducts(with viewModel: BasketScene.StartupData.ViewModel)
+    func showChangedBasketProducts(with viewModel: BasketScene.StorageChange.ViewModel)
 }
 
 class BasketSceneViewController: UIViewController {
@@ -28,7 +29,7 @@ class BasketSceneViewController: UIViewController {
     var interactor: BasketSceneBusinessLogic?
     var router: (NSObjectProtocol & BasketSceneRoutingLogic)?
 
-    private var basketCells = [BasketCellInput]()
+    private var basketCellViewModels = [BasketCellInput]()
 
     // MARK: Object lifecycle
 
@@ -55,10 +56,29 @@ class BasketSceneViewController: UIViewController {
 
 extension BasketSceneViewController: BasketSceneDisplayLogic {
 
-    func showBasketProducts(with viewModel: BasketScene.StartupData.ViewModel) {
+    func showInitialBasketProducts(with viewModel: BasketScene.StartupData.ViewModel) {
         configureTotalPrice(price: viewModel.totalPrice)
-        basketCells = viewModel.basketCells
+        basketCellViewModels = viewModel.basketCells
         tableView.reloadData()
+    }
+
+    func showChangedBasketProducts(with viewModel: BasketScene.StorageChange.ViewModel) {
+        basketCellViewModels = viewModel.basketCells
+
+        let deleteIndexPaths = viewModel.deletedItemsIndexes
+            .filter { basketCellViewModels.indices.contains($0) }
+            .map { IndexPath(item: $0, section: 0) }
+        if !deleteIndexPaths.isEmpty {
+            tableView.deleteRows(at: deleteIndexPaths, with: .middle)
+        }
+
+
+        let insertIndexPaths = viewModel.insertedItemsIndexes
+            .filter { basketCellViewModels.indices.contains($0) }
+            .map { IndexPath(item: $0, section: 0) }
+        if !insertIndexPaths.isEmpty {
+            tableView.insertRows(at: insertIndexPaths, with: .middle)
+        }
     }
 
 }
@@ -106,8 +126,8 @@ private extension BasketSceneViewController {
 
 extension BasketSceneViewController: BasketItemsSubscribable {
 
-    func basketItemsDidChange(newBasketItems: [BasketItem]) {
-        interactor?.storageWasChanged(request: BasketScene.StorageChange.Request(newBasketItems: newBasketItems))
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        interactor?.storageWasChanged(request: BasketScene.StorageChange.Request(basketItemsChange: basketItemsChange))
     }
 
 }
@@ -117,12 +137,12 @@ extension BasketSceneViewController: BasketItemsSubscribable {
 extension BasketSceneViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        basketCells.count
+        basketCellViewModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.basketCell, for: indexPath)!
-        if let basketCell = basketCells[safeIndex: indexPath.item] {
+        if let basketCell = basketCellViewModels[safeIndex: indexPath.item] {
             cell.configure(basketCell)
         }
         return cell
