@@ -112,6 +112,8 @@ extension BasketSceneViewController: BasketItemsSubscribable {
 
 }
 
+// MARK: UITableViewDataSource
+
 extension BasketSceneViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,6 +129,20 @@ extension BasketSceneViewController: UITableViewDataSource {
     }
 
 }
+
+// MARK: UITableViewDelegate
+
+//extension BasketSceneViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
+//
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
+//
+//}
 
 
 // MARK: Constants

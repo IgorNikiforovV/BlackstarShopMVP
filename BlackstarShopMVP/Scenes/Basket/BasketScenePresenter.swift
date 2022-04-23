@@ -34,14 +34,9 @@ private extension BasketScenePresenter {
         return intPrice.currencyRUB
     }
 
-    func imageUrl(from imagePathString: String?) -> URL? {
-        guard let imagePathString = imagePathString else { return nil }
-        return URL(string: imagePathString)
-    }
-
     func basketCellViewModels(from basketItems: [BasketItem]) -> [BasketCellInput] {
         basketItems.map {
-            BasketCellViewModel(imageUrl: imageUrl(from: $0.imagePath),
+            BasketCellViewModel(imageUrl: $0.imagePath,
                                 name: $0.name,
                                 size: $0.size,
                                 color: $0.colorName,

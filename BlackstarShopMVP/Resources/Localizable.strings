@@ -17,4 +17,10 @@
 "Basket.total.title" = "Итого:";
 "Basket.place.order.title.empty" = "На главную";
 "Basket.place.order.title" = "Оформить заказ";
+"Basket.product.size" = "Размер: %@";
+"Basket.product.no.size.title" = "не задан";
+"Basket.product.color" = "Цвет: %@";
+
+
+
 

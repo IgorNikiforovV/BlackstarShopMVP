@@ -8,7 +8,7 @@
 import Foundation
 
 struct BasketCellViewModel: BasketCellInput {
-    let imageUrl: URL?
+    let imageUrl: String?
     let name: String
     let size: String?
     let color: String

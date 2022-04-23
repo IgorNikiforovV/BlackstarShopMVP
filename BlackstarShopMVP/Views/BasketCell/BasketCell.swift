@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BasketCellInput {
-    var imageUrl: URL? { get }
+    var imageUrl: String? { get }
     var name: String { get }
     var size: String? { get }
     var color: String { get }
@@ -28,11 +28,8 @@ class BasketCell: UITableViewCell {
 
     // MARK: Properties
 
-    static let identifier = "BasketCell"
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
 }
@@ -42,9 +39,10 @@ class BasketCell: UITableViewCell {
 extension BasketCell {
 
     func configure(_ viewModel: BasketCellInput) {
-        mainImageView.load(url: viewModel.imageUrl, placeholder: UIImage())
+        let imageUrl = Const.imageUrl(from: viewModel.imageUrl)
+        mainImageView.load(url: imageUrl, placeholder: Const.imageUrlPlaceholder)
         nameLabel.attributedText = Const.nameAttributedText(viewModel.name)
-        sizeLabel.attributedText = Const.sizeAttributedText(viewModel.size ?? "не задан")
+        sizeLabel.attributedText = Const.sizeAttributedText(viewModel.size ?? Const.noSizeTitle)
         colorLabel.attributedText = Const.colorAttributedText(viewModel.color)
         priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
         deleteImageView.image = Const.basketImage
@@ -56,13 +54,21 @@ private extension BasketCell {
 
     enum Const {
 
+        static let imageUrlPlaceholder = R.image.common.placeholder()!
+
+        static func imageUrl(from text: String?) -> URL? {
+            guard let text = text else { return nil }
+            let urlText = "\(NetworkConst.baseUrl)\(text)"
+            return URL(string: urlText)
+        }
+
         // nameLabel
         static func nameAttributedText(_ text: String) -> NSAttributedString {
             .init(string: text, attributes: nameAttributes)
         }
 
         static let nameAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.colors.blueColor()!,
+            .foregroundColor: R.color.colors.blackColor()!,
             .font: R.font.sfProDisplayMedium(size: 16)!,
             .paragraphStyle: nameParagraphStyle
         ]
@@ -75,13 +81,16 @@ private extension BasketCell {
         }()
 
         // sizeLabel
+        static let noSizeTitle = R.string.localizable.basketProductNoSizeTitle()
+
         static func sizeAttributedText(_ text: String) -> NSAttributedString {
-            .init(string: text, attributes: sizeAttributes)
+            let size = R.string.localizable.basketProductSize(text)
+            return .init(string: size, attributes: sizeAttributes)
         }
 
         static let sizeAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.colors.separatorColor()!,
-            .font: R.font.sfProDisplayMedium(size: 11)!,
+            .font: R.font.sfProDisplayMedium(size: 14)!,
             .paragraphStyle: sizeParagraphStyle
         ]
 
@@ -94,7 +103,8 @@ private extension BasketCell {
 
         // colorLabel
         static func colorAttributedText(_ text: String) -> NSAttributedString {
-            .init(string: text, attributes: colorAttributes)
+            let color = R.string.localizable.basketProductColor(text)
+            return .init(string: color, attributes: colorAttributes)
         }
 
         static let colorAttributes: [NSAttributedString.Key: Any] = [
@@ -116,8 +126,8 @@ private extension BasketCell {
         }
 
         static let priceAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.colors.separatorColor()!,
-            .font: R.font.sfProDisplayMedium(size: 11)!,
+            .foregroundColor: R.color.colors.blackColor()!,
+            .font: R.font.sfProDisplayMedium(size: 14)!,
             .paragraphStyle: priceParagraphStyle
         ]
 
