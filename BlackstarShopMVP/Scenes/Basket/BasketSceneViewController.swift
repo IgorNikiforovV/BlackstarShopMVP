@@ -24,12 +24,18 @@ class BasketSceneViewController: UIViewController {
     @IBOutlet private weak var separatorView: UIView!
     @IBOutlet private weak var placeOrderButton: UIButton!
 
+    private var deleteAllItemsButton = UIButton()
+
     // MARK: - Properties
 
     var interactor: BasketSceneBusinessLogic?
     var router: (NSObjectProtocol & BasketSceneRoutingLogic)?
 
-    private var basketCellViewModels = [BasketCellInput]()
+    private var basketCellViewModels = [BasketCellInput]() {
+        didSet {
+            deleteAllItemsButton.isHidden = basketCellViewModels.isEmpty
+        }
+    }
 
     // MARK: Object lifecycle
 
@@ -53,6 +59,8 @@ class BasketSceneViewController: UIViewController {
     }
 
 }
+
+// MARK: BasketSceneDisplayLogic
 
 extension BasketSceneViewController: BasketSceneDisplayLogic {
 
@@ -91,11 +99,18 @@ private extension BasketSceneViewController {
     func makeInitialSettings() {
         interactor?.setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request(subscriber: self))
 
+        configureDeleteAllItems()
         configureTableView()
         configureTotalTitle()
         configureSeparator()
         configureSeparator()
         configurePlaceOrderTitle()
+    }
+
+    func configureDeleteAllItems() {
+        deleteAllItemsButton.setImage(Const.allDeleteButton, for: .normal)
+        deleteAllItemsButton.addTarget(self, action: #selector(allBasketButtonDidTap), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: deleteAllItemsButton)
     }
 
     func configureTableView() {
@@ -159,8 +174,18 @@ extension BasketSceneViewController: BasketCellDelegate {
     func basketItemDeleteButtonDidTap(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             let request = BasketScene.BasketItemDeleting.Request(index: indexPath.item)
-            interactor?.basketItemDeleteButtonDidTap(request: request)
+            interactor?.deleteBasketItemButtonDidTap(request: request)
         }
+    }
+
+}
+
+// MARK: private methods
+
+private extension BasketSceneViewController {
+
+    @objc func allBasketButtonDidTap() {
+        interactor?.deleteAllBasketItemsButtonDidTap(request: BasketScene.AllBasketItemsDeleting.Request())
     }
 
 }
@@ -170,6 +195,9 @@ extension BasketSceneViewController: BasketCellDelegate {
 private extension BasketSceneViewController {
 
     enum Const {
+
+        // all Delete Button
+        static let allDeleteButton = R.image.basket.deleteAll()!
 
         // total title label
         static var totalTitleAttributedText: NSAttributedString {

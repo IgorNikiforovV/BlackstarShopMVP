@@ -12,6 +12,7 @@ protocol GlobalBasketStorageService {
     func addObserver(object: BasketItemsSubscribable)
     func addBasketItem(newBasketItem: BasketItem)
     func deleteBasketItem(basketItem: BasketItem)
+    func deleteAllBasketItems()
 }
 
 protocol BasketItemsSubscribable {
@@ -53,5 +54,9 @@ extension GlobalBasketStorageServiceImpl: GlobalBasketStorageService {
 
     func deleteBasketItem(basketItem: BasketItem) {
         dbBasketService.deleteBasketItem(item: basketItem)
+    }
+
+    func deleteAllBasketItems() {
+        dbBasketService.deleteAllBasketItems()
     }
 }

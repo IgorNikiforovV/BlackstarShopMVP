@@ -51,4 +51,10 @@ enum BasketScene {
         struct ViewModel {}
     }
 
+    enum AllBasketItemsDeleting {
+        struct Request {}
+        struct Response {}
+        struct ViewModel {}
+    }
+
 }

@@ -13,6 +13,7 @@ protocol DBBasketService {
     func fetchBasketItems() -> [BasketItem]
     func saveBasketItem(item: BasketItem)
     func deleteBasketItem(item: BasketItem)
+    func deleteAllBasketItems()
 }
 
 final class DBBasketServiceImpl {
@@ -57,6 +58,14 @@ extension DBBasketServiceImpl: DBBasketService {
             try databaseManager.delete(object: item.asRealm(), predicate: predicate)
         } catch {
             print("Error deleting \(item): \(error.localizedDescription)")
+        }
+    }
+
+    func deleteAllBasketItems() {
+        do {
+            try databaseManager.deleteAll(DBBasketItem.self)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
