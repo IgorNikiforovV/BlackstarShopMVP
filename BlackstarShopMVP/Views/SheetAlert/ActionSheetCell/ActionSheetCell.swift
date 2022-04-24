@@ -8,6 +8,8 @@ enum ImageContainers {
 
 final class ActionSheetCell: UITableViewCell {
 
+    // MARK: @IBOutlet
+
     @IBOutlet private weak var centerLabel: UILabel!
     @IBOutlet private weak var leftStackView: UIStackView!
     @IBOutlet private weak var centerStackView: UIStackView!
@@ -44,6 +46,8 @@ final class ActionSheetCell: UITableViewCell {
 }
 
 extension ActionSheetCell {
+
+    // MARK: Life cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()

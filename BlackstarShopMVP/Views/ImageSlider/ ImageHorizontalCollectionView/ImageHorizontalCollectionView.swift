@@ -23,6 +23,8 @@ class ImageHorizontalCollectionView: UIView {
     private var images = [UIImage]()
     private let imagesService: DownloadImagesService = DownloadImagesServiceImpl()
 
+    // MARK: - Object lifecycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()

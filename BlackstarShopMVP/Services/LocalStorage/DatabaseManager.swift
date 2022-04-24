@@ -30,7 +30,7 @@ protocol DatabaseManagerProtocol {
     func save<T: Object>(objects: [T], update: Realm.UpdatePolicy) throws
     func save(withoutNotifying: Bool, _ block: () -> Void) throws
 
-    func delete<T: Object>(object: T, withoutNotifying: Bool) throws
+    func delete<T: Object>(object: T, predicate: NSPredicate, withoutNotifying: Bool) throws
     func delete<T: Object>(objects: [T]) throws
     func deleteAll<T: Object>(_ model: T.Type, withoutNotifying: Bool) throws
 
@@ -53,8 +53,8 @@ extension DatabaseManagerProtocol {
         return try save(withoutNotifying: withoutNotifying, block)
     }
 
-    func delete<T: Object>(object: T, withoutNotifying: Bool = false) throws {
-        return try delete(object: object, withoutNotifying: withoutNotifying)
+    func delete<T: Object>(object: T, predicate: NSPredicate, withoutNotifying: Bool = false) throws {
+        return try delete(object: object, predicate: predicate, withoutNotifying: withoutNotifying)
     }
 
     func deleteAll<T: Object>(_ model: T.Type, withoutNotifying: Bool = false) throws {
@@ -194,15 +194,18 @@ extension DatabaseManager: DatabaseManagerProtocol {
         }
     }
 
-    func delete<T: Object>(object: T, withoutNotifying: Bool = false) throws {
+    func delete<T: Object>(object: T, predicate: NSPredicate, withoutNotifying: Bool = false) throws {
         let realm = self.safeRealm()
+        // swiftlint:disable first_where
+        guard let deletedObject = realm.objects(T.self).filter(predicate).first else { return }
+        // swiftlint:enable first_where
         if withoutNotifying {
             try realm.write(withoutNotifying: collectionsNotificationTokens) {
-                realm.delete(object)
+                realm.delete(deletedObject)
             }
         } else {
             try realm.write {
-                realm.delete(object)
+                realm.delete(deletedObject)
             }
         }
     }

@@ -42,4 +42,13 @@ enum BasketScene {
             let totalPrice: String
         }
     }
+
+    enum BasketItemDeleting {
+        struct Request {
+            let index: Int
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
 }

@@ -28,6 +28,8 @@ class CategoryCell: UITableViewCell {
 
     static let identifier = "CategoryCell"
 
+    // MARK: - Object lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

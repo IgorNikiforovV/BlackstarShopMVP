@@ -68,7 +68,6 @@ extension BasketSceneViewController: BasketSceneDisplayLogic {
         configureTotalPrice(price: viewModel.totalPrice)
 
         let deleteIndexPaths = viewModel.deletedItemsIndexes
-            .filter { basketCellViewModels.indices.contains($0) }
             .map { IndexPath(item: $0, section: 0) }
         if !deleteIndexPaths.isEmpty {
             tableView.deleteRows(at: deleteIndexPaths, with: .middle)
@@ -146,26 +145,25 @@ extension BasketSceneViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.basketCell, for: indexPath)!
         if let basketCell = basketCellViewModels[safeIndex: indexPath.item] {
             cell.configure(basketCell)
+            cell.delegate = self
         }
         return cell
     }
 
 }
 
-// MARK: UITableViewDelegate
+// MARK: BasketCellDelegate
 
-//extension BasketSceneViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
-//
-//}
+extension BasketSceneViewController: BasketCellDelegate {
 
+    func basketItemDeleteButtonDidTap(_ cell: UITableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            let request = BasketScene.BasketItemDeleting.Request(index: indexPath.item)
+            interactor?.basketItemDeleteButtonDidTap(request: request)
+        }
+    }
+
+}
 
 // MARK: Constants
 

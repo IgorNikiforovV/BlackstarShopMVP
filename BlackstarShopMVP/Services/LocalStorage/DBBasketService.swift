@@ -5,6 +5,8 @@
 //  Created by Игорь Никифоров on 09.04.2022.
 //
 
+import Foundation
+
 protocol DBBasketService {
     func observeBasketItemsUpdates(_ block: (() -> Void)?)
     func observeBasketItemsChanges(_ completion: @escaping (DomainDatabaseChange<BasketItem>) -> Void)
@@ -51,7 +53,8 @@ extension DBBasketServiceImpl: DBBasketService {
 
     func deleteBasketItem(item: BasketItem) {
         do {
-            try databaseManager.delete(object: item.asRealm())
+            let predicate = NSPredicate(format: "id == %@", item.id)
+            try databaseManager.delete(object: item.asRealm(), predicate: predicate)
         } catch {
             print("Error deleting \(item): \(error.localizedDescription)")
         }

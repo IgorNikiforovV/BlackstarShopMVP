@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol BasketCellDelegate: AnyObject {
+    func basketItemDeleteButtonDidTap(_ cell: UITableViewCell)
+}
+
+protocol BasketCellInputProtocol {
+    func configure(_ viewModel: BasketCellInput)
+}
+
 protocol BasketCellInput {
     var imageUrl: String? { get }
     var name: String { get }
@@ -25,11 +33,18 @@ class BasketCell: UITableViewCell {
     @IBOutlet private weak var colorLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var deleteImageView: UIImageView!
+    @IBOutlet private weak var deleteImageContainerView: UIView!
+
 
     // MARK: Properties
 
+    weak var delegate: BasketCellDelegate?
+
+    // MARK: - Object lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureDeleteImageContainerView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +57,7 @@ class BasketCell: UITableViewCell {
 
 // MARK: - Public methods
 
-extension BasketCell {
+extension BasketCell: BasketCellInputProtocol {
 
     func configure(_ viewModel: BasketCellInput) {
         let imageUrl = Const.imageUrl(from: viewModel.imageUrl)
@@ -52,6 +67,22 @@ extension BasketCell {
         colorLabel.attributedText = Const.colorAttributedText(viewModel.color)
         priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
         deleteImageView.image = Const.basketImage
+    }
+
+}
+
+// MARK: - Private methods
+
+private extension BasketCell {
+
+    func configureDeleteImageContainerView() {
+        deleteImageContainerView.backgroundColor = .clear
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gestureRecognizer:)))
+        deleteImageContainerView.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        delegate?.basketItemDeleteButtonDidTap(self)
     }
 
 }

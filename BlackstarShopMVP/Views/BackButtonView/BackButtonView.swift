@@ -13,6 +13,8 @@ protocol BackButtonViewDelegate: AnyObject {
 
 class BackButtonView: UIView {
 
+    // MARK: Properties
+
     private var backButtonImage: UIImageView {
         let image = UIImageView(image: R.image.product.backButton()!)
         image.contentMode = .scaleAspectFit
@@ -21,6 +23,8 @@ class BackButtonView: UIView {
     }
 
     weak var delegate: BackButtonViewDelegate?
+
+    // MARK: - Object lifecycle
 
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 24, height: 24))

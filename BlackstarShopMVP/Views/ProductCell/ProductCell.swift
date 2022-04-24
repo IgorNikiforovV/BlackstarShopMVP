@@ -28,6 +28,8 @@ class ProductCell: UICollectionViewCell {
 
     static let identifier = "ProductCell"
 
+    // MARK: - Object lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()

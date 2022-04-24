@@ -10,6 +10,7 @@ protocol BasketSceneBusinessLogic {
     func viewIsReady(request: BasketScene.StartupData.Request)
     func setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request)
     func storageWasChanged(request: BasketScene.StorageChange.Request)
+    func basketItemDeleteButtonDidTap(request: BasketScene.BasketItemDeleting.Request)
 }
 
 class BasketSceneInteractor {
@@ -38,6 +39,15 @@ extension BasketSceneInteractor: BasketSceneBusinessLogic {
         basketItems = basketItemsChange.result
         let request = BasketScene.StorageChange.Response(basketItemsChange: basketItemsChange)
         presenter?.presentNewStorageData(request: request)
+    }
+
+    func basketItemDeleteButtonDidTap(request: BasketScene.BasketItemDeleting.Request) {
+        guard let basketItem = basketItems[safeIndex: request.index] else {
+            print("Index: \(request.index) not found")
+            return
+        }
+
+        storageService?.deleteBasketItem(basketItem: basketItem)
     }
 
 }
