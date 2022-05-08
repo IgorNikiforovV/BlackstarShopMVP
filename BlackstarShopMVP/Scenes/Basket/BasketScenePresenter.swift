@@ -10,7 +10,10 @@ import UIKit
 
 protocol BasketScenePresentationLogic {
     func presentData(with response: BasketScene.StartupData.Response)
-    func presentNewStorageData(request: BasketScene.StorageChange.Response)
+    func presentNewStorageData(response: BasketScene.StorageChange.Response)
+    func showDeleteBasketItemAlert(response: BasketScene.BasketItemDeleting.Response)
+    func showDeleteAllBasketItemsAlert(response: BasketScene.AllBasketItemsDeleting.Response)
+    func finishDeleteAlertActions(response viewModel: BasketScene.DeleteAlertDisplaying.Response)
 }
 
 class BasketScenePresenter {
@@ -28,7 +31,7 @@ extension BasketScenePresenter: BasketScenePresentationLogic {
         viewController?.showInitialBasketProducts(with: viewModel)
     }
 
-    func presentNewStorageData(request: BasketScene.StorageChange.Response) {
+    func presentNewStorageData(response request: BasketScene.StorageChange.Response) {
         let basketItems = request.basketItemsChange.changeResults
         let basketCells = basketCellViewModels(from: basketItems)
         let totalPrice = sumPrices(from: basketItems)
@@ -41,6 +44,17 @@ extension BasketScenePresenter: BasketScenePresentationLogic {
         viewController?.showChangedBasketProducts(with: viewModel)
     }
 
+    func showDeleteBasketItemAlert(response request: BasketScene.BasketItemDeleting.Response) {
+        viewController?.showDeleteBasketItemAlert(with: BasketScene.BasketItemDeleting.ViewModel())
+    }
+
+    func showDeleteAllBasketItemsAlert(response: BasketScene.AllBasketItemsDeleting.Response) {
+        viewController?.showDeleteAllBasketItemsAlert(with: BasketScene.AllBasketItemsDeleting.ViewModel())
+    }
+
+    func finishDeleteAlertActions(response viewModel: BasketScene.DeleteAlertDisplaying.Response) {
+        viewController?.finishDeleteAlertActions(with: BasketScene.DeleteAlertDisplaying.ViewModel())
+    }
 
 }
 

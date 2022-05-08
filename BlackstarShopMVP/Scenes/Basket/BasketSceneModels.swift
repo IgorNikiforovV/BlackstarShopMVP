@@ -57,4 +57,12 @@ enum BasketScene {
         struct ViewModel {}
     }
 
+    enum DeleteAlertDisplaying {
+        struct Request {
+            let isDeletionConfirmed: Bool
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
 }

@@ -20,6 +20,10 @@
 "Basket.product.size" = "Размер: %@";
 "Basket.product.no.size.title" = "не задан";
 "Basket.product.color" = "Цвет: %@";
+"Basket.delete.ok.button.title" = "ДА";
+"Basket.delete.cancel.button.title" = "НЕТ";
+"Basket.delete.one.title" = "Удалить товар из корзины?";
+"Basket.delete.all.title" = "Удалить весь товар из корзины?";
 
 
 

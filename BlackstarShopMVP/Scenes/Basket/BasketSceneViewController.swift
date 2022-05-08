@@ -12,6 +12,9 @@ import Rswift
 protocol BasketSceneDisplayLogic: AnyObject {
     func showInitialBasketProducts(with viewModel: BasketScene.StartupData.ViewModel)
     func showChangedBasketProducts(with viewModel: BasketScene.StorageChange.ViewModel)
+    func showDeleteBasketItemAlert(with viewModel: BasketScene.BasketItemDeleting.ViewModel)
+    func showDeleteAllBasketItemsAlert(with viewModel: BasketScene.AllBasketItemsDeleting.ViewModel)
+    func finishDeleteAlertActions(with viewModel: BasketScene.DeleteAlertDisplaying.ViewModel)
 }
 
 class BasketSceneViewController: UIViewController {
@@ -90,6 +93,18 @@ extension BasketSceneViewController: BasketSceneDisplayLogic {
         }
     }
 
+    func showDeleteBasketItemAlert(with viewModel: BasketScene.BasketItemDeleting.ViewModel) {
+        showDeleteAlert(title: Const.deleteOneItemAlertTitle)
+    }
+
+    func showDeleteAllBasketItemsAlert(with viewModel: BasketScene.AllBasketItemsDeleting.ViewModel) {
+        showDeleteAlert(title: Const.deleteAllItemsAlertTitle)
+    }
+
+    func finishDeleteAlertActions(with viewModel: BasketScene.DeleteAlertDisplaying.ViewModel) {
+        deleteAllItemsButton.isHidden = false
+    }
+
 }
 
 // MARK: private methods
@@ -136,6 +151,17 @@ private extension BasketSceneViewController {
         placeOrderButton.setAttributedTitle(Const.placeOrderAttributedText(isBasketEmpty: false), for: .normal)
     }
 
+    func showDeleteAlert(title: String) {
+        deleteAllItemsButton.isHidden = true
+
+        let alert = AlertView()
+        alert.delegate = self
+        let alertModel = AlertViewModel(title: title,
+                                        okButtonTitle: Const.deleteAlertOkButtonTitle,
+                                        cancelButtonTitle: Const.deleteAlertCancelButtonTitle)
+        alert.configure(model: alertModel, parentView: view)
+    }
+
 }
 
 // MARK: BasketItemsSubscribable
@@ -180,6 +206,20 @@ extension BasketSceneViewController: BasketCellDelegate {
 
 }
 
+extension BasketSceneViewController: AlertViewDelegate {
+
+    func okButtonDidTap() {
+        let request = BasketScene.DeleteAlertDisplaying.Request(isDeletionConfirmed: true)
+        interactor?.deleteAlertButtonDidTap(request: request)
+    }
+
+    func cancelButtonDidTap() {
+        let request = BasketScene.DeleteAlertDisplaying.Request(isDeletionConfirmed: false)
+        interactor?.deleteAlertButtonDidTap(request: request)
+    }
+
+}
+
 // MARK: private methods
 
 private extension BasketSceneViewController {
@@ -189,6 +229,7 @@ private extension BasketSceneViewController {
     }
 
 }
+
 
 // MARK: Constants
 
@@ -227,10 +268,10 @@ private extension BasketSceneViewController {
         static let placeOrderBackground = R.color.colors.blueColor()!
         static let placeOrderCornerRadius: CGFloat = 24
         static let placeOrderTtile = R.string.localizable.basketPlaceOrderTitle()
-        static let placeOrderTtileEmpty = R.string.localizable.basketPlaceOrderTitleEmpty()
+        static let placeOrderTitleEmpty = R.string.localizable.basketPlaceOrderTitleEmpty()
 
         static func placeOrderAttributedText(isBasketEmpty: Bool) -> NSAttributedString {
-            let title = isBasketEmpty ? placeOrderTtileEmpty : placeOrderTtile
+            let title = isBasketEmpty ? placeOrderTitleEmpty : placeOrderTtile
             return NSAttributedString(string: title, attributes: placeOrderAttributes)
         }
         static let placeOrderAttributes: [NSAttributedString.Key: Any] = [
@@ -238,6 +279,12 @@ private extension BasketSceneViewController {
             .font: R.font.sfProDisplayMedium(size: 15)!
         ]
 
+        // delete alert
+
+        static let deleteAlertOkButtonTitle = R.string.localizable.basketDeleteOkButtonTitle()
+        static let deleteAlertCancelButtonTitle = R.string.localizable.basketDeleteCancelButtonTitle()
+        static let deleteOneItemAlertTitle = R.string.localizable.basketDeleteOneTitle()
+        static let deleteAllItemsAlertTitle = R.string.localizable.basketDeleteAllTitle()
     }
 
 }

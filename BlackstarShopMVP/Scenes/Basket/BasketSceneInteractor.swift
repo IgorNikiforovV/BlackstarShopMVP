@@ -12,6 +12,7 @@ protocol BasketSceneBusinessLogic {
     func storageWasChanged(request: BasketScene.StorageChange.Request)
     func deleteBasketItemButtonDidTap(request: BasketScene.BasketItemDeleting.Request)
     func deleteAllBasketItemsButtonDidTap(request: BasketScene.AllBasketItemsDeleting.Request)
+    func deleteAlertButtonDidTap(request: BasketScene.DeleteAlertDisplaying.Request)
 }
 
 class BasketSceneInteractor {
@@ -19,6 +20,7 @@ class BasketSceneInteractor {
     var presenter: BasketScenePresentationLogic?
     var storageService: GlobalBasketStorageService?
     private var basketItems = [BasketItem]()
+    private var deletionType: DeletionType?
 
 }
 
@@ -39,7 +41,7 @@ extension BasketSceneInteractor: BasketSceneBusinessLogic {
         let basketItemsChange = request.basketItemsChange
         basketItems = basketItemsChange.result
         let request = BasketScene.StorageChange.Response(basketItemsChange: basketItemsChange)
-        presenter?.presentNewStorageData(request: request)
+        presenter?.presentNewStorageData(response: request)
     }
 
     func deleteBasketItemButtonDidTap(request: BasketScene.BasketItemDeleting.Request) {
@@ -48,11 +50,27 @@ extension BasketSceneInteractor: BasketSceneBusinessLogic {
             return
         }
 
-        storageService?.deleteBasketItem(basketItem: basketItem)
+        deletionType = .one(basketItem: basketItem)
+        presenter?.showDeleteBasketItemAlert(response: BasketScene.BasketItemDeleting.Response())
     }
 
     func deleteAllBasketItemsButtonDidTap(request: BasketScene.AllBasketItemsDeleting.Request) {
-        storageService?.deleteAllBasketItems()
+        deletionType = .all
+        presenter?.showDeleteAllBasketItemsAlert(response: BasketScene.AllBasketItemsDeleting.Response())
+    }
+
+    func deleteAlertButtonDidTap(request: BasketScene.DeleteAlertDisplaying.Request) {
+        if request.isDeletionConfirmed, let deletionType = deletionType {
+            switch deletionType {
+            case .one(let basketItem):
+                storageService?.deleteBasketItem(basketItem: basketItem)
+            case .all:
+                storageService?.deleteAllBasketItems()
+            }
+
+            self.deletionType = nil
+        }
+        presenter?.finishDeleteAlertActions(response: BasketScene.DeleteAlertDisplaying.Response())
     }
 
 }

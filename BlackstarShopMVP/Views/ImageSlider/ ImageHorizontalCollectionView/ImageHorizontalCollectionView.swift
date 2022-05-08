@@ -74,6 +74,7 @@ private extension ImageHorizontalCollectionView {
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.topAnchor.constraint(equalTo: topAnchor)
         ])
+
         collectionView.register(R.nib.imageHorizontalCollectionCell)
 
         pageControl.currentPageIndicatorTintColor = .green
