@@ -29,6 +29,7 @@ class ProductSceneViewController: UIViewController {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var addBasketButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var sliderViewHeightConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
 
@@ -134,6 +135,7 @@ extension ProductSceneViewController: BasketItemsSubscribable {
 
 private extension ProductSceneViewController {
     func makeInitialSettings() {
+        configureSliderView()
         configureSeparator()
         configurePriceTitle()
         configureAddBasket()
@@ -148,6 +150,10 @@ private extension ProductSceneViewController {
 
         configureBackButtonView()
         configureBasketButtonView()
+    }
+
+    func configureSliderView() {
+        sliderViewHeightConstraint.constant = UIScreen.main.scale > 2.0 ? 560 : 430
     }
 
     func configureBackButtonView() {

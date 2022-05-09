@@ -21,6 +21,7 @@
                 <outlet property="priceTitleLabel" destination="pDy-8E-TGL" id="Yrp-9f-Lbk"/>
                 <outlet property="separatorView" destination="2Z7-xt-gqj" id="2Sp-Tl-ggq"/>
                 <outlet property="sliderView" destination="Jlb-5w-4Ro" id="M2d-HH-6BS"/>
+                <outlet property="sliderViewHeightConstraint" destination="261-Kw-AlU" id="fZ5-Dt-1je"/>
                 <outlet property="view" destination="rBT-Wa-UHv" id="nCb-Na-cVc"/>
             </connections>
         </placeholder>
@@ -39,7 +40,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlb-5w-4Ro" userLabel="ImageHorizontalCollectionView" customClass="ImageHorizontalCollectionView" customModule="BlackstarShopMVP" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="430" width="414" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                         </view>
                                     </subviews>
                                     <constraints>
