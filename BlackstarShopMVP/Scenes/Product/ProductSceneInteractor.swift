@@ -30,7 +30,10 @@ class ProductSceneInteractor {
 extension ProductSceneInteractor: ProductSceneBusinessLogic {
 
     func viewIsReady(request: ProductScene.StartupData.Request) {
-        presenter?.presentData(with: ProductScene.StartupData.Response(product: productItem))
+        let basketBageValue = storageService?.basketItemsChange?.result.count ?? 0
+        let response = ProductScene.StartupData.Response(product: productItem,
+                                                         basketBageValue: basketBageValue)
+        presenter?.presentData(with: response)
     }
 
     func addBasketTapped(request: ProductScene.AddBasketTrapping.Request) {

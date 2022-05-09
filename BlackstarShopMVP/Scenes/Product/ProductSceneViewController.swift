@@ -86,6 +86,7 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
         descriptionLabel.attributedText = description.fromHTML(attributes: [:],
                                                                commonAttribute: Const.descriptionAttributes)
 
+        basketButtonView.updateBadge(with: "\(viewModel.basketBageValue)")
     }
 
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel) {

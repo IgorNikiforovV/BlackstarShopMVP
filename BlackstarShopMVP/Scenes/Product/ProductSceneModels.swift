@@ -14,12 +14,14 @@ enum ProductScene {
         struct Request {}
         struct Response {
             let product: ProductItem?
+            let basketBageValue: Int
         }
         struct ViewModel {
             let imageStringUrls: [URL]
             let productName: String
             let price: String
             let description: String?
+            let basketBageValue: Int
         }
     }
 

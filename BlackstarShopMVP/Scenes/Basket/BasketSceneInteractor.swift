@@ -13,6 +13,7 @@ protocol BasketSceneBusinessLogic {
     func deleteBasketItemButtonDidTap(request: BasketScene.BasketItemDeleting.Request)
     func deleteAllBasketItemsButtonDidTap(request: BasketScene.AllBasketItemsDeleting.Request)
     func deleteAlertButtonDidTap(request: BasketScene.DeleteAlertDisplaying.Request)
+    func placeOrderTapped(request: BasketScene.PlaceOrderTapping.Request)
 }
 
 class BasketSceneInteractor {
@@ -71,6 +72,11 @@ extension BasketSceneInteractor: BasketSceneBusinessLogic {
             self.deletionType = nil
         }
         presenter?.finishDeleteAlertActions(response: BasketScene.DeleteAlertDisplaying.Response())
+    }
+
+    func placeOrderTapped(request: BasketScene.PlaceOrderTapping.Request) {
+        let response = BasketScene.PlaceOrderTapping.Response(needToGoMarketTab: basketItems.isEmpty)
+        presenter?.openMarketTabOrPlaceOrderModule(response: response)
     }
 
 }

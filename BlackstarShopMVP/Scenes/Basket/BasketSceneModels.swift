@@ -65,4 +65,14 @@ enum BasketScene {
         struct ViewModel {}
     }
 
+    enum PlaceOrderTapping {
+        struct Request {}
+        struct Response {
+            let needToGoMarketTab: Bool
+        }
+        struct ViewModel {
+            let needToGoMarketTab: Bool
+        }
+    }
+
 }

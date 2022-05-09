@@ -13,7 +13,8 @@ protocol BasketScenePresentationLogic {
     func presentNewStorageData(response: BasketScene.StorageChange.Response)
     func showDeleteBasketItemAlert(response: BasketScene.BasketItemDeleting.Response)
     func showDeleteAllBasketItemsAlert(response: BasketScene.AllBasketItemsDeleting.Response)
-    func finishDeleteAlertActions(response viewModel: BasketScene.DeleteAlertDisplaying.Response)
+    func finishDeleteAlertActions(response: BasketScene.DeleteAlertDisplaying.Response)
+    func openMarketTabOrPlaceOrderModule(response: BasketScene.PlaceOrderTapping.Response)
 }
 
 class BasketScenePresenter {
@@ -54,6 +55,11 @@ extension BasketScenePresenter: BasketScenePresentationLogic {
 
     func finishDeleteAlertActions(response viewModel: BasketScene.DeleteAlertDisplaying.Response) {
         viewController?.finishDeleteAlertActions(with: BasketScene.DeleteAlertDisplaying.ViewModel())
+    }
+
+    func openMarketTabOrPlaceOrderModule(response: BasketScene.PlaceOrderTapping.Response) {
+        let viewModel = BasketScene.PlaceOrderTapping.ViewModel(needToGoMarketTab: response.needToGoMarketTab)
+        viewController?.openMarketTabOrPlaceOrderModule(with: viewModel)
     }
 
 }

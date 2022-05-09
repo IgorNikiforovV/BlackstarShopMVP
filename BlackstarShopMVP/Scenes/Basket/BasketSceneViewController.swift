@@ -15,6 +15,7 @@ protocol BasketSceneDisplayLogic: AnyObject {
     func showDeleteBasketItemAlert(with viewModel: BasketScene.BasketItemDeleting.ViewModel)
     func showDeleteAllBasketItemsAlert(with viewModel: BasketScene.AllBasketItemsDeleting.ViewModel)
     func finishDeleteAlertActions(with viewModel: BasketScene.DeleteAlertDisplaying.ViewModel)
+    func openMarketTabOrPlaceOrderModule(with viewModel: BasketScene.PlaceOrderTapping.ViewModel)
 }
 
 class BasketSceneViewController: UIViewController {
@@ -37,6 +38,7 @@ class BasketSceneViewController: UIViewController {
     private var basketCellViewModels = [BasketCellInput]() {
         didSet {
             deleteAllItemsButton.isHidden = basketCellViewModels.isEmpty
+            setPlaceOrderButtonTitle(isBasketEmpty: basketCellViewModels.isEmpty)
         }
     }
 
@@ -106,6 +108,14 @@ extension BasketSceneViewController: BasketSceneDisplayLogic {
         deleteAllItemsButton.isHidden = false
     }
 
+    func openMarketTabOrPlaceOrderModule(with viewModel: BasketScene.PlaceOrderTapping.ViewModel) {
+        if viewModel.needToGoMarketTab {
+            router?.showMarketTab()
+        } else {
+            print("open PlaceOrderScene")
+        }
+    }
+
 }
 
 // MARK: private methods
@@ -147,7 +157,6 @@ private extension BasketSceneViewController {
     func configurePlaceOrderTitle() {
         placeOrderButton.layer.cornerRadius = Const.placeOrderCornerRadius
         placeOrderButton.backgroundColor = Const.placeOrderBackground
-        placeOrderButton.setAttributedTitle(Const.placeOrderAttributedText(isBasketEmpty: false), for: .normal)
     }
 
     func showDeleteAlert(title: String) {
@@ -159,6 +168,11 @@ private extension BasketSceneViewController {
                                         okButtonTitle: Const.deleteAlertOkButtonTitle,
                                         cancelButtonTitle: Const.deleteAlertCancelButtonTitle)
         alert.configure(model: alertModel, parentView: view)
+    }
+
+    func setPlaceOrderButtonTitle(isBasketEmpty: Bool) {
+        placeOrderButton.setAttributedTitle(Const.placeOrderAttributedText(isBasketEmpty: isBasketEmpty),
+                                            for: .normal)
     }
 
 }
@@ -205,6 +219,8 @@ extension BasketSceneViewController: BasketCellDelegate {
 
 }
 
+// MARK: AlertViewDelegate
+
 extension BasketSceneViewController: AlertViewDelegate {
 
     func okButtonDidTap() {
@@ -225,6 +241,10 @@ private extension BasketSceneViewController {
 
     @objc func allBasketButtonDidTap() {
         interactor?.deleteAllBasketItemsButtonDidTap(request: BasketScene.AllBasketItemsDeleting.Request())
+    }
+
+    @IBAction func placeOrderDidTap(_ sender: UIButton) {
+        interactor?.placeOrderTapped(request: BasketScene.PlaceOrderTapping.Request())
     }
 
 }

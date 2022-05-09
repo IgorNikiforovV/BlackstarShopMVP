@@ -29,7 +29,8 @@ class ProductScenePresenter: ProductScenePresentationLogic {
         let viewModel = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
                                                            productName: product.name,
                                                            price: product.preparedPrice,
-                                                           description: product.description)
+                                                           description: product.description,
+                                                           basketBageValue: response.basketBageValue)
 
         viewController?.updateData(with: viewModel)
     }
