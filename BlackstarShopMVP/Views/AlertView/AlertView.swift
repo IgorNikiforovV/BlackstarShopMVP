@@ -77,9 +77,8 @@ private extension AlertView {
         contentView.frame = bounds
         self.covereSuperview(subview: contentView)
 
-        backgroundView.alpha = 0
-
-        alertView.alpha = 0
+        self.alpha = 0
+        backgroundView.alpha = 0.4
         alertView.backgroundColor = Const.contentBackgroundColor
         alertView.layer.cornerRadius = Const.contentCornerRadius
 
@@ -97,13 +96,7 @@ private extension AlertView {
         UIView.animate(withDuration: 0.4,
                        delay: 0,
                        options: .curveLinear) {
-            self.backgroundView.alpha = 0.4
-        }
-
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.4,
-                       options: .curveLinear) {
-            self.alertView.alpha = 1
+            self.alpha = 1
         }
     }
 
@@ -112,13 +105,7 @@ private extension AlertView {
         UIView.animate(withDuration: 0.4,
                        delay: 0,
                        options: .curveLinear) {
-            self.alertView.alpha = 0
-        }
-
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.4,
-                       options: .curveLinear) {
-            self.backgroundView.alpha = 0
+            self.alpha = 0
         } completion: { _ in
             self.removeFromSuperview()
         }
