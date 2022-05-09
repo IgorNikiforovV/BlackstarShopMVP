@@ -11,6 +11,8 @@ import Foundation
 protocol ProductSceneBusinessLogic {
     func viewIsReady(request: ProductScene.StartupData.Request)
     func addBasketTapped(request: ProductScene.AddBasketTrapping.Request)
+    func setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request)
+    func basketStorageWasChanged(request: ProductScene.BasketBageChanging.Request)
 }
 
 class ProductSceneInteractor {
@@ -28,9 +30,6 @@ class ProductSceneInteractor {
 extension ProductSceneInteractor: ProductSceneBusinessLogic {
 
     func viewIsReady(request: ProductScene.StartupData.Request) {
-        setBasketStorageNotification()
-        setBasketBage()
-
         presenter?.presentData(with: ProductScene.StartupData.Response(product: productItem))
     }
 
@@ -50,6 +49,15 @@ extension ProductSceneInteractor: ProductSceneBusinessLogic {
         }
     }
 
+    func setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request) {
+        storageService?.addObserver(object: request.subscriber)
+    }
+
+    func basketStorageWasChanged(request: ProductScene.BasketBageChanging.Request) {
+        let bageValue = request.count
+        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: bageValue))
+    }
+
 }
 
 // MARK: private methods
@@ -66,24 +74,6 @@ private extension ProductSceneInteractor {
     func saveProductItemToBasket(productItem: ProductItem) {
         let basketItem = BasketItem.basketItem(from: productItem)
         storageService?.addBasketItem(newBasketItem: basketItem)
-    }
-
-    func setBasketStorageNotification() {
-        storageService?.addObserver(object: self)
-    }
-
-    func setBasketBage() {
-        let bageValue = storageService?.basketItemsChange?.result.count ?? 0
-        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: bageValue))
-    }
-
-}
-
-extension ProductSceneInteractor: BasketItemsSubscribable {
-
-    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
-        let newBasketItemsCount = basketItemsChange.result.count
-        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: newBasketItemsCount))
     }
 
 }

@@ -35,8 +35,18 @@ enum ProductScene {
         }
     }
 
+    enum StorageSubscribing {
+        struct Request {
+            let subscriber: BasketItemsSubscribable
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
     enum BasketBageChanging {
-        struct Request {}
+        struct Request {
+            let count: Int
+        }
         struct Response {
             let count: Int
         }

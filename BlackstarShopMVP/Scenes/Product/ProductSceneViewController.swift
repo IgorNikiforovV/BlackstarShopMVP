@@ -60,7 +60,7 @@ class ProductSceneViewController: UIViewController {
         super.viewDidLoad()
 
         makeInitialSettings()
-
+        interactor?.setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request(subscriber: self))
         interactor?.viewIsReady(request: ProductScene.StartupData.Request())
     }
 
@@ -105,6 +105,37 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
     func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel) {
         basketButtonView.updateBadge(with: "\(viewModel.count)")
     }
+}
+
+// MARK: BackButtonViewDelegate
+
+extension ProductSceneViewController: BackButtonViewDelegate {
+
+    func backButtonDidTap() {
+        router?.returnToPreviousViewController()
+    }
+
+}
+
+// MARK: BasketButtonViewDelegate
+
+extension ProductSceneViewController: BasketButtonViewDelegate {
+
+    func basketButtonDidTap() {
+        tabBarController?.selectedIndex = 1
+    }
+
+}
+
+// MARK: BasketItemsSubscribable
+
+extension ProductSceneViewController: BasketItemsSubscribable {
+
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        let request = ProductScene.BasketBageChanging.Request(count: basketItemsChange.result.count)
+        interactor?.basketStorageWasChanged(request: request)
+    }
+
 }
 
 // MARK: private methods
@@ -160,26 +191,6 @@ private extension ProductSceneViewController {
 
     @IBAction func addBascketButtonTapped(_ sender: UIButton) {
         interactor?.addBasketTapped(request: ProductScene.AddBasketTrapping.Request(sheetRowAttributtes: Const.sheetItemAttributes))
-    }
-
-}
-
-// MARK: BackButtonViewDelegate
-
-extension ProductSceneViewController: BackButtonViewDelegate {
-
-    func backButtonDidTap() {
-        router?.returnToPreviousViewController()
-    }
-
-}
-
-// MARK: BasketButtonViewDelegate
-
-extension ProductSceneViewController: BasketButtonViewDelegate {
-
-    func basketButtonDidTap() {
-        tabBarController?.selectedIndex = 1
     }
 
 }

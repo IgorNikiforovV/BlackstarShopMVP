@@ -58,6 +58,7 @@ class BasketSceneViewController: UIViewController {
         super.viewDidLoad()
 
         makeInitialSettings()
+        interactor?.setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request(subscriber: self))
         interactor?.viewIsReady(request: BasketScene.StartupData.Request())
     }
 
@@ -112,8 +113,6 @@ extension BasketSceneViewController: BasketSceneDisplayLogic {
 private extension BasketSceneViewController {
 
     func makeInitialSettings() {
-        interactor?.setNotificationStorageSubscribing(request: BasketScene.StorageSubscribing.Request(subscriber: self))
-
         configureDeleteAllItems()
         configureTableView()
         configureTotalTitle()
