@@ -9,10 +9,7 @@
 import UIKit
 
 protocol ProductSceneDisplayLogic: AnyObject {
-    func updateImageSlider(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductName(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductDescription(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductPrice(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateData(with viewModel: ProductScene.StartupData.ViewModel)
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel)
     func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel)
 }
@@ -76,23 +73,18 @@ class ProductSceneViewController: UIViewController {
 
 extension ProductSceneViewController: ProductSceneDisplayLogic {
 
-    func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
-        sliderView.configure(response.imageStringUrls)
-    }
+    func updateData(with viewModel: ProductScene.StartupData.ViewModel) {
+        sliderView.configure(viewModel.imageStringUrls)
 
-    func updateProductName(with response: ProductScene.StartupData.ViewModel) {
-        nameLabel.attributedText = Const.nameAttributedText(response.productName)
-    }
+        nameLabel.attributedText = Const.nameAttributedText(viewModel.productName)
 
-    func updateProductPrice(with response: ProductScene.StartupData.ViewModel) {
         priceLabel.alpha = 0.5
-        priceLabel.attributedText = Const.priceAttributedText(response.price)
-    }
+        priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
 
-    func updateProductDescription(with response: ProductScene.StartupData.ViewModel) {
-        guard let description = response.description else { descriptionLabel.isHidden = true; return }
+        guard let description = viewModel.description else { descriptionLabel.isHidden = true; return }
         descriptionLabel.attributedText = description.fromHTML(attributes: [:],
                                                                commonAttribute: Const.descriptionAttributes)
+
     }
 
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel) {

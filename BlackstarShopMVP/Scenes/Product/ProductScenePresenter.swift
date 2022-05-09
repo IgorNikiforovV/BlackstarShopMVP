@@ -26,15 +26,12 @@ class ProductScenePresenter: ProductScenePresentationLogic {
             .sorted(by: { image1, image2 in image1.sortOrder > image2.sortOrder })
             .compactMap { URL(string: "\(NetworkConst.baseUrl)\($0.imageURL)") }
 
-        let response = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
-                                                          productName: product.name,
-                                                          price: product.preparedPrice,
-                                                          description: product.description)
+        let viewModel = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
+                                                           productName: product.name,
+                                                           price: product.preparedPrice,
+                                                           description: product.description)
 
-        viewController?.updateImageSlider(with: response)
-        viewController?.updateProductName(with: response)
-        viewController?.updateProductPrice(with: response)
-        viewController?.updateProductDescription(with: response)
+        viewController?.updateData(with: viewModel)
     }
 
     func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response) {
