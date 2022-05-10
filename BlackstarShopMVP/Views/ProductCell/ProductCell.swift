@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol ProductCellInput {
     var title: String { get }
@@ -18,6 +19,9 @@ class ProductCell: UICollectionViewCell {
 
     // MARK: @IBOutlet
 
+    @IBOutlet private weak var contentContainerView: UIView!
+    @IBOutlet private weak var skeletonContainerView: UIView!
+
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
@@ -27,12 +31,21 @@ class ProductCell: UICollectionViewCell {
     // MARK: Properties
 
     static let identifier = "ProductCell"
+    private let gradient = SkeletonGradient(baseColor: UIColor.concrete)
 
     // MARK: - Object lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         initialize()
+        showLoading()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        showLoading()
     }
 
 }
@@ -61,6 +74,8 @@ extension ProductCell {
         }
 
         priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
+
+        hideLoading()
     }
 
 }
@@ -70,6 +85,7 @@ private extension ProductCell {
     func initialize() {
         configureContentView()
         configureBuyButton()
+        configureSkeletonViews()
     }
 
     func configureContentView() {
@@ -84,6 +100,44 @@ private extension ProductCell {
         buyButton.setAttributedTitle(
             .init(string: Const.buyTitle, attributes: Const.buyTitleAttributes
         ), for: .normal)
+    }
+
+    func configureSkeletonViews() {
+        skeletonContainerView.layer.cornerRadius = 8
+        skeletonContainerView.layer.borderWidth = 0.6
+        skeletonContainerView.layer.borderColor = Const.borderColor.cgColor
+
+        skeletonContainerView.subviews.forEach {
+            $0.layer.cornerRadius = 4
+            $0.layer.masksToBounds = true
+        }
+    }
+
+    func showLoading() {
+        isUserInteractionEnabled = false
+
+        contentContainerView.isHidden = true
+
+        DispatchQueue.main.async {
+            self.skeletonContainerView.subviews.forEach {
+                $0.showAnimatedGradientSkeleton(usingGradient: self.gradient)
+                $0.showGradientSkeleton()
+            }
+        }
+        skeletonContainerView.isHidden = false
+    }
+
+    func hideLoading() {
+        isUserInteractionEnabled = true
+
+        skeletonContainerView.isHidden = true
+        DispatchQueue.main.async {
+            self.skeletonContainerView.subviews.forEach {
+                $0.hideSkeleton()
+            }
+        }
+
+        contentContainerView.isHidden = false
     }
 
 }

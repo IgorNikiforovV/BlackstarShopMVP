@@ -24,7 +24,7 @@ class ProductListSceneViewController: UIViewController, ProductListSceneDisplayL
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var noDataLabel: UILabel!
 
-    private var products = [ProductCellInput]()
+    private var products: [ProductCellInput]?
 
     // MARK: Object lifecycle
 
@@ -81,12 +81,15 @@ class ProductListSceneViewController: UIViewController, ProductListSceneDisplayL
 extension ProductListSceneViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        products.count
+        guard let products = products else { return 6 }
+
+        return products.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath)
-        if let cell = cell as? ProductCell {
+        if let products = products,
+           let cell = cell as? ProductCell {
             cell.configure(products[indexPath.item])
         }
         return cell
