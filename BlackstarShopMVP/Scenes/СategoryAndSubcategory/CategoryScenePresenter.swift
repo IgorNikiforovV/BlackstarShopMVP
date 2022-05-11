@@ -31,6 +31,8 @@ class CategoryScenePresenter: CategoryScenePresentationLogic {
             viewController?.configureUI(viewModel: .navBarConfiguration(navBarVM))
         case .refreshControl:
             viewController?.configureUI(viewModel: .refreshControl)
+        case .activityIndicator:
+            viewController?.configureUI(viewModel: .activityIndicatorShowing)
         }
     }
 
@@ -44,6 +46,8 @@ class CategoryScenePresenter: CategoryScenePresentationLogic {
             viewController?.updateUI(viewModel: .refreshControlHidding(true))
         case .tableViewFailureReloading(let errorText):
             viewController?.updateUI(viewModel: .tableViewErrorReloading(errorText))
+        case .activityIndicatorСlosing:
+            viewController?.updateUI(viewModel: .activityIndicatorСlosing)
         }
     }
 

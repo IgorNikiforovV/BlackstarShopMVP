@@ -69,6 +69,7 @@ private extension CategorySceneInteractor {
         if sceneMode == .categories {
             presenter?.prepareUIConfigurationData(response: .refreshControl)
         }
+        presenter?.prepareUIConfigurationData(response: .activityIndicator)
     }
 
     func categoryBox(from categoriesResponse: [String: CategoryInfo]) -> [CategoryBox] {
@@ -93,6 +94,7 @@ private extension CategorySceneInteractor {
                 case .success(let categoriesResponse):
                     self.categories = self.categoryBox(from: categoriesResponse)
                     self.presenter?.prepareUIUpdatingData(response: .tableViewDataReloading(self.categories.map({ $0.ctegory })))
+                    self.presenter?.prepareUIUpdatingData(response: .activityIndicatorСlosing)
                 case .failure(let error):
                     self.presenter?.prepareUIUpdatingData(response: .tableViewFailureReloading(error.localizedDescription))
                 }
@@ -108,6 +110,7 @@ private extension CategorySceneInteractor {
             if let subcategories = categories.first?.subcategories {
                 presenter?.prepareUIUpdatingData(response: .tableViewDataReloading(subcategories))
                 presenter?.prepareUIUpdatingData(response: .refreshControlHidding(true))
+                presenter?.prepareUIUpdatingData(response: .activityIndicatorСlosing)
             }
         }
     }

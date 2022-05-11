@@ -22,6 +22,7 @@ class CategorySceneViewController: UIViewController {
     // MARK: IBOutlets
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
 
     private var categories = [CategoryCellInput]()
@@ -63,6 +64,9 @@ extension CategorySceneViewController: CategorySceneDisplayLogic {
         case .refreshControl:
             refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
             tableView.refreshControl = refreshControl
+        case .activityIndicatorShowing:
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
         }
     }
 
@@ -78,6 +82,9 @@ extension CategorySceneViewController: CategorySceneDisplayLogic {
         case .refreshControlHidding(let isHidden):
             refreshControl.endRefreshing()
             refreshControl.isHidden = isHidden
+        case .activityIndicatorСlosing:
+            activityIndicatorView.stopAnimating()
+            activityIndicatorView.isHidden = true
         }
     }
 
