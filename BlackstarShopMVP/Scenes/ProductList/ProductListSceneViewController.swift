@@ -55,13 +55,13 @@ class ProductListSceneViewController: UIViewController, ProductListSceneDisplayL
 
     func updateUI(viewModel: ProductListSceneModels.ViewModel.UIUpdating) {
         switch viewModel {
-        case .refreshControlHidding(_):
+        case .refreshControlHidding:
             print("refreshControlHidding")
         case .collectionViewDataReloading(let productCellItems):
             noDataLabel.isHidden = !productCellItems.isEmpty
             products = productCellItems
             collectionView.reloadData()
-        case .collectionViewErrorReloading(_):
+        case .collectionViewErrorReloading:
             products = []
             collectionView.reloadData()
         }

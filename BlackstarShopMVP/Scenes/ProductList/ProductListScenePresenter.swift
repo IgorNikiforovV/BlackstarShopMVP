@@ -24,7 +24,7 @@ class ProductListScenePresenter: ProductListScenePresentationLogic {
 
     func prepareUIUpdatingData(response: ProductListSceneModels.Response.UIUpdating) {
         switch response {
-        case .refreshControlHidding(_):
+        case .refreshControlHidding:
             print("refreshControlHidding")
         case .collectionViewDataReloading(let products):
             let cellItems = products.map { ProductCellItem.init(productItem: $0) }
