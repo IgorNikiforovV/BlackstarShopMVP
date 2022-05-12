@@ -21,6 +21,8 @@ class BasketButtonView: UIView {
 
     weak var delegate: BasketButtonViewDelegate?
 
+    // MARK: - Object lifecycle
+
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: Const.contentViewWidth, height: Const.contentViewHeight))
         initialize()

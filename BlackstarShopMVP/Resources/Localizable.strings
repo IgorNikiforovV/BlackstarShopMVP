@@ -13,3 +13,18 @@
 "Product.addBasket.title" = "ДОБАВИТЬ В КОРЗИНУ";
 "Product.price.title" = "Стоимость:";
 "Product.alert.size.title" = "Выберите подходящий размер";
+
+"Basket.total.title" = "Итого:";
+"Basket.place.order.title.empty" = "На главную";
+"Basket.place.order.title" = "Оформить заказ";
+"Basket.product.size" = "Размер: %@";
+"Basket.product.no.size.title" = "не задан";
+"Basket.product.color" = "Цвет: %@";
+"Basket.delete.ok.button.title" = "ДА";
+"Basket.delete.cancel.button.title" = "НЕТ";
+"Basket.delete.one.title" = "Удалить товар из корзины?";
+"Basket.delete.all.title" = "Удалить весь товар из корзины?";
+
+
+
+

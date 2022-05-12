@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import UIKit
 
 protocol ProductSceneBusinessLogic {
     func viewIsReady(request: ProductScene.StartupData.Request)
     func addBasketTapped(request: ProductScene.AddBasketTrapping.Request)
+    func setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request)
+    func basketStorageWasChanged(request: ProductScene.BasketBageChanging.Request)
 }
 
 class ProductSceneInteractor {
@@ -20,6 +21,7 @@ class ProductSceneInteractor {
 
     var presenter: ProductScenePresentationLogic?
     var service: ProductSceneService?
+    var storageService: GlobalBasketStorageService?
 
 }
 
@@ -28,7 +30,10 @@ class ProductSceneInteractor {
 extension ProductSceneInteractor: ProductSceneBusinessLogic {
 
     func viewIsReady(request: ProductScene.StartupData.Request) {
-        presenter?.presentData(with: ProductScene.StartupData.Response(product: productItem))
+        let basketBageValue = storageService?.basketItemsChange?.result.count ?? 0
+        let response = ProductScene.StartupData.Response(product: productItem,
+                                                         basketBageValue: basketBageValue)
+        presenter?.presentData(with: response)
     }
 
     func addBasketTapped(request: ProductScene.AddBasketTrapping.Request) {
@@ -47,6 +52,15 @@ extension ProductSceneInteractor: ProductSceneBusinessLogic {
         }
     }
 
+    func setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request) {
+        storageService?.addObserver(object: request.subscriber)
+    }
+
+    func basketStorageWasChanged(request: ProductScene.BasketBageChanging.Request) {
+        let bageValue = request.count
+        presenter?.changeBasketBage(with: ProductScene.BasketBageChanging.Response(count: bageValue))
+    }
+
 }
 
 // MARK: private methods
@@ -56,6 +70,13 @@ private extension ProductSceneInteractor {
     func chooseSize(index: Int) {
         guard let productItem = productItem?.with(newSelectedSizeIndex: index) else { return }
         self.productItem = productItem
+
+        saveProductItemToBasket(productItem: productItem)
+    }
+
+    func saveProductItemToBasket(productItem: ProductItem) {
+        let basketItem = BasketItem.basketItem(from: productItem)
+        storageService?.addBasketItem(newBasketItem: basketItem)
     }
 
 }

@@ -11,10 +11,13 @@ class MainTabBarController: UITabBarController {
 
     // MARK: - Properties
 
+    let storageService: GlobalBasketStorageService? = GlobalBasketStorageServiceImpl.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureMainTabBarControllers()
+        setBasketStorageNotification()
     }
 
 }
@@ -22,6 +25,10 @@ class MainTabBarController: UITabBarController {
 // MARK: Public methods
 
 extension MainTabBarController {
+
+    func switchToMarketTab() {
+        selectedIndex = 0
+    }
 
     func switchToBasketTab() {
         selectedIndex = 1
@@ -43,11 +50,27 @@ private extension MainTabBarController {
 
     func configureMainTabBarControllers() {
         let categoryController = ScenesFactoryImpl.makeCategoriesScene(nil).toPresent()
-        let productsController = ScenesFactoryImpl.makeProductListScene("67").toPresent()
+        let productsController = ScenesFactoryImpl.makeBasketScene().toPresent()
         viewControllers = [
             generateNavController(for: categoryController, title: "Магазин", image: Const.searchIcon),
             generateNavController(for: productsController, title: "Корзина", image: Const.basketIcon)
         ]
+    }
+
+    func setBasketStorageNotification() {
+        storageService?.addObserver(object: self)
+    }
+
+}
+
+// MARK: BasketItemsSubscribable
+
+extension MainTabBarController: BasketItemsSubscribable {
+
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        let newBasketItems = basketItemsChange.result
+        let badgeValue = newBasketItems.isEmpty ? nil : "\(newBasketItems.count)"
+        tabBar.items?[safeIndex: 1]?.badgeValue = badgeValue
     }
 
 }

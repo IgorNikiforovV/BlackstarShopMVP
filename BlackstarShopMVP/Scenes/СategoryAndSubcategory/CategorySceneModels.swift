@@ -21,11 +21,13 @@ enum CategorySceneModels {
         enum UIConfiguration {
             case navBar(_ title: String)
             case refreshControl
+            case activityIndicator
         }
         enum UIUpdating {
             case refreshControlHidding(_ isHidden: Bool)
             case tableViewDataReloading(_ seccess: [CategoryCellModel])
             case tableViewFailureReloading(_ failure: String)
+            case activityIndicatorСlosing
         }
         enum Routing {
             case subcategoriesScene(_ model: CategoryBox)
@@ -36,11 +38,13 @@ enum CategorySceneModels {
         enum UIConfiguration {
             case navBarConfiguration(_ model: DisplayedNavBar)
             case refreshControl
+            case activityIndicatorShowing
         }
         enum UIUpdating {
             case refreshControlHidding(_ isHidden: Bool)
             case tableViewDataReloading(_ seccess: [CategoryCellInput])
             case tableViewErrorReloading(_ failure: String)
+            case activityIndicatorСlosing
         }
         enum Routing {
             case subcategoriesScene(_ model: CategoryBox)

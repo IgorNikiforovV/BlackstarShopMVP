@@ -11,10 +11,14 @@ struct ShadowSheetAction {
 
 class ShadowActionSheetController: UIViewController {
 
+    // MARK: @IBOutlet
+
     @IBOutlet weak var headerView: ActionSheetHeaderView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tableHeightConstrained: NSLayoutConstraint!
+
+    // MARK: Properties
 
     private let checkMarkImage: UIImage?
     private let alertTitle: NSAttributedString?

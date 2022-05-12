@@ -14,12 +14,14 @@ enum ProductScene {
         struct Request {}
         struct Response {
             let product: ProductItem?
+            let basketBageValue: Int
         }
         struct ViewModel {
             let imageStringUrls: [URL]
             let productName: String
             let price: String
             let description: String?
+            let basketBageValue: Int
         }
     }
 
@@ -32,6 +34,26 @@ enum ProductScene {
         }
         struct ViewModel {
             let sheetActions: [ShadowSheetAction]
+        }
+    }
+
+    enum StorageSubscribing {
+        struct Request {
+            let subscriber: BasketItemsSubscribable
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
+    enum BasketBageChanging {
+        struct Request {
+            let count: Int
+        }
+        struct Response {
+            let count: Int
+        }
+        struct ViewModel {
+            let count: Int
         }
     }
 

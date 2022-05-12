@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategorySceneViewController" customModule="BlackstarShopMVP" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicatorView" destination="FXA-fx-gE9" id="tDl-no-AlC"/>
                 <outlet property="tableView" destination="VXe-rr-TeW" id="bMI-FJ-6yo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="T2C-zL-GX5"/>
             </connections>
@@ -26,13 +27,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-fx-gE9">
+                            <rect key="frame" x="150" y="274" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="FXA-fx-gE9" firstAttribute="centerX" secondItem="zRH-4Z-6La" secondAttribute="centerX" id="AP7-l2-Q4n"/>
                         <constraint firstAttribute="trailing" secondItem="VXe-rr-TeW" secondAttribute="trailing" id="Lil-Xr-g5d"/>
                         <constraint firstItem="VXe-rr-TeW" firstAttribute="top" secondItem="zRH-4Z-6La" secondAttribute="top" id="c3V-6x-TBg"/>
                         <constraint firstAttribute="bottom" secondItem="VXe-rr-TeW" secondAttribute="bottom" id="fCv-x3-vgJ"/>
                         <constraint firstItem="VXe-rr-TeW" firstAttribute="leading" secondItem="zRH-4Z-6La" secondAttribute="leading" id="j8o-H8-DFw"/>
+                        <constraint firstItem="FXA-fx-gE9" firstAttribute="centerY" secondItem="zRH-4Z-6La" secondAttribute="centerY" id="rLz-y9-Lpp"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>

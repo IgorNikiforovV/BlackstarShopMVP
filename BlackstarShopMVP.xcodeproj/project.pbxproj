@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97C32D0A2990F0096777344D /* Pods_BlackstarShopMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9537D0EA063E6250A8F03592 /* Pods_BlackstarShopMVP.framework */; };
+		AC0C74AC282452CA008ED55E /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C74AB282452CA008ED55E /* AlertViewModel.swift */; };
+		AC0C74AE2826F968008ED55E /* DeletionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C74AD2826F968008ED55E /* DeletionType.swift */; };
+		AC37481B280151AF00EA3677 /* DBBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37481A280151AF00EA3677 /* DBBasketService.swift */; };
+		AC37481D2805E4A700EA3677 /* GlobalDBBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */; };
+		AC37482128112D0000EA3677 /* BasketCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37482028112D0000EA3677 /* BasketCellViewModel.swift */; };
+		AC3748242817B3D800EA3677 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3748232817B3D800EA3677 /* AlertView.xib */; };
+		AC3748262817B3FC00EA3677 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3748252817B3FC00EA3677 /* AlertView.swift */; };
 		AC5E691826811DD100408DB4 /* ProductListScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */; };
 		AC5E691926811DD100408DB4 /* ProductListSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */; };
 		AC5E691A26811DD100408DB4 /* ProductListSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */; };
@@ -49,7 +57,23 @@
 		AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC930B4B265521E400DE5B2D /* UIImageView.swift */; };
 		AC953A33265977040077BBE6 /* SubcategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC953A32265977040077BBE6 /* SubcategoryInfo.swift */; };
 		AC953A3F265AD08E0077BBE6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC953A3E265AD08E0077BBE6 /* NetworkConst.swift */; };
+		AC96C4DD27CBB6080027F59A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96C4DC27CBB6080027F59A /* DatabaseManager.swift */; };
 		AC9C1DB227C5E7AA0041EFE3 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */; };
+		ACA0839B27FA1C6F004F61EB /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839A27FA1C6F004F61EB /* DomainConvertibleType.swift */; };
+		ACA0839D27FA1C80004F61EB /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839C27FA1C80004F61EB /* RealmRepresentable.swift */; };
+		ACA0839F27FA248D004F61EB /* DomainDatabaseChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0839E27FA248D004F61EB /* DomainDatabaseChange.swift */; };
+		ACA083A827FCB95F004F61EB /* BasketScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */; };
+		ACA083A927FCB95F004F61EB /* BasketSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */; };
+		ACA083AA27FCB95F004F61EB /* BasketSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */; };
+		ACA083AB27FCB95F004F61EB /* BasketSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */; };
+		ACA083AC27FCB95F004F61EB /* BasketSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */; };
+		ACA083AD27FCB95F004F61EB /* BasketSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */; };
+		ACA083AE27FCB95F004F61EB /* BasketSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */; };
+		ACA083B227FCBED9004F61EB /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083B027FCBED9004F61EB /* BasketCell.swift */; };
+		ACA083B327FCBED9004F61EB /* BasketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA083B127FCBED9004F61EB /* BasketCell.xib */; };
+		ACA083B5280133E3004F61EB /* BasketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083B4280133E3004F61EB /* BasketItem.swift */; };
+		ACA083B8280138C5004F61EB /* DBBasketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083B7280138C5004F61EB /* DBBasketItem.swift */; };
+		ACA083BA28014019004F61EB /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA083B928014019004F61EB /* ObjectExtension.swift */; };
 		ACB4ED6627A6E70100AAC997 /* ProductScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */; };
 		ACB4ED6727A6E70100AAC997 /* ProductSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */; };
 		ACB4ED6827A6E70100AAC997 /* ProductSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */; };
@@ -83,6 +107,7 @@
 		ACE8C30C27C2522C00AC8319 /* ShadowSheetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C30B27C2522C00AC8319 /* ShadowSheetInfo.swift */; };
 		ACE8C31127C4080700AC8319 /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C31027C4080700AC8319 /* BackButtonView.swift */; };
 		ACE8C31427C55D7A00AC8319 /* BasketButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8C31327C55D7A00AC8319 /* BasketButtonView.swift */; };
+		ACE9587327EA4CF700B792DD /* DatabaseChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9587227EA4CF700B792DD /* DatabaseChange.swift */; };
 		ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54D927B18AAF00EDA565 /* ProductItem.swift */; };
 		ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA54DB27B2E60F00EDA565 /* Array.swift */; };
 		ACF51376265698D700911885 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF51375265698D700911885 /* NetworkService.swift */; };
@@ -90,11 +115,19 @@
 		ACF5137C2656A2DC00911885 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137B2656A2DC00911885 /* NetworkError.swift */; };
 		ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5137D2656CB4A00911885 /* EndPoint.swift */; };
 		ACF513812656D94600911885 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF513802656D94600911885 /* CategoryInfo.swift */; };
-		C880CF131E49FD0CD28AA5F9 /* Pods_BlackstarShopMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0362F6000706644E72D3FE /* Pods_BlackstarShopMVP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3385A586B4CCD5E0BFF2CF2B /* Pods-BlackstarShopMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.debug.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.debug.xcconfig"; sourceTree = "<group>"; };
+		0971335D2A972317A2CD3CFC /* Pods-BlackstarShopMVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.release.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.release.xcconfig"; sourceTree = "<group>"; };
+		0DFBA5A35104DAD62A86EB28 /* Pods-BlackstarShopMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.debug.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.debug.xcconfig"; sourceTree = "<group>"; };
+		9537D0EA063E6250A8F03592 /* Pods_BlackstarShopMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackstarShopMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0C74AB282452CA008ED55E /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		AC0C74AD2826F968008ED55E /* DeletionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionType.swift; sourceTree = "<group>"; };
+		AC37481A280151AF00EA3677 /* DBBasketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBasketService.swift; sourceTree = "<group>"; };
+		AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDBBasketService.swift; sourceTree = "<group>"; };
+		AC37482028112D0000EA3677 /* BasketCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCellViewModel.swift; sourceTree = "<group>"; };
+		AC3748232817B3D800EA3677 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		AC3748252817B3FC00EA3677 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListScenePresenter.swift; sourceTree = "<group>"; };
 		AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListSceneWorker.swift; sourceTree = "<group>"; };
 		AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListSceneRouter.swift; sourceTree = "<group>"; };
@@ -139,7 +172,23 @@
 		AC930B4B265521E400DE5B2D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		AC953A32265977040077BBE6 /* SubcategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryInfo.swift; sourceTree = "<group>"; };
 		AC953A3E265AD08E0077BBE6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
+		AC96C4DC27CBB6080027F59A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		ACA0839A27FA1C6F004F61EB /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
+		ACA0839C27FA1C80004F61EB /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
+		ACA0839E27FA248D004F61EB /* DomainDatabaseChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainDatabaseChange.swift; sourceTree = "<group>"; };
+		ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketScenePresenter.swift; sourceTree = "<group>"; };
+		ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneWorker.swift; sourceTree = "<group>"; };
+		ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneRouter.swift; sourceTree = "<group>"; };
+		ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneModels.swift; sourceTree = "<group>"; };
+		ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneViewController.swift; sourceTree = "<group>"; };
+		ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSceneInteractor.swift; sourceTree = "<group>"; };
+		ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketSceneViewController.xib; sourceTree = "<group>"; };
+		ACA083B027FCBED9004F61EB /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
+		ACA083B127FCBED9004F61EB /* BasketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketCell.xib; sourceTree = "<group>"; };
+		ACA083B4280133E3004F61EB /* BasketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketItem.swift; sourceTree = "<group>"; };
+		ACA083B7280138C5004F61EB /* DBBasketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBasketItem.swift; sourceTree = "<group>"; };
+		ACA083B928014019004F61EB /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
 		ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScenePresenter.swift; sourceTree = "<group>"; };
 		ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneWorker.swift; sourceTree = "<group>"; };
 		ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneRouter.swift; sourceTree = "<group>"; };
@@ -173,6 +222,7 @@
 		ACE8C30B27C2522C00AC8319 /* ShadowSheetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSheetInfo.swift; sourceTree = "<group>"; };
 		ACE8C31027C4080700AC8319 /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		ACE8C31327C55D7A00AC8319 /* BasketButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButtonView.swift; sourceTree = "<group>"; };
+		ACE9587227EA4CF700B792DD /* DatabaseChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseChange.swift; sourceTree = "<group>"; };
 		ACEA54D927B18AAF00EDA565 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		ACEA54DB27B2E60F00EDA565 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		ACF51375265698D700911885 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -180,8 +230,6 @@
 		ACF5137B2656A2DC00911885 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		ACF5137D2656CB4A00911885 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		ACF513802656D94600911885 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
-		E31A10886B387BB26A7FE3CF /* Pods-BlackstarShopMVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackstarShopMVP.release.xcconfig"; path = "Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP.release.xcconfig"; sourceTree = "<group>"; };
-		FF0362F6000706644E72D3FE /* Pods_BlackstarShopMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackstarShopMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,20 +237,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C880CF131E49FD0CD28AA5F9 /* Pods_BlackstarShopMVP.framework in Frameworks */,
+				97C32D0A2990F0096777344D /* Pods_BlackstarShopMVP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F79F6B0FD41DDC715D450A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9537D0EA063E6250A8F03592 /* Pods_BlackstarShopMVP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		671CAF2EE1296E488C49CFB1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3385A586B4CCD5E0BFF2CF2B /* Pods-BlackstarShopMVP.debug.xcconfig */,
-				E31A10886B387BB26A7FE3CF /* Pods-BlackstarShopMVP.release.xcconfig */,
+				0DFBA5A35104DAD62A86EB28 /* Pods-BlackstarShopMVP.debug.xcconfig */,
+				0971335D2A972317A2CD3CFC /* Pods-BlackstarShopMVP.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AC3748222817B38500EA3677 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				AC3748232817B3D800EA3677 /* AlertView.xib */,
+				AC3748252817B3FC00EA3677 /* AlertView.swift */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 		AC5E691026811DB900408DB4 /* ProductList */ = {
@@ -213,8 +278,8 @@
 				AC5E691526811DD100408DB4 /* ProductListSceneViewController.swift */,
 				AC5E691626811DD100408DB4 /* ProductListSceneInteractor.swift */,
 				AC5E691126811DD100408DB4 /* ProductListScenePresenter.swift */,
-				AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */,
 				AC5E691326811DD100408DB4 /* ProductListSceneRouter.swift */,
+				AC5E691226811DD100408DB4 /* ProductListSceneWorker.swift */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -244,7 +309,7 @@
 				AC8E6EA4264E7CA3009A2A20 /* BlackstarShopMVP */,
 				AC8E6EA3264E7CA3009A2A20 /* Products */,
 				671CAF2EE1296E488C49CFB1 /* Pods */,
-				DD36760999BF12B26D27FED3 /* Frameworks */,
+				5F79F6B0FD41DDC715D450A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,6 +367,7 @@
 				AC930AFD26514CB900DE5B2D /* СategoryAndSubcategory */,
 				AC5E691026811DB900408DB4 /* ProductList */,
 				ACB4ED5E27A6E6C500AAC997 /* Product */,
+				ACA083A027FCB907004F61EB /* Basket */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -322,8 +388,8 @@
 				AC930B2A2653ADFA00DE5B2D /* CategorySceneViewController.swift */,
 				AC930B2B2653ADFA00DE5B2D /* CategorySceneInteractor.swift */,
 				AC930B262653ADFA00DE5B2D /* CategoryScenePresenter.swift */,
-				AC930B272653ADFA00DE5B2D /* CategorySceneWorker.swift */,
 				AC930B282653ADFA00DE5B2D /* CategorySceneRouter.swift */,
+				AC930B272653ADFA00DE5B2D /* CategorySceneWorker.swift */,
 			);
 			path = "СategoryAndSubcategory";
 			sourceTree = "<group>";
@@ -365,8 +431,69 @@
 				ACE8C30127C239AA00AC8319 /* UIView.swift */,
 				ACE8C30327C23C6B00AC8319 /* UITableView.swift */,
 				AC9C1DB127C5E7AA0041EFE3 /* NSAttributedString.swift */,
+				ACA083B928014019004F61EB /* ObjectExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AC96C4DB27CBB5F10027F59A /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				AC96C4DC27CBB6080027F59A /* DatabaseManager.swift */,
+				AC37481A280151AF00EA3677 /* DBBasketService.swift */,
+				AC37481C2805E4A700EA3677 /* GlobalDBBasketService.swift */,
+			);
+			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		ACA0839827FA1C3F004F61EB /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				ACA0839927FA1C4E004F61EB /* Conversion */,
+				ACE9587227EA4CF700B792DD /* DatabaseChange.swift */,
+				ACA0839E27FA248D004F61EB /* DomainDatabaseChange.swift */,
+			);
+			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		ACA0839927FA1C4E004F61EB /* Conversion */ = {
+			isa = PBXGroup;
+			children = (
+				ACA0839A27FA1C6F004F61EB /* DomainConvertibleType.swift */,
+				ACA0839C27FA1C80004F61EB /* RealmRepresentable.swift */,
+			);
+			path = Conversion;
+			sourceTree = "<group>";
+		};
+		ACA083A027FCB907004F61EB /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				ACA083A727FCB95F004F61EB /* BasketSceneViewController.xib */,
+				ACA083A427FCB95F004F61EB /* BasketSceneModels.swift */,
+				ACA083A527FCB95F004F61EB /* BasketSceneViewController.swift */,
+				ACA083A627FCB95F004F61EB /* BasketSceneInteractor.swift */,
+				ACA083A127FCB95F004F61EB /* BasketScenePresenter.swift */,
+				ACA083A327FCB95F004F61EB /* BasketSceneRouter.swift */,
+				ACA083A227FCB95F004F61EB /* BasketSceneWorker.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		ACA083AF27FCBE77004F61EB /* BasketCell */ = {
+			isa = PBXGroup;
+			children = (
+				ACA083B127FCBED9004F61EB /* BasketCell.xib */,
+				ACA083B027FCBED9004F61EB /* BasketCell.swift */,
+			);
+			path = BasketCell;
+			sourceTree = "<group>";
+		};
+		ACA083B628013831004F61EB /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				ACA083B7280138C5004F61EB /* DBBasketItem.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		ACB4ED4027A6C56E00AAC997 /* Views */ = {
@@ -378,6 +505,8 @@
 				AC930B342653F51200DE5B2D /* СategoryCell */,
 				AC5E691F268122A400408DB4 /* ProductCell */,
 				ACB4ED4127A6C5CF00AAC997 /* ImageSlider */,
+				ACA083AF27FCBE77004F61EB /* BasketCell */,
+				AC3748222817B38500EA3677 /* AlertView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -399,8 +528,8 @@
 				ACB4ED6327A6E70100AAC997 /* ProductSceneViewController.swift */,
 				ACB4ED6427A6E70100AAC997 /* ProductSceneInteractor.swift */,
 				ACB4ED5F27A6E70100AAC997 /* ProductScenePresenter.swift */,
-				ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */,
 				ACB4ED6127A6E70100AAC997 /* ProductSceneRouter.swift */,
+				ACB4ED6027A6E70100AAC997 /* ProductSceneWorker.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -506,8 +635,12 @@
 		ACEA54D827B18A9000EDA565 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ACEA54D927B18AAF00EDA565 /* ProductItem.swift */,
 				ACE8C30B27C2522C00AC8319 /* ShadowSheetInfo.swift */,
+				ACEA54D927B18AAF00EDA565 /* ProductItem.swift */,
+				ACA083B4280133E3004F61EB /* BasketItem.swift */,
+				AC37482028112D0000EA3677 /* BasketCellViewModel.swift */,
+				AC0C74AB282452CA008ED55E /* AlertViewModel.swift */,
+				AC0C74AD2826F968008ED55E /* DeletionType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -515,6 +648,7 @@
 		ACF51373265698A500911885 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AC96C4DB27CBB5F10027F59A /* LocalStorage */,
 				ACE8C30827C24E8000AC8319 /* SheetActionService */,
 				ACE4518A27B6D10E00CDAFD6 /* NetworkLoggerService */,
 				ACF51374265698B700911885 /* NetworkServices */,
@@ -537,8 +671,10 @@
 		ACF513792656A2A100911885 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				ACEA54D827B18A9000EDA565 /* Models */,
+				ACA0839827FA1C3F004F61EB /* LocalStorage */,
 				ACF5137F2656D91500911885 /* API */,
+				ACA083B628013831004F61EB /* DB */,
+				ACEA54D827B18A9000EDA565 /* Models */,
 				ACF5137A2656A2BC00911885 /* Errors */,
 			);
 			path = Entities;
@@ -562,14 +698,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		DD36760999BF12B26D27FED3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FF0362F6000706644E72D3FE /* Pods_BlackstarShopMVP.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -577,13 +705,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC8E6EB6264E7CA5009A2A20 /* Build configuration list for PBXNativeTarget "BlackstarShopMVP" */;
 			buildPhases = (
-				C535E5D3355B74CA01866BC4 /* [CP] Check Pods Manifest.lock */,
+				332656B3996D99124C079075 /* [CP] Check Pods Manifest.lock */,
 				AC930B062652A20900DE5B2D /* Swift Lint */,
 				AC930B072652BD9900DE5B2D /* R.swift */,
 				AC8E6E9E264E7CA3009A2A20 /* Sources */,
 				AC8E6E9F264E7CA3009A2A20 /* Frameworks */,
 				AC8E6EA0264E7CA3009A2A20 /* Resources */,
-				77F48CC3C797E13AB5A57055 /* [CP] Embed Pods Frameworks */,
+				292F8F2925588454545F8AA5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -636,9 +764,11 @@
 				AC930B432655164100DE5B2D /* SF-Pro-Display-Medium.otf in Resources */,
 				AC930B3A2653F55600DE5B2D /* CategoryCell.xib in Resources */,
 				AC930B332653ADFA00DE5B2D /* CategorySceneViewController.xib in Resources */,
+				ACA083AE27FCB95F004F61EB /* BasketSceneViewController.xib in Resources */,
 				ACE8C2F627C2375900AC8319 /* ActionSheetCell.xib in Resources */,
 				AC930B472655164100DE5B2D /* SF-Pro-Text-Light.otf in Resources */,
 				ACE8C2FC27C2375900AC8319 /* ShadowActionSheetController.xib in Resources */,
+				AC3748242817B3D800EA3677 /* AlertView.xib in Resources */,
 				AC8E6EB2264E7CA5009A2A20 /* LaunchScreen.storyboard in Resources */,
 				AC930B492655164100DE5B2D /* SF-Pro-Text-Regular.otf in Resources */,
 				ACE8C2F727C2375900AC8319 /* ActionSheetHeaderView.xib in Resources */,
@@ -646,6 +776,7 @@
 				AC8E6EAD264E7CA3009A2A20 /* Main.storyboard in Resources */,
 				AC5E6923268122DD00408DB4 /* ProductCell.xib in Resources */,
 				ACB4ED7127A9A5C600AAC997 /* ProductSceneViewController.xib in Resources */,
+				ACA083B327FCBED9004F61EB /* BasketCell.xib in Resources */,
 				ACD82D5F26825A71007E451D /* Localizable.strings in Resources */,
 				AC5E691E26811DD100408DB4 /* ProductListSceneViewController.xib in Resources */,
 				AC930B482655164100DE5B2D /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -658,7 +789,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		77F48CC3C797E13AB5A57055 /* [CP] Embed Pods Frameworks */ = {
+		292F8F2925588454545F8AA5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -673,6 +804,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BlackstarShopMVP/Pods-BlackstarShopMVP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		332656B3996D99124C079075 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlackstarShopMVP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AC930B062652A20900DE5B2D /* Swift Lint */ = {
@@ -713,28 +866,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/Resources/R.generated.swift\"\n";
 		};
-		C535E5D3355B74CA01866BC4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BlackstarShopMVP-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -759,7 +890,10 @@
 				AC930B4C265521E400DE5B2D /* UIImageView.swift in Sources */,
 				ACF5137E2656CB4A00911885 /* EndPoint.swift in Sources */,
 				ACB4ED6627A6E70100AAC997 /* ProductScenePresenter.swift in Sources */,
+				AC37481B280151AF00EA3677 /* DBBasketService.swift in Sources */,
+				ACA083BA28014019004F61EB /* ObjectExtension.swift in Sources */,
 				ACB4ED6927A6E70100AAC997 /* ProductSceneModels.swift in Sources */,
+				ACA0839D27FA1C80004F61EB /* RealmRepresentable.swift in Sources */,
 				AC6D030D2661312B00AFC274 /* ScenesFactory.swift in Sources */,
 				AC8E6EAA264E7CA3009A2A20 /* ViewController.swift in Sources */,
 				AC5E691B26811DD100408DB4 /* ProductListSceneModels.swift in Sources */,
@@ -770,15 +904,21 @@
 				ACE8C2E927BC2CB900AC8319 /* Formatter.swift in Sources */,
 				ACF513812656D94600911885 /* CategoryInfo.swift in Sources */,
 				ACE8C30227C239AA00AC8319 /* UIView.swift in Sources */,
+				ACA083B8280138C5004F61EB /* DBBasketItem.swift in Sources */,
+				ACA083B5280133E3004F61EB /* BasketItem.swift in Sources */,
 				ACE4518C27B6D13200CDAFD6 /* NetworkLogger.swift in Sources */,
 				ACB4ED6A27A6E70100AAC997 /* ProductSceneViewController.swift in Sources */,
 				ACB4ED8027B043A800AAC997 /* Collection.swift in Sources */,
 				ACF51376265698D700911885 /* NetworkService.swift in Sources */,
+				AC37482128112D0000EA3677 /* BasketCellViewModel.swift in Sources */,
 				ACE8C30427C23C6B00AC8319 /* UITableView.swift in Sources */,
+				ACA0839F27FA248D004F61EB /* DomainDatabaseChange.swift in Sources */,
 				AC5E691A26811DD100408DB4 /* ProductListSceneRouter.swift in Sources */,
 				ACE8C2FA27C2375900AC8319 /* ActionSheetCell.swift in Sources */,
 				ACE8C2F827C2375900AC8319 /* ShadowActionSheetController.swift in Sources */,
 				ACB4ED6727A6E70100AAC997 /* ProductSceneWorker.swift in Sources */,
+				ACA083B227FCBED9004F61EB /* BasketCell.swift in Sources */,
+				ACA083AD27FCB95F004F61EB /* BasketSceneInteractor.swift in Sources */,
 				AC930B0F2652CBF200DE5B2D /* R.generated.swift in Sources */,
 				ACB4ED7927B0128300AAC997 /* ImageHorizontalCollectionCell.swift in Sources */,
 				AC930B0326514E1600DE5B2D /* MainTabBarController.swift in Sources */,
@@ -787,23 +927,35 @@
 				AC930B2D2653ADFA00DE5B2D /* CategoryScenePresenter.swift in Sources */,
 				ACB4ED7E27B01AB300AAC997 /* DownloadImagesService.swift in Sources */,
 				AC5E691C26811DD100408DB4 /* ProductListSceneViewController.swift in Sources */,
+				ACE9587327EA4CF700B792DD /* DatabaseChange.swift in Sources */,
 				ACEA54DA27B18AAF00EDA565 /* ProductItem.swift in Sources */,
+				AC3748262817B3FC00EA3677 /* AlertView.swift in Sources */,
+				ACA083A827FCB95F004F61EB /* BasketScenePresenter.swift in Sources */,
 				AC930B302653ADFA00DE5B2D /* CategorySceneModels.swift in Sources */,
 				AC930B2F2653ADFA00DE5B2D /* CategorySceneRouter.swift in Sources */,
 				AC6D030F2661326100AFC274 /* UIViewController.swift in Sources */,
 				ACEA54DC27B2E60F00EDA565 /* Array.swift in Sources */,
+				ACA083A927FCB95F004F61EB /* BasketSceneWorker.swift in Sources */,
 				AC8E6EA8264E7CA3009A2A20 /* SceneDelegate.swift in Sources */,
 				AC6E8D1E266014F7007EA6A9 /* UIImage.swift in Sources */,
 				ACF5137826569AE200911885 /* NetworkServiceImpl.swift in Sources */,
 				ACE8C2FB27C2375900AC8319 /* ActionSheetHeaderView.swift in Sources */,
+				ACA083AB27FCB95F004F61EB /* BasketSceneModels.swift in Sources */,
+				ACA083AA27FCB95F004F61EB /* BasketSceneRouter.swift in Sources */,
 				AC5E6922268122DD00408DB4 /* ProductCell.swift in Sources */,
 				ACE8C2EB27BC2D0500AC8319 /* Numeric.swift in Sources */,
 				ACE8C31427C55D7A00AC8319 /* BasketButtonView.swift in Sources */,
+				AC0C74AC282452CA008ED55E /* AlertViewModel.swift in Sources */,
+				ACA0839B27FA1C6F004F61EB /* DomainConvertibleType.swift in Sources */,
+				ACA083AC27FCB95F004F61EB /* BasketSceneViewController.swift in Sources */,
+				AC37481D2805E4A700EA3677 /* GlobalDBBasketService.swift in Sources */,
 				AC5E691926811DD100408DB4 /* ProductListSceneWorker.swift in Sources */,
 				AC5E691D26811DD100408DB4 /* ProductListSceneInteractor.swift in Sources */,
+				AC0C74AE2826F968008ED55E /* DeletionType.swift in Sources */,
 				AC930B392653F55600DE5B2D /* CategoryCell.swift in Sources */,
 				ACB4ED6827A6E70100AAC997 /* ProductSceneRouter.swift in Sources */,
 				ACE8C30A27C24EC900AC8319 /* SheetActionService.swift in Sources */,
+				AC96C4DD27CBB6080027F59A /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,7 +1099,7 @@
 		};
 		AC8E6EB7264E7CA5009A2A20 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3385A586B4CCD5E0BFF2CF2B /* Pods-BlackstarShopMVP.debug.xcconfig */;
+			baseConfigurationReference = 0DFBA5A35104DAD62A86EB28 /* Pods-BlackstarShopMVP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -961,13 +1113,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.igorNikiforov.BlackstarShopMVP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		AC8E6EB8264E7CA5009A2A20 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E31A10886B387BB26A7FE3CF /* Pods-BlackstarShopMVP.release.xcconfig */;
+			baseConfigurationReference = 0971335D2A972317A2CD3CFC /* Pods-BlackstarShopMVP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -981,7 +1133,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.igorNikiforov.BlackstarShopMVP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -9,11 +9,9 @@
 import UIKit
 
 protocol ProductSceneDisplayLogic: AnyObject {
-    func updateImageSlider(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductName(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductDescription(with viewModel: ProductScene.StartupData.ViewModel)
-    func updateProductPrice(with viewModel: ProductScene.StartupData.ViewModel)
+    func updateData(with viewModel: ProductScene.StartupData.ViewModel)
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel)
+    func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel)
 }
 
 class ProductSceneViewController: UIViewController {
@@ -31,6 +29,7 @@ class ProductSceneViewController: UIViewController {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var addBasketButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var sliderViewHeightConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
 
@@ -59,7 +58,7 @@ class ProductSceneViewController: UIViewController {
         super.viewDidLoad()
 
         makeInitialSettings()
-
+        interactor?.setNotificationStorageSubscribing(request: ProductScene.StorageSubscribing.Request(subscriber: self))
         interactor?.viewIsReady(request: ProductScene.StartupData.Request())
     }
 
@@ -74,23 +73,20 @@ class ProductSceneViewController: UIViewController {
 // MARK: - ProductSceneDisplayLogic
 
 extension ProductSceneViewController: ProductSceneDisplayLogic {
-    func updateImageSlider(with response: ProductScene.StartupData.ViewModel) {
-        sliderView.configure(response.imageStringUrls)
-    }
 
-    func updateProductName(with response: ProductScene.StartupData.ViewModel) {
-        nameLabel.attributedText = Const.nameAttributedText(response.productName)
-    }
+    func updateData(with viewModel: ProductScene.StartupData.ViewModel) {
+        sliderView.configure(viewModel.imageStringUrls)
 
-    func updateProductPrice(with response: ProductScene.StartupData.ViewModel) {
+        nameLabel.attributedText = Const.nameAttributedText(viewModel.productName)
+
         priceLabel.alpha = 0.5
-        priceLabel.attributedText = Const.priceAttributedText(response.price)
-    }
+        priceLabel.attributedText = Const.priceAttributedText(viewModel.price)
 
-    func updateProductDescription(with response: ProductScene.StartupData.ViewModel) {
-        guard let description = response.description else { descriptionLabel.isHidden = true; return }
+        guard let description = viewModel.description else { descriptionLabel.isHidden = true; return }
         descriptionLabel.attributedText = description.fromHTML(attributes: [:],
                                                                commonAttribute: Const.descriptionAttributes)
+
+        basketButtonView.updateBadge(with: "\(viewModel.basketBageValue)")
     }
 
     func showSizesSheet(with viewModel: ProductScene.AddBasketTrapping.ViewModel) {
@@ -99,12 +95,48 @@ extension ProductSceneViewController: ProductSceneDisplayLogic {
                                         actions: viewModel.sheetActions)
         router?.showSheetController(sheetInfo: sheetInfo)
     }
+
+    func changeBasketBage(with viewModel: ProductScene.BasketBageChanging.ViewModel) {
+        basketButtonView.updateBadge(with: "\(viewModel.count)")
+    }
+}
+
+// MARK: BackButtonViewDelegate
+
+extension ProductSceneViewController: BackButtonViewDelegate {
+
+    func backButtonDidTap() {
+        router?.returnToPreviousViewController()
+    }
+
+}
+
+// MARK: BasketButtonViewDelegate
+
+extension ProductSceneViewController: BasketButtonViewDelegate {
+
+    func basketButtonDidTap() {
+        tabBarController?.selectedIndex = 1
+    }
+
+}
+
+// MARK: BasketItemsSubscribable
+
+extension ProductSceneViewController: BasketItemsSubscribable {
+
+    func basketItemsDidChange(basketItemsChange: DomainDatabaseChange<BasketItem>) {
+        let request = ProductScene.BasketBageChanging.Request(count: basketItemsChange.result.count)
+        interactor?.basketStorageWasChanged(request: request)
+    }
+
 }
 
 // MARK: private methods
 
 private extension ProductSceneViewController {
     func makeInitialSettings() {
+        configureSliderView()
         configureSeparator()
         configurePriceTitle()
         configureAddBasket()
@@ -119,6 +151,10 @@ private extension ProductSceneViewController {
 
         configureBackButtonView()
         configureBasketButtonView()
+    }
+
+    func configureSliderView() {
+        sliderViewHeightConstraint.constant = UIScreen.main.scale > 2.0 ? 560 : 430
     }
 
     func configureBackButtonView() {
@@ -154,26 +190,6 @@ private extension ProductSceneViewController {
 
     @IBAction func addBascketButtonTapped(_ sender: UIButton) {
         interactor?.addBasketTapped(request: ProductScene.AddBasketTrapping.Request(sheetRowAttributtes: Const.sheetItemAttributes))
-    }
-
-}
-
-// MARK: BackButtonViewDelegate
-
-extension ProductSceneViewController: BackButtonViewDelegate {
-
-    func backButtonDidTap() {
-        router?.returnToPreviousViewController()
-    }
-
-}
-
-// MARK: BasketButtonViewDelegate
-
-extension ProductSceneViewController: BasketButtonViewDelegate {
-
-    func basketButtonDidTap() {
-        tabBarController?.selectedIndex = 1
     }
 
 }

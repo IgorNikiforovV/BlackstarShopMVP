@@ -51,6 +51,22 @@ enum ScenesFactoryImpl: ScenesFactory {
         presenter.viewController  = viewController
         router.viewController     = viewController
         interactor.productItem = product
+        interactor.storageService = GlobalBasketStorageServiceImpl.shared
+
+        return viewController
+    }
+
+    static func makeBasketScene() -> Presentable & BasketSceneDisplayLogic {
+        let viewController        = BasketSceneViewController()
+        let interactor            = BasketSceneInteractor()
+        let presenter             = BasketScenePresenter()
+        let router                = BasketSceneRouter()
+        viewController.interactor = interactor
+        viewController.router     = router
+        interactor.presenter      = presenter
+        presenter.viewController  = viewController
+        router.viewController     = viewController
+        interactor.storageService = GlobalBasketStorageServiceImpl.shared
 
         return viewController
     }

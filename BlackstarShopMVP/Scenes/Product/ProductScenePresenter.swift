@@ -11,9 +11,11 @@ import Foundation
 protocol ProductScenePresentationLogic {
     func presentData(with response: ProductScene.StartupData.Response)
     func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response)
+    func changeBasketBage(with response: ProductScene.BasketBageChanging.Response)
 }
 
 class ProductScenePresenter: ProductScenePresentationLogic {
+
     weak var viewController: ProductSceneDisplayLogic?
 
     func presentData(with response: ProductScene.StartupData.Response) {
@@ -24,19 +26,20 @@ class ProductScenePresenter: ProductScenePresentationLogic {
             .sorted(by: { image1, image2 in image1.sortOrder > image2.sortOrder })
             .compactMap { URL(string: "\(NetworkConst.baseUrl)\($0.imageURL)") }
 
-        let response = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
-                                                          productName: product.name,
-                                                          price: product.preparedPrice,
-                                                          description: product.description)
+        let viewModel = ProductScene.StartupData.ViewModel(imageStringUrls: imageUrls,
+                                                           productName: product.name,
+                                                           price: product.preparedPrice,
+                                                           description: product.description,
+                                                           basketBageValue: response.basketBageValue)
 
-        viewController?.updateImageSlider(with: response)
-        viewController?.updateProductName(with: response)
-        viewController?.updateProductPrice(with: response)
-        viewController?.updateProductDescription(with: response)
+        viewController?.updateData(with: viewModel)
     }
 
     func prepareSizesSheetData(with response: ProductScene.AddBasketTrapping.Response) {
         viewController?.showSizesSheet(with: ProductScene.AddBasketTrapping.ViewModel(sheetActions: response.sheetActions))
     }
 
+    func changeBasketBage(with response: ProductScene.BasketBageChanging.Response) {
+        viewController?.changeBasketBage(with: ProductScene.BasketBageChanging.ViewModel(count: response.count))
+    }
 }

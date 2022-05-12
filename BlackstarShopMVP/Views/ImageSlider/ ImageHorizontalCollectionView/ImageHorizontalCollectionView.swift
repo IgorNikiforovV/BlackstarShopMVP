@@ -23,6 +23,8 @@ class ImageHorizontalCollectionView: UIView {
     private var images = [UIImage]()
     private let imagesService: DownloadImagesService = DownloadImagesServiceImpl()
 
+    // MARK: - Object lifecycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -72,6 +74,7 @@ private extension ImageHorizontalCollectionView {
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.topAnchor.constraint(equalTo: topAnchor)
         ])
+
         collectionView.register(R.nib.imageHorizontalCollectionCell)
 
         pageControl.currentPageIndicatorTintColor = .green

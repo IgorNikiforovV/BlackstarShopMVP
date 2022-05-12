@@ -2,11 +2,17 @@ import UIKit
 
 final class ActionSheetHeaderView: UIView {
 
+    // MARK: @IBOutlet
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var draggerView: UIView!
 
+    // MARK: Properties
+
     private var view = UIView()
+
+    // MARK: Life cycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
